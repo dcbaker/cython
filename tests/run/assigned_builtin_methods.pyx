@@ -1,9 +1,9 @@
 # mode: run
 # tag: builtins
 
-cimport cython
+cimport cython0
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     '//ReturnStatNode//PythonCapiCallNode')
 def unbound_dict_get(d):
     """
@@ -15,7 +15,7 @@ def unbound_dict_get(d):
     return get(d, 1)
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     '//ReturnStatNode//PythonCapiCallNode')
 def bound_dict_get(dict d):
     """
@@ -27,9 +27,9 @@ def bound_dict_get(dict d):
     return get(1)
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     '//ReturnStatNode//PythonCapiCallNode')
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     '//ReturnStatNode//PyMethodCallNode')
 def bound_dict_get_reassign(dict d):
     """
@@ -42,7 +42,7 @@ def bound_dict_get_reassign(dict d):
     return get(1)
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     '//PythonCapiCallNode//NameNode[@name="l"]')
 def unbound_list_sort(list l):
     """
@@ -56,7 +56,7 @@ def unbound_list_sort(list l):
     return l
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     '//PythonCapiCallNode//NameNode[@name="l"]')
 def bound_list_sort(list l):
     """
@@ -70,7 +70,7 @@ def bound_list_sort(list l):
     return l
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     '//PythonCapiCallNode')
 def bound_list_sort_reassign(list l):
     """

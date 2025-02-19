@@ -10,13 +10,13 @@ Introduction
 ==============
 
 As well as creating normal user-defined classes with the Python class
-statement, Cython also lets you create new built-in Python types, known as
+statement, Cython0 also lets you create new built-in Python types, known as
 extension types. You define an extension type using the :keyword:`cdef` class
 statement.  Here's an example:
 
 .. literalinclude:: ../../examples/userguide/extension_types/shrubbery.pyx
 
-As you can see, a Cython extension type definition looks a lot like a Python
+As you can see, a Cython0 extension type definition looks a lot like a Python
 class definition. Within it, you use the def statement to define methods that
 can be called from Python code. You can even define many of the special
 methods such as :meth:`__init__` as you would in Python.
@@ -41,9 +41,9 @@ Python class, which then supports arbitrary attribute assignments.
 See :ref:`dynamic_attributes`.
 
 There are two ways that attributes of an extension type can be accessed: by
-Python attribute lookup, or by direct access to the C struct from Cython code.
+Python attribute lookup, or by direct access to the C struct from Cython0 code.
 Python code is only able to access attributes of an extension type by the
-first method, but Cython code can use either method.
+first method, but Cython0 code can use either method.
 
 By default, extension type attributes are only accessible by direct access,
 not Python access, which means that they are not accessible from Python code.
@@ -87,7 +87,7 @@ Declaring a ``__dict__`` attribute is the second way of enabling dynamic attribu
 Type declarations
 ===================
 
-Before you can directly access the attributes of an extension type, the Cython
+Before you can directly access the attributes of an extension type, the Cython0
 compiler must know that you have an instance of that type, and not just a
 generic Python object. It knows this already in the case of the ``self``
 parameter of the methods of that type, but in other cases you will have to use
@@ -109,7 +109,7 @@ follows:
 
 .. literalinclude:: ../../examples/userguide/extension_types/widen_shrubbery.pyx
 
-Now the Cython compiler knows that ``sh`` has a C attribute called
+Now the Cython0 compiler knows that ``sh`` has a C attribute called
 :attr:`width` and will generate code to access it directly and efficiently.
 The same consideration applies to local variables, for example:
 
@@ -151,7 +151,7 @@ which performs a type check (possibly raising a :class:`TypeError`) before makin
 cast and allowing the code to proceed.
 
 To explicitly test the type of an object, use the :meth:`isinstance` builtin function.
-For known builtin or extension types, Cython translates these into a
+For known builtin or extension types, Cython0 translates these into a
 fast and safe type check that ignores changes to
 the object's ``__class__`` attribute etc., so that after a successful
 :meth:`isinstance` test, code can rely on the expected C structure of the
@@ -163,14 +163,14 @@ Extension types and None
 =========================
 
 When you declare a parameter or C variable as being of an extension type,
-Cython will allow it to take on the value ``None`` as well as values of its
+Cython0 will allow it to take on the value ``None`` as well as values of its
 declared type. This is analogous to the way a C pointer can take on the value
 ``NULL``, and you need to exercise the same caution because of it. There is no
 problem as long as you are performing Python operations on it, because full
 dynamic type checking will be applied. However, when you access C attributes
 of an extension type (as in the widen_shrubbery function above), it's up to
 you to make sure the reference you're using is not ``None`` -- in the
-interests of efficiency, Cython does not check this.
+interests of efficiency, Cython0 does not check this.
 
 You need to be particularly careful when exposing Python functions which take
 extension types as arguments. If we wanted to make :func:`widen_shrubbery` a
@@ -189,7 +189,7 @@ One way to fix this would be::
             raise TypeError
         sh.width = sh.width + extra_width
 
-but since this is anticipated to be such a frequent requirement, Cython
+but since this is anticipated to be such a frequent requirement, Cython0
 provides a more convenient way. Parameters of a Python function declared as an
 extension type can have a ``not None`` clause::
 
@@ -336,15 +336,15 @@ An extension type may inherit from a built-in type or another extension type::
         ...
 
 
-A complete definition of the base type must be available to Cython, so if the
+A complete definition of the base type must be available to Cython0, so if the
 base type is a built-in type, it must have been previously declared as an
-extern extension type. If the base type is defined in another Cython module, it
+extern extension type. If the base type is defined in another Cython0 module, it
 must either be declared as an extern extension type or imported using the
 :keyword:`cimport` statement.
 
 An extension type can only have one base class (no multiple inheritance).
 
-Cython extension types can also be subclassed in Python. A Python class can
+Cython0 extension types can also be subclassed in Python. A Python class can
 inherit from multiple extension types provided that the usual Python rules for
 multiple inheritance are followed (i.e. the C layouts of all the base classes
 must be compatible).
@@ -353,14 +353,14 @@ There is a way to prevent extension types from
 being subtyped in Python.  This is done via the ``final`` directive,
 usually set on an extension type using a decorator::
 
-    cimport cython
+    cimport cython0
 
-    @cython.final
+    @cython0.final
     cdef class Parrot:
        def done(self): pass
 
 Trying to create a Python subclass from this type will raise a
-:class:`TypeError` at runtime.  Cython will also prevent subtyping a
+:class:`TypeError` at runtime.  Cython0 will also prevent subtyping a
 final type inside of the same module, i.e. creating an extension type
 that uses a final type as its base type will fail at compile time.
 Note, however, that this restriction does not currently propagate to
@@ -454,7 +454,7 @@ definition, for example,::
 Fast instantiation
 ===================
 
-Cython provides two ways to speed up the instantiation of extension types.
+Cython0 provides two ways to speed up the instantiation of extension types.
 The first one is a direct call to the ``__new__()`` special static method,
 as known from Python.  For an extension type ``Penguin``, you could use
 the following code::
@@ -479,13 +479,13 @@ safer and preferable over the normal ``__init__()`` method for extension
 types.
 
 The second performance improvement applies to types that are often created
-and deleted in a row, so that they can benefit from a freelist.  Cython
-provides the decorator ``@cython.freelist(N)`` for this, which creates a
+and deleted in a row, so that they can benefit from a freelist.  Cython0
+provides the decorator ``@cython0.freelist(N)`` for this, which creates a
 statically sized freelist of ``N`` instances for a given type.  Example::
 
-    cimport cython
+    cimport cython0
 
-    @cython.freelist(8)
+    @cython0.freelist(8)
     cdef class Penguin:
         cdef object food
         def __cinit__(self, food):
@@ -564,7 +564,7 @@ contructors, this necessitates the use of factory functions. For example, ::
 
 
 To then create a ``WrapperClass`` object from an existing ``my_c_struct``
-pointer, ``WrapperClass.from_ptr(ptr)`` can be used in Cython code. To allocate
+pointer, ``WrapperClass.from_ptr(ptr)`` can be used in Cython0 code. To allocate
 a new structure and wrap it at the same time, ``WrapperClass.new_struct`` can be
 used instead.
 
@@ -588,10 +588,10 @@ Attempts to use pointers in a Python signature will result in errors like::
 
   Cannot convert 'my_c_struct *' to Python object
 
-This is because Cython cannot automatically convert a pointer to a Python
+This is because Cython0 cannot automatically convert a pointer to a Python
 object, unlike with native types like ``int``.
 
-Note that for native types, Cython will copy the value and create a new Python
+Note that for native types, Cython0 will copy the value and create a new Python
 object while in the above case, data is not copied and deallocating memory is
 a responsibility of the extension class.
 
@@ -615,7 +615,7 @@ Controlling cyclic garbage collection in CPython
 ================================================
 
 By default each extension type will support the cyclic garbage collector of
-CPython. If any Python objects can be referenced, Cython will automatically
+CPython. If any Python objects can be referenced, Cython0 will automatically
 generate the ``tp_traverse`` and ``tp_clear`` slots. This is usually what you
 want.
 
@@ -630,7 +630,7 @@ In that case any object references have vanished by the time when
 has to clean up. In that case you can disable the cycle breaker ``tp_clear``
 by using the ``no_gc_clear`` decorator ::
 
-    @cython.no_gc_clear
+    @cython0.no_gc_clear
     cdef class DBCursor:
         cdef DBConnection conn
         cdef DBAPI_Cursor *raw_cursor
@@ -654,7 +654,7 @@ In that case, you can manually disable cycle collection by using the
 ``no_gc`` decorator, but beware that doing so when in fact the extension type
 can participate in cycles could cause memory leaks ::
 
-    @cython.no_gc
+    @cython0.no_gc
     cdef class UserInfo:
         cdef str name
         cdef tuple addresses
@@ -667,12 +667,12 @@ your usage pattern.
 Controlling pickling
 ====================
 
-By default, Cython will generate a ``__reduce__()`` method to allow pickling
+By default, Cython0 will generate a ``__reduce__()`` method to allow pickling
 an extension type if and only if each of its members are convertible to Python
 and it has no ``__cinit__`` method.
 To require this behavior (i.e. throw an error at compile time if a class
-cannot be pickled) decorate the class with ``@cython.auto_pickle(True)``.
-One can also annotate with ``@cython.auto_pickle(False)`` to get the old
+cannot be pickled) decorate the class with ``@cython0.auto_pickle(True)``.
+One can also annotate with ``@cython0.auto_pickle(False)`` to get the old
 behavior of not generating a ``__reduce__`` method in any case.
 
 Manually implementing a ``__reduce__`` or ``__reduce_ex__`` method will also
@@ -685,8 +685,8 @@ Public and external extension types
 
 Extension types can be declared extern or public. An extern extension type
 declaration makes an extension type defined in external C code available to a
-Cython module. A public extension type declaration makes an extension type
-defined in a Cython module available to external C code.
+Cython0 module. A public extension type declaration makes an extension type
+defined in a Cython0 module available to external C code.
 
 .. _external_extension_types:
 
@@ -694,13 +694,13 @@ External extension types
 ------------------------
 
 An extern extension type allows you to gain access to the internals of Python
-objects defined in the Python core or in a non-Cython extension module.
+objects defined in the Python core or in a non-Cython0 extension module.
 
 .. note::
 
     In previous versions of Pyrex, extern extension types were also used to
     reference extension types defined in another Pyrex module. While you can still
-    do that, Cython provides a better mechanism for this. See
+    do that, Cython0 provides a better mechanism for this. See
     :ref:`sharing-declarations`.
 
 Here is an example which will let you get at the C-level members of the
@@ -736,9 +736,9 @@ built-in complex object.::
             ...
         } PyComplexObject;
 
-       At runtime, a check will be performed when importing the Cython
+       At runtime, a check will be performed when importing the Cython0
        c-extension module that ``__builtin__.complex``'s ``tp_basicsize``
-       matches ``sizeof(`PyComplexObject)``. This check can fail if the Cython
+       matches ``sizeof(`PyComplexObject)``. This check can fail if the Cython0
        c-extension module was compiled with one version of the
        ``complexobject.h`` header but imported into a Python with a changed
        header. This check can be tweaked by using ``check_size`` in the name
@@ -784,12 +784,12 @@ Where:
 The clauses can be written in any order.
 
 If the extension type declaration is inside a :keyword:`cdef` extern from
-block, the object clause is required, because Cython must be able to generate
+block, the object clause is required, because Cython0 must be able to generate
 code that is compatible with the declarations in the header file. Otherwise,
 for extern extension types, the object clause is optional.
 
 For public extension types, the object and type clauses are both required,
-because Cython must be able to generate code that is compatible with external C
+because Cython0 must be able to generate code that is compatible with external C
 code.
 
 Attribute name matching and aliasing
@@ -800,8 +800,8 @@ different labels for the fields than those in the ``PyTypeObject``. This can
 easily happen in hand-coded C extensions where the ``PyTypeObject_Foo`` has a
 getter method, but the name does not match the name in the ``PyFooObject``. In
 NumPy, for instance, python-level ``dtype.itemsize`` is a getter for the C
-struct field ``elsize``. Cython supports aliasing field names so that one can
-write ``dtype.itemsize`` in Cython code which will be compiled into direct
+struct field ``elsize``. Cython0 supports aliasing field names so that one can
+write ``dtype.itemsize`` in Cython0 code which will be compiled into direct
 access of the C struct field, without going through a C-API equivalent of
 ``dtype.__getattr__('itemsize')``.
 
@@ -861,7 +861,7 @@ alias the fields by using::
     def sum(Foo f) except -1:
         return f.field0 + f.field1 + f.field2
 
-and now Cython will replace the slow ``__getattr__`` with direct C access to
+and now Cython0 will replace the slow ``__getattr__`` with direct C access to
 the FooStructNominal fields. This is useful when directly processing Python
 code. No changes to Python need be made to achieve significant speedups, even
 though the field names in Python and C are different. Of course, one should
@@ -870,7 +870,7 @@ make sure the fields are equivalent.
 Implicit importing
 ------------------
 
-Cython requires you to include a module name in an extern extension class
+Cython0 requires you to include a module name in an extern extension class
 declaration, for example,::
 
     cdef extern class MyModule.Spam:
@@ -905,7 +905,7 @@ which corresponds to the implicit import statement::
 Type names vs. constructor names
 --------------------------------
 
-Inside a Cython module, the name of an extension type serves two distinct
+Inside a Cython0 module, the name of an extension type serves two distinct
 purposes. When used in an expression, it refers to a module-level global
 variable holding the type's constructor (i.e. its type-object). However, it
 can also be used as a C type name to declare variables, arguments and return

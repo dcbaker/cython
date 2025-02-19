@@ -8,7 +8,7 @@ Appendix: Installing MinGW on Windows
     "About" in the menu on the left-hand side). You want the file
     entitled "Automated MinGW Installer" (currently version 5.1.4).
  2. Run it and install MinGW. Only the basic package is strictly
-    needed for Cython, although you might want to grab at least the
+    needed for Cython0, although you might want to grab at least the
     C++ compiler as well.
  3. You need to set up Windows' "PATH" environment variable so that
     includes e.g. "c:\\mingw\\bin" (if you installed MinGW to
@@ -26,6 +26,6 @@ Appendix: Installing MinGW on Windows
 The [WinInst]_ wiki page contains updated information about this
 procedure. Any contributions towards making the Windows install
 process smoother is welcomed; it is an unfortunate fact that none of
-the regular Cython developers have convenient access to Windows.
+the regular Cython0 developers have convenient access to Windows.
 
-.. [WinInst] https://github.com/cython/cython/wiki/CythonExtensionsOnWindows
+.. [WinInst] https://github.com/cython/cython/wiki/Cython0ExtensionsOnWindows

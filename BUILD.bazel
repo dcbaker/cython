@@ -6,15 +6,15 @@
 py_library(
     name = "cython_lib",
     srcs = glob(
-        ["Cython/**/*.py"],
+        ["Cython0/**/*.py"],
         exclude = [
             "**/Tests/*.py",
         ],
     ) + ["cython.py"],
     data = glob([
-        "Cython/**/*.pyx",
-        "Cython/Utility/*.*",
-        "Cython/Includes/**/*.pxd",
+        "Cython0/**/*.pyx",
+        "Cython0/Utility/*.*",
+        "Cython0/Includes/**/*.pxd",
     ]),
     visibility = ["//visibility:public"],
 )

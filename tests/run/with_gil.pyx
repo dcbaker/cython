@@ -2,7 +2,7 @@
 Test the 'with gil:' statement.
 """
 
-cimport cython
+cimport cython0
 from cpython.ref cimport PyObject
 
 import sys
@@ -209,7 +209,7 @@ def test_loops_and_boxing():
 cdef class SomeExtClass(object):
     cdef int some_attribute
 
-@cython.infer_types(True)
+@cython0.infer_types(True)
 def test_infer_types():
     """
     >>> test_infer_types()

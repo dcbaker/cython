@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Cython documentation build configuration file, created by
+# Cython0 documentation build configuration file, created by
 # sphinx-quickstart on Sun Jun 29 13:36:38 2014.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -26,7 +26,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # Use cython as the default syntax highlighting language, as python is a subset
 # this does the right thing
-highlight_language = 'cython'
+highlight_language = 'cython0'
 
 # If your documentation needs a minimal Sphinx version, state it here.
 #needs_sphinx = '1.0'
@@ -57,7 +57,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Cython'
+project = 'Cython0'
 authors = 'Stefan Behnel, Robert Bradshaw, Dag Sverre Seljebotn, Greg Ewing, William Stein, Gabriel Gellner, et al.'
 copyright = '%s, %s' % (YEAR, authors)
 
@@ -69,7 +69,7 @@ copyright = '%s, %s' % (YEAR, authors)
 release = '0.15'
 try:
     _match_version = re.compile(r'^\s*_*version\s*_*\s*=\s*["\']([^"\']+)["\'].*').match
-    with open(os.path.join(os.path.dirname(__file__), '..', 'Cython', 'Shadow.py')) as _f:
+    with open(os.path.join(os.path.dirname(__file__), '..', 'Cython0', 'Shadow.py')) as _f:
         for line in itertools.islice(_f, 5):  # assume version comes early enough
             _m = _match_version(line)
             if _m:
@@ -209,7 +209,7 @@ html_use_index = False
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Cythondoc'
+htmlhelp_basename = 'Cython0doc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -230,9 +230,9 @@ latex_elements = {
 _stdauthor = r'Stefan Behnel, Robert Bradshaw, William Stein\\ Gary Furnish, Dag Seljebotn, Greg Ewing\\ Gabriel Gellner, editor'
 latex_documents = [
     ('src/reference/index', 'reference.tex',
-     'Cython Reference Guide', _stdauthor, 'manual'),
+     'Cython0 Reference Guide', _stdauthor, 'manual'),
     ('src/tutorial/index', 'tutorial.tex',
-     'Cython Tutorial', _stdauthor, 'manual')
+     'Cython0 Tutorial', _stdauthor, 'manual')
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -261,7 +261,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'cython', u'Cython Documentation',
+    ('index', 'cython0', u'Cython0 Documentation',
      [authors], 1)
 ]
 
@@ -275,8 +275,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'Cython', u'Cython Documentation',
-   authors, 'Cython', 'One line description of project.',
+  ('index', 'Cython0', u'Cython0 Documentation',
+   authors, 'Cython0', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -296,7 +296,7 @@ texinfo_documents = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'Cython'
+epub_title = u'Cython0'
 epub_author = authors
 epub_publisher = u''
 epub_copyright = copyright

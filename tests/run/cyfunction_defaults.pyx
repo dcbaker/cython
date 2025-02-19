@@ -2,7 +2,7 @@
 # mode: run
 # tag: cyfunction, closures
 
-cimport cython
+cimport cython0
 import sys
 
 def get_defaults(func):
@@ -131,7 +131,7 @@ def counter2():
     _counter2 += 1.0
     return _counter2
 
-def test_defaults_fused(cython.floating arg1, cython.floating arg2 = counter2()):
+def test_defaults_fused(cython0.floating arg1, cython0.floating arg2 = counter2()):
     """
     >>> test_defaults_fused(1.0)
     1.0 2.0
@@ -149,7 +149,7 @@ def test_defaults_fused(cython.floating arg1, cython.floating arg2 = counter2())
 
 funcs = []
 for i in range(10):
-    def defaults_fused(cython.floating a, cython.floating b = i):
+    def defaults_fused(cython0.floating a, cython0.floating b = i):
         return a, b
     funcs.append(defaults_fused)
 
@@ -196,7 +196,7 @@ def test_memoryview_bytes(const unsigned char[:] b=b'xyz'):
     return b[0]
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     '//NameNode[@entry.in_closure = True]',
     '//NameNode[@entry.from_closure = True]')
 def test_func_default_inlined():
@@ -216,7 +216,7 @@ def test_func_default_inlined():
     return func
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     '//NameNode[@entry.in_closure = True]',
     '//NameNode[@entry.from_closure = True]')
 def test_func_default_scope():

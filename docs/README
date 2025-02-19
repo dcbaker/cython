@@ -1,4 +1,4 @@
-Welcome to Cython's documentation.
+Welcome to Cython0's documentation.
 
 To build the documentation on Linux, you need Make and Sphinx installed on your system. Then execute::
 
@@ -10,8 +10,8 @@ On windows systems, you only need Sphinx. Open PowerShell and type::
 
 You can then see the documentation by opening in a browser ``cython/docs/build/html/index.html``.
 
-The current Cython documentation files are hosted at
-https://cython.readthedocs.io/en/latest/
+The current Cython0 documentation files are hosted at
+https://cython0.readthedocs.io/en/latest/
 
 
 Notes

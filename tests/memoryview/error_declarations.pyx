@@ -1,6 +1,6 @@
 # mode: error
 
-cimport cython
+cimport cython0
 from cython cimport view
 
 
@@ -86,7 +86,7 @@ _ERRORS = u'''
 37:9: Only one direct contiguous axis may be specified.
 38:9:Only dimensions 3 and 2 may be contiguous and direct
 44:10: Invalid base type for memoryview slice: intp
-46:35: Can only create cython.array from pointer or array
+46:35: Can only create cython0.array from pointer or array
 47:24: Cannot assign type 'double' to 'Py_ssize_t'
 55:13: Invalid base type for memoryview slice: Invalid
 58:6: More dimensions than the maximum number of buffer dimensions were used.

@@ -13,8 +13,8 @@ shutil.copytree(sys.argv[1], sys.argv[2])
 
 ######## setup.py ########
 
-from Cython.Build.Dependencies import cythonize
-from Cython.Distutils.extension import Extension
+from Cython0.Build.Dependencies import cythonize
+from Cython0.Distutils.extension import Extension
 
 from distutils.core import setup
 

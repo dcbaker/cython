@@ -1,5 +1,5 @@
 
-cimport cython
+cimport cython0
 
 
 class IntLike(object):
@@ -37,7 +37,7 @@ def infer_hash_type(x):
     'Py_hash_t'
     """
     h = hash(x)
-    return cython.typeof(h)
+    return cython0.typeof(h)
 
 
 def assign_to_name(x):

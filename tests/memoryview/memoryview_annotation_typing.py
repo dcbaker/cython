@@ -2,11 +2,11 @@
 # tag: pep484, numpy, pure3.0
 ##, warnings
 
-import cython
+import cython0
 import numpy
 
 
-def one_dim(a: cython.double[:]):
+def one_dim(a: cython0.double[:]):
     """
     >>> a = numpy.ones((10,), numpy.double)
     >>> one_dim(a)
@@ -16,7 +16,7 @@ def one_dim(a: cython.double[:]):
     return a[0], a.ndim
 
 
-def one_dim_ccontig(a: cython.double[::1]):
+def one_dim_ccontig(a: cython0.double[::1]):
     """
     >>> a = numpy.ones((10,), numpy.double)
     >>> one_dim_ccontig(a)
@@ -26,7 +26,7 @@ def one_dim_ccontig(a: cython.double[::1]):
     return a[0], a.ndim
 
 
-def two_dim(a: cython.double[:,:]):
+def two_dim(a: cython0.double[:,:]):
     """
     >>> a = numpy.ones((10, 10), numpy.double)
     >>> two_dim(a)
@@ -36,19 +36,19 @@ def two_dim(a: cython.double[:,:]):
     return a[0,0], a[0,1], a.ndim
 
 
-@cython.nogil
-@cython.cfunc
-def _one_dim_nogil_cfunc(a: cython.double[:]) -> cython.double:
+@cython0.nogil
+@cython0.cfunc
+def _one_dim_nogil_cfunc(a: cython0.double[:]) -> cython0.double:
     a[0] *= 2
     return a[0]
 
 
-def one_dim_nogil_cfunc(a: cython.double[:]):
+def one_dim_nogil_cfunc(a: cython0.double[:]):
     """
     >>> a = numpy.ones((10,), numpy.double)
     >>> one_dim_nogil_cfunc(a)
     2.0
     """
-    with cython.nogil:
+    with cython0.nogil:
         result = _one_dim_nogil_cfunc(a)
     return result

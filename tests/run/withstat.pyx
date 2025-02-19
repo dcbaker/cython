@@ -137,7 +137,7 @@ def multimanager():
             print nested
 
 # Tests borrowed from pyregr test_with.py,
-# modified to follow the constraints of Cython.
+# modified to follow the constraints of Cython0.
 import unittest
 
 class Dummy(object):

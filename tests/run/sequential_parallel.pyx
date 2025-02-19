@@ -1,8 +1,8 @@
 # tag: run
 
-cimport cython.parallel
-from cython.parallel import prange, threadid
-from cython.view cimport array
+cimport cython0.parallel
+from cython0.parallel import prange, threadid
+from cython0.view cimport array
 from libc.stdlib cimport malloc, calloc, free, abort
 from libc.stdio cimport puts
 
@@ -15,7 +15,7 @@ except ImportError:
     def next(it):
         return it.next()
 
-#@cython.test_assert_path_exists(
+#@cython0.test_assert_path_exists(
 #    "//ParallelWithBlockNode//ParallelRangeNode[@schedule = 'dynamic']",
 #    "//GILStatNode[@state = 'nogil]//ParallelRangeNode")
 def test_prange():
@@ -25,7 +25,7 @@ def test_prange():
     """
     cdef Py_ssize_t i, j, sum1 = 0, sum2 = 0
 
-    with nogil, cython.parallel.parallel():
+    with nogil, cython0.parallel.parallel():
         for i in prange(10, schedule='dynamic'):
             sum1 += i
 
@@ -87,7 +87,7 @@ def test_propagation():
         for j in prange(10):
             sum1 += i
 
-    with nogil, cython.parallel.parallel():
+    with nogil, cython0.parallel.parallel():
         for x in prange(10):
             for y in prange(10):
                 sum2 += y
@@ -218,8 +218,8 @@ def test_pure_mode():
     0
     0
     """
-    import Cython.Shadow
-    pure_parallel = sys.modules['cython.parallel']
+    import Cython0.Shadow
+    pure_parallel = sys.modules['cython0.parallel']
 
     for i in pure_parallel.prange(5):
         print i
@@ -265,7 +265,7 @@ def test_nan_init():
 
     cdef void *p = <void *> 10
 
-    with nogil, cython.parallel.parallel():
+    with nogil, cython0.parallel.parallel():
         # First, trick the error checking to make it believe these variables
         # are initialized after this if
 
@@ -311,7 +311,7 @@ def test_nan_init():
                         "or NaN value")
 
     c1 = 20
-    with nogil, cython.parallel.parallel():
+    with nogil, cython0.parallel.parallel():
         c1 = 16
 
 
@@ -397,7 +397,7 @@ def test_nested_break_continue():
 
     print i, j, result1, result2
 
-    with nogil, cython.parallel.parallel(num_threads=2):
+    with nogil, cython0.parallel.parallel(num_threads=2):
         for i in prange(10, schedule='static'):
             if i == 8:
                 break
@@ -461,7 +461,7 @@ def test_parallel_exceptions_unnested():
     mylist = []
 
     try:
-        with nogil, cython.parallel.parallel():
+        with nogil, cython0.parallel.parallel():
             try:
                 for i in prange(10):
                     with gil:
@@ -619,7 +619,7 @@ def test_parallel_with_gil_return():
 
     print obj in range(10)
 
-    with nogil, cython.parallel.parallel():
+    with nogil, cython0.parallel.parallel():
         with gil:
             return sum
 
@@ -676,10 +676,10 @@ def test_num_threads_compile():
     for i in prange(10, nogil=True, num_threads=2):
         pass
 
-    with nogil, cython.parallel.parallel(num_threads=2):
+    with nogil, cython0.parallel.parallel(num_threads=2):
         pass
 
-    with nogil, cython.parallel.parallel(num_threads=2):
+    with nogil, cython0.parallel.parallel(num_threads=2):
         for i in prange(10):
             pass
 
@@ -706,7 +706,7 @@ def test_chunksize():
     print sum
 
     sum = 0
-    with nogil, cython.parallel.parallel():
+    with nogil, cython0.parallel.parallel():
         for i in prange(10, schedule='guided', chunksize=chunksize()):
             sum += i
     print sum

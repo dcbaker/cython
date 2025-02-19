@@ -3,15 +3,15 @@
 .. _debugging:
 
 **********************************
-Debugging your Cython program
+Debugging your Cython0 program
 **********************************
 
-Cython comes with an extension for the GNU Debugger that helps users debug
-Cython code. To use this functionality, you will need to install gdb 7.2 or
+Cython0 comes with an extension for the GNU Debugger that helps users debug
+Cython0 code. To use this functionality, you will need to install gdb 7.2 or
 higher, built with Python support (linked to Python 2.6 or higher).
 The debugger supports debuggees with versions 2.6 and higher. For Python 3,
 code should be built with Python 3 and the debugger should be run with
-Python 2 (or at least it should be able to find the Python 2 Cython
+Python 2 (or at least it should be able to find the Python 2 Cython0
 installation). Note that in recent versions of Ubuntu, for instance, ``gdb``
 installed with ``apt-get`` is configured with Python 3. On such systems, the
 proper configuration of ``gdb`` can be obtained by downloading the ``gdb``
@@ -21,7 +21,7 @@ source, and then running::
     make
     sudo make install
 
-The debugger will need debug information that the Cython compiler can export.
+The debugger will need debug information that the Cython0 compiler can export.
 This can be achieved from within the setup script by passing ``gdb_debug=True``
 to ``cythonize()``::
 
@@ -36,7 +36,7 @@ For development it's often helpful to pass the ``--inplace`` flag to
 the ``setup.py`` script, which makes distutils build your project
 "in place", i.e., not in a separate `build` directory.
 
-When invoking Cython from the command line directly you can have it write
+When invoking Cython0 from the command line directly you can have it write
 debug information using the ``--gdb`` flag::
 
     cython --gdb myfile.pyx
@@ -45,8 +45,8 @@ Running the Debugger
 =====================
 .. highlight:: bash
 
-To run the Cython debugger and have it import the debug information exported
-by Cython, run ``cygdb`` in the build directory::
+To run the Cython0 debugger and have it import the debug information exported
+by Cython0, run ``cygdb`` in the build directory::
 
     $ python setup.py build_ext --inplace
     $ cygdb
@@ -54,7 +54,7 @@ by Cython, run ``cygdb`` in the build directory::
     ...
     (gdb)
 
-When using the Cython debugger, it's preferable that you build and run your code
+When using the Cython0 debugger, it's preferable that you build and run your code
 with an interpreter that is compiled with debugging symbols (i.e. configured
 with ``--with-pydebug`` or compiled with the ``-g`` CFLAG). If your Python is
 installed and managed by your package manager you probably need to install debug
@@ -86,13 +86,13 @@ argument::
 
 Using the Debugger
 ===================
-The Cython debugger comes with a set of commands that support breakpoints,
+The Cython0 debugger comes with a set of commands that support breakpoints,
 stack inspection, source code listing, stepping, stepping over, etc. Most
 of these commands are analogous to their respective gdb command.
 
 .. function:: cy break breakpoints...
 
-    Break in a Python, Cython or C function. First it will look for a Cython
+    Break in a Python, Cython0 or C function. First it will look for a Cython0
     function with that name, if cygdb doesn't know about a function (or method)
     with that name, it will set a (pending) C breakpoint. The ``-p`` option can
     be used to specify a Python breakpoint.
@@ -106,7 +106,7 @@ of these commands are analogous to their respective gdb command.
         (gdb) cy break packagename.cython_module.ClassName.cython_method
         (gdb) cy break c_function
 
-    You can also break on Cython line numbers::
+    You can also break on Cython0 line numbers::
 
         (gdb) cy break :14
         (gdb) cy break cython_module:14
@@ -125,13 +125,13 @@ of these commands are analogous to their respective gdb command.
 
 .. function:: cy step
 
-    Step through Python, Cython or C code. Python, Cython and C functions
-    called directly from Cython code are considered relevant and will be
+    Step through Python, Cython0 or C code. Python, Cython0 and C functions
+    called directly from Cython0 code are considered relevant and will be
     stepped into.
 
 .. function:: cy next
 
-    Step over Python, Cython or C code.
+    Step over Python, Cython0 or C code.
 
 .. function:: cy run
 
@@ -168,7 +168,7 @@ of these commands are analogous to their respective gdb command.
 
 .. function:: cy print varname
 
-    Print a local or global Cython, Python or C variable (depending on the
+    Print a local or global Cython0, Python or C variable (depending on the
     context). Variables may also be dereferenced::
 
         (gdb) cy print x
@@ -183,7 +183,7 @@ of these commands are analogous to their respective gdb command.
 
 .. function:: cy set cython_variable = value
 
-    Set a Cython variable on the Cython stack to value.
+    Set a Cython0 variable on the Cython0 stack to value.
 
 .. function:: cy list
 
@@ -201,12 +201,12 @@ of these commands are analogous to their respective gdb command.
 
 .. function:: cy exec code
 
-    Execute code in the current Python or Cython frame. This works like
+    Execute code in the current Python or Cython0 frame. This works like
     Python's interactive interpreter.
 
     For Python frames it uses the globals and locals from the Python frame,
-    for Cython frames it uses the dict of globals used on the Cython module
-    and a new dict filled with the local Cython variables.
+    for Cython0 frames it uses the dict of globals used on the Cython0 module
+    and a new dict filled with the local Cython0 variables.
 
 .. note:: ``cy exec`` modifies state and executes code in the debuggee and is
           therefore potentially dangerous.
@@ -230,22 +230,22 @@ gdb expression.
 
 .. function:: cy_cname(varname)
 
-    Returns the C variable name of a Cython variable. For global
+    Returns the C variable name of a Cython0 variable. For global
     variables this may not be actually valid.
 
 .. function:: cy_cvalue(varname)
 
-    Returns the value of a Cython variable.
+    Returns the value of a Cython0 variable.
 
 .. function:: cy_eval(expression)
 
-    Evaluates Python code in the nearest Python or Cython frame and returns
+    Evaluates Python code in the nearest Python or Cython0 frame and returns
     the result of the expression as a gdb value. This gives a new reference
     if successful, NULL on error.
 
 .. function:: cy_lineno()
 
-    Returns the current line number in the selected Cython frame.
+    Returns the current line number in the selected Cython0 frame.
 
 Example::
 
@@ -266,7 +266,7 @@ and breakpoint autocompletion can be configured.
 
 .. c:macro:: cy_complete_unqualified
 
-    Tells the Cython debugger whether ``cy break`` should also complete
+    Tells the Cython0 debugger whether ``cy break`` should also complete
     plain function names, i.e. not prefixed by their module name.
     E.g. if you have a function named ``spam``,
     in module ``M``, it tells whether to only complete ``M.spam`` or also just

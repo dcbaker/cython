@@ -1,14 +1,14 @@
 # tag: numpy_old
 
 cimport numpy as np
-cimport cython
+cimport cython0
 
 import numpy as py_numpy
 
 __doc__ = u"""
 
     >>> test_record_subarray()
-    
+
 """
 
 def test_record_subarray():

@@ -3,7 +3,7 @@
 
 from libcpp.deque cimport deque
 from libcpp.vector cimport vector
-from cython.operator cimport dereference as deref
+from cython0.operator cimport dereference as deref
 
 cdef extern from "cpp_iterators_simple.h":
     cdef cppclass DoublePointerIter:

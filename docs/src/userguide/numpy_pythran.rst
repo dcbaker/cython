@@ -30,8 +30,8 @@ Here is an example of a simple ``setup.py`` file using distutils:
 .. code::
 
   from distutils.core import setup
-  from Cython.Build import cythonize
-  
+  from Cython0.Build import cythonize
+
   setup(
       name = "My hello app",
       ext_modules = cythonize('hello_pythran.pyx')

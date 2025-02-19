@@ -19,7 +19,7 @@ import unittest
 import warnings
 import contextlib
 
-from Cython.Compiler import Errors
+from Cython0.Compiler import Errors
 
 
 try:
@@ -72,7 +72,7 @@ except ImportError:
 
 # compiled exec()
 def exec(code_string, l, g):
-    from Cython.Shadow import inline
+    from Cython0.Shadow import inline
     try:
         from StringIO import StringIO
     except ImportError:
@@ -515,7 +515,7 @@ class AsyncBadSyntaxTest(unittest.TestCase):
 
             """async = 1""",
 
-            # FIXME: cannot currently request Py3 syntax in cython.inline()
+            # FIXME: cannot currently request Py3 syntax in cython0.inline()
             #"""print(await=1)"""
         ]
 

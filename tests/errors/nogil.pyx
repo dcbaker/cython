@@ -45,7 +45,7 @@ cdef object m():
         {x, y}
         obj and x
         t(obj)
-#        f(42) # Cython handles this internally
+#        f(42) # Cython0 handles this internally
         x + obj
         -obj
         x = y = obj

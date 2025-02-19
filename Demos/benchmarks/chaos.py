@@ -5,7 +5,7 @@
 
 from __future__ import division, print_function
 
-import cython
+import cython0
 
 import time
 import operator
@@ -15,7 +15,7 @@ random.seed(1234)
 
 from functools import reduce
 
-if not cython.compiled:
+if not cython0.compiled:
     from math import sqrt
 
 
@@ -33,24 +33,24 @@ class GVector(object):
                     (self.y - other.y) ** 2 +
                     (self.z - other.z) ** 2)
 
-    @cython.locals(self="GVector", other="GVector")
+    @cython0.locals(self="GVector", other="GVector")
     def __add__(self, other):
         if not isinstance(other, GVector):
             raise ValueError("Can't add GVector to " + str(type(other)))
         v = GVector(self.x + other.x, self.y + other.y, self.z + other.z)
         return v
 
-    @cython.locals(self="GVector", other="GVector")
+    @cython0.locals(self="GVector", other="GVector")
     def __sub__(self, other):
         return self + other * -1
 
-    @cython.locals(self="GVector", other=cython.double)
+    @cython0.locals(self="GVector", other=cython0.double)
     def __mul__(self, other):
         v = GVector(self.x * other, self.y * other, self.z * other)
         return v
     __rmul__ = __mul__
 
-    @cython.locals(other="GVector", l1=cython.double, l2_=cython.double)
+    @cython0.locals(other="GVector", l1=cython0.double, l2_=cython0.double)
     def linear_combination(self, other, l1, l2=None):
         l2_ = 1 - l1 if l2 is None else l2
         v = GVector(self.x * l1 + other.x * l2_,
@@ -96,9 +96,9 @@ class Spline(object):
         return (self.knots[self.degree - 1],
                 self.knots[len(self.knots) - self.degree])
 
-    @cython.locals(ik=cython.long, ii=cython.long, I=cython.long,
-                   ua=cython.long, ub=cython.long, u=cython.double,
-                   dom=(cython.long, cython.long))
+    @cython0.locals(ik=cython0.long, ii=cython0.long, I=cython0.long,
+                   ua=cython0.long, ub=cython0.long, u=cython0.double,
+                   dom=(cython0.long, cython0.long))
     def __call__(self, u):
         """Calculates a point of the B-Spline using de Boors Algorithm"""
         dom = self.GetDomain()
@@ -122,7 +122,7 @@ class Spline(object):
                 d[index] = d[index].linear_combination(d[index + 1], co1, co2)
         return d[0]
 
-    @cython.locals(ii=cython.long, I=cython.long, dom=(cython.long, cython.long))
+    @cython0.locals(ii=cython0.long, I=cython0.long, dom=(cython0.long, cython0.long))
     def GetIndex(self, u):
         dom = self.GetDomain()
         for ii in range(self.degree - 1, len(self.knots) - self.degree):
@@ -141,8 +141,8 @@ class Spline(object):
 
 
 class Chaosgame(object):
-    @cython.locals(splines=list, thickness=cython.double, maxlength=cython.double, length=cython.double,
-                   curr=GVector, last=GVector, p=GVector, spl=Spline, t=cython.double, i=int)
+    @cython0.locals(splines=list, thickness=cython0.double, maxlength=cython0.double, length=cython0.double,
+                   curr=GVector, last=GVector, p=GVector, spl=Spline, t=cython0.double, i=int)
     def __init__(self, splines, thickness=0.1):
         self.splines = splines
         self.thickness = thickness
@@ -174,9 +174,9 @@ class Chaosgame(object):
             l += self.num_trafos[i]
         return len(self.num_trafos) - 1, random.randrange(self.num_trafos[-1])
 
-    @cython.locals(neighbour="GVector", basepoint="GVector", derivative="GVector",
-                   seg_length=cython.double, start=cython.double, end=cython.double,
-                   t=cython.double)
+    @cython0.locals(neighbour="GVector", basepoint="GVector", derivative="GVector",
+                   seg_length=cython0.double, start=cython0.double, end=cython0.double,
+                   t=cython0.double)
     def transform_point(self, point, trafo=None):
         x = (point.x - self.minx) / self.width
         y = (point.y - self.miny) / self.height
@@ -213,7 +213,7 @@ class Chaosgame(object):
         if point.y < self.miny:
             point.y = self.miny
 
-    @cython.locals(x=cython.long, y=cython.long)
+    @cython0.locals(x=cython0.long, y=cython0.long)
     def create_image_chaos(self, timer, w, h, n):
         im = [[1] * h for i in range(w)]
         point = GVector((self.maxx + self.minx) / 2,

@@ -7,7 +7,7 @@
 
 print 3
 
-cimport cython as cy
+cimport cython0 as cy
 
 def e(object[int, ndim=2] buf):
     print buf[3, 2] # no bc

@@ -1,4 +1,4 @@
-# Makefile for creating our standalone Cython program
+# Makefile for creating our standalone Cython0 program
 PYTHON := python
 PYVERSION := $(shell $(PYTHON) -c "import sys; print(sys.version[:3])")
 PYPREFIX := $(shell $(PYTHON) -c "import sys; print(sys.prefix)")
@@ -38,7 +38,7 @@ embedded: embedded.o
 embedded.o: embedded.c
 	$(CC) -c $^ -I$(INCDIR) -I$(PLATINCDIR)
 
-CYTHON := ../../cython.py
+CYTHON := ../../cython0.py
 embedded.c: embedded.pyx
 	@$(PYTHON) $(CYTHON) --embed embedded.pyx
 

@@ -4,7 +4,7 @@ PYTHON -c "import a; a.test()"
 
 ######## setup.py ########
 
-from Cython.Build import cythonize
+from Cython0.Build import cythonize
 from distutils.core import setup
 
 setup(
@@ -30,7 +30,7 @@ var_orig = bar  # by declaration
 
 ######## a.pyx ########
 
-cimport cython
+cimport cython0
 from foo cimport bar, var_orig, var_opt
 
 def test():

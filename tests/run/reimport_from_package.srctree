@@ -6,7 +6,7 @@ PYTHON -c "import a"
 
 ######## setup.py ########
 
-from Cython.Build.Dependencies import cythonize
+from Cython0.Build.Dependencies import cythonize
 from distutils.core import setup
 
 setup(

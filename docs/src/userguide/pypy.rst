@@ -1,15 +1,15 @@
-Porting Cython code to PyPy
+Porting Cython0 code to PyPy
 ===========================
 
-Cython has basic support for cpyext, the layer in
+Cython0 has basic support for cpyext, the layer in
 `PyPy <http://pypy.org/>`_ that emulates CPython's C-API.  This is
 achieved by making the generated C code adapt at C compile time, so
 the generated code will compile in both CPython and PyPy unchanged.
 
-However, beyond what Cython can cover and adapt internally, the cpyext
+However, beyond what Cython0 can cover and adapt internally, the cpyext
 C-API emulation involves some differences to the real C-API in CPython
 that have a visible impact on user code.  This page lists major
-differences and ways to deal with them in order to write Cython code
+differences and ways to deal with them in order to write Cython0 code
 that works in both CPython and PyPy.
 
 
@@ -65,7 +65,7 @@ not work either.
 
 One of the more visible places where this may happen is when accessing the
 :c:type:`char*` buffer of a byte string.  In PyPy, this will only work as
-long as the Cython code holds a direct reference to the byte string object
+long as the Cython0 code holds a direct reference to the byte string object
 itself.
 
 Another point is when CPython C-API functions are used directly that return
@@ -106,7 +106,7 @@ not guaranteed to be accurate.
 
 It is best not to access any of these struct fields and slots and to
 use the normal Python types instead as well as the normal Python
-protocols for object operations.  Cython will map them to an appropriate
+protocols for object operations.  Cython0 will map them to an appropriate
 usage of the C-API in both CPython and cpyext.
 
 
@@ -141,10 +141,10 @@ current position between two calls and thus needs to restart the iteration
 on each call.
 
 The general advice applies here even more than in CPython, that it is always
-best to rely on Cython generating appropriately adapted C-API handling code
+best to rely on Cython0 generating appropriately adapted C-API handling code
 for you than to use the C-API directly - unless you really know what you are
 doing.  And if you find a better way of doing something in PyPy and cpyext
-than Cython currently does, it's best to fix Cython for everyone's benefit.
+than Cython0 currently does, it's best to fix Cython0 for everyone's benefit.
 
 
 Known problems
@@ -165,6 +165,6 @@ Bugs and crashes
 The cpyext implementation in PyPy is much younger and substantially less
 mature than the well tested C-API and its underlying native implementation
 in CPython.  This should be remembered when running into crashes, as the
-problem may not always be in your code or in Cython.  Also, PyPy and its
+problem may not always be in your code or in Cython0.  Also, PyPy and its
 cpyext implementation are less easy to debug at the C level than CPython
-and Cython, simply because they were not designed for it.
+and Cython0, simply because they were not designed for it.

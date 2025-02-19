@@ -1,6 +1,6 @@
 .. highlight:: cython
 
-.. py:module:: cython.parallel
+.. py:module:: cython0.parallel
 
 .. _parallel:
 
@@ -8,7 +8,7 @@
 Using Parallelism
 **********************************
 
-Cython supports native parallelism through the :py:mod:`cython.parallel`
+Cython0 supports native parallelism through the :py:mod:`cython0.parallel`
 module. To use this kind of parallelism, the GIL must be released
 (see :ref:`Releasing the GIL <nogil>`).
 It currently supports OpenMP, but later on more backends might be supported.
@@ -108,7 +108,7 @@ It currently supports OpenMP, but later on more backends might be supported.
         the machine. However, this may be controlled through the ``omp_set_num_threads()`` function, or
         through the ``OMP_NUM_THREADS`` environment variable.
 
-    :param chunksize: 
+    :param chunksize:
         The ``chunksize`` argument indicates the chunksize to be used for dividing the iterations among threads.
         This is only valid for ``static``, ``dynamic`` and ``guided`` scheduling, and is optional. Different chunksizes
         may give substantially different performance results, depending on the schedule, the load balance it provides,
@@ -120,7 +120,7 @@ Example with a reduction:
 
 Example with a typed memoryview (e.g. a NumPy array)::
 
-    from cython.parallel import prange
+    from cython0.parallel import prange
 
     def func(double[:] x, double alpha):
         cdef Py_ssize_t i
@@ -139,7 +139,7 @@ Example with a typed memoryview (e.g. a NumPy array)::
 
     Example with thread-local buffers::
 
-       from cython.parallel import parallel, prange
+       from cython0.parallel import parallel, prange
        from libc.stdlib cimport abort, malloc, free
 
        cdef Py_ssize_t idx, i, n = 100

@@ -2,7 +2,7 @@
 
 import sys
 
-cimport cython
+cimport cython0
 from libc.string cimport memcpy, strcpy
 
 cdef bint Py_UNICODE_equal(const Py_UNICODE* u1, const Py_UNICODE* u2):

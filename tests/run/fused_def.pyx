@@ -4,8 +4,8 @@
 Test Python def functions without extern types
 """
 
-cy = __import__("cython")
-cimport cython
+cy = __import__("cython0")
+cimport cython0
 
 cdef extern from *:
     int __Pyx_CyFunction_Check(object)
@@ -54,7 +54,7 @@ f = 5.6
 i = 9
 
 
-def opt_func(fused_t obj, cython.floating myf = 1.2, cython.integral myi = 7):
+def opt_func(fused_t obj, cython0.floating myf = 1.2, cython0.integral myi = 7):
     """
     Test runtime dispatch, indexing of various kinds and optional arguments
 
@@ -128,7 +128,7 @@ def opt_func(fused_t obj, cython.floating myf = 1.2, cython.integral myi = 7):
     Traceback (most recent call last):
     TypeError: Argument 'obj' has incorrect type (expected fused_def.ExtClassA, got object)
     """
-    print cython.typeof(obj), cython.typeof(myf), cython.typeof(myi)
+    print cython0.typeof(obj), cython0.typeof(myf), cython0.typeof(myi)
     print obj, "%.2f" % myf, myi, "%.2f" % f, i
 
 def run_cyfunction_check():
@@ -173,7 +173,7 @@ def test_opt_func_introspection():
     """
 
 
-def func_with_object(fused_with_object obj, cython.integral myi = 7):
+def func_with_object(fused_with_object obj, cython0.integral myi = 7):
     """
     >>> func_with_object(1)
     long long
@@ -203,12 +203,12 @@ def func_with_object(fused_with_object obj, cython.integral myi = 7):
     Python object long
     ExtClassB 3
     """
-    print cython.typeof(obj), cython.typeof(myi)
+    print cython0.typeof(obj), cython0.typeof(myi)
     print obj, myi
 
 
 
-def args_kwargs(fused_t obj, cython.floating myf = 1.2, *args, **kwargs):
+def args_kwargs(fused_t obj, cython0.floating myf = 1.2, *args, **kwargs):
     """
     >>> args_kwargs("foo")
     str object double
@@ -223,7 +223,7 @@ def args_kwargs(fused_t obj, cython.floating myf = 1.2, *args, **kwargs):
     eggs 5.60 5.60 (1, 2, []) {'d': {}}
 
     """
-    print cython.typeof(obj), cython.typeof(myf)
+    print cython0.typeof(obj), cython0.typeof(myf)
     print obj, "%.2f" % myf, "%.2f" % f, args, kwargs
 
 
@@ -233,15 +233,15 @@ class BaseClass(object):
     """
 
     @staticmethod
-    def mystaticmethod(cython.integral arg1):
-        print cython.typeof(arg1), arg1
+    def mystaticmethod(cython0.integral arg1):
+        print cython0.typeof(arg1), arg1
 
     @classmethod
-    def myclassmethod(cls, cython.integral arg1):
-        print cls, cython.typeof(arg1), arg1
+    def myclassmethod(cls, cython0.integral arg1):
+        print cls, cython0.typeof(arg1), arg1
 
-    def normalmethod(self, cython.integral arg1):
-        print self, cython.typeof(arg1), arg1
+    def normalmethod(self, cython0.integral arg1):
+        print self, cython0.typeof(arg1), arg1
 
     def __repr__(self):
         return "<%s.%s object>" % (__name__, type(self).__name__)
@@ -249,17 +249,17 @@ class BaseClass(object):
 class SubClass(BaseClass):
 
     @staticmethod
-    def mystaticmethod(self, cython.integral arg1):
-        print cython.typeof(arg1), arg1
+    def mystaticmethod(self, cython0.integral arg1):
+        print cython0.typeof(arg1), arg1
         super().mystaticmethod(arg1 + 1)
 
     @classmethod
-    def myclassmethod(cls, cython.integral arg1):
-        print cls, cython.typeof(arg1), arg1
+    def myclassmethod(cls, cython0.integral arg1):
+        print cls, cython0.typeof(arg1), arg1
         super().myclassmethod(arg1 + 1)
 
-    def normalmethod(self, cython.integral arg1):
-        print self, cython.typeof(arg1), arg1
+    def normalmethod(self, cython0.integral arg1):
+        print self, cython0.typeof(arg1), arg1
         super().normalmethod(arg1 + 1)
 
 class SubSubClass(SubClass):
@@ -333,7 +333,7 @@ cdef class CBaseClass(object):
     """
     Test fused def and cpdef methods in cdef classes.
 
-    >>> import cython as cy
+    >>> import cython0 as cy
     >>> obj = CBaseClass()
     >>> cls = CBaseClass
 
@@ -375,18 +375,18 @@ cdef class CBaseClass(object):
     """
 
     @staticmethod
-    def mystaticmethod(cython.integral arg1):
-        print cython.typeof(arg1), arg1
+    def mystaticmethod(cython0.integral arg1):
+        print cython0.typeof(arg1), arg1
 
     @classmethod
-    def myclassmethod(cls, cython.integral arg1):
-        print cls.__name__, cython.typeof(arg1), arg1
+    def myclassmethod(cls, cython0.integral arg1):
+        print cls.__name__, cython0.typeof(arg1), arg1
 
-    def normalmethod(self, cython.integral arg1, arg2, arg3):
-        print self, cython.typeof(arg1), arg1, arg2, arg3
+    def normalmethod(self, cython0.integral arg1, arg2, arg3):
+        print self, cython0.typeof(arg1), arg1, arg2, arg3
 
-    cpdef cpdefmethod(self, cython.integral arg1):
-        print self, cython.typeof(arg1), arg1
+    cpdef cpdefmethod(self, cython0.integral arg1):
+        print self, cython0.typeof(arg1), arg1
 
     def __repr__(self):
         return "<%s.%s object>" % (__name__, type(self).__name__)
@@ -394,7 +394,7 @@ cdef class CBaseClass(object):
 def getcode(func):
     return getattr(func, '__code__', None) or func.func_code
 
-def test_code_object(cython.floating dummy = 2.0):
+def test_code_object(cython0.floating dummy = 2.0):
     """
     A test for default arguments is in cyfunction_defaults
 
@@ -413,14 +413,14 @@ def create_dec(value):
 @create_dec(1)
 @create_dec(2)
 @create_dec(3)
-def test_decorators(cython.floating arg):
+def test_decorators(cython0.floating arg):
     """
     >>> test_decorators.order
     [3, 2, 1]
     """
 
-@cython.binding(True)
-def bind_me(self, cython.floating a=1.):
+@cython0.binding(True)
+def bind_me(self, cython0.floating a=1.):
     return a
 
 cdef class HasBound:

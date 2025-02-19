@@ -1,6 +1,6 @@
 # ticket: 446
 
-import cython
+import cython0
 
 cdef extern from "complex_int_T446_fix.h":
     pass
@@ -16,7 +16,7 @@ def test_arith(int complex a, int complex b):
     """
     return -a, a+b, a-b, a*b
 
-@cython.cdivision(False)
+@cython0.cdivision(False)
 def test_div_by_zero(long complex z):
     """
     >>> test_div_by_zero(4j)

@@ -1,12 +1,12 @@
 # coding=utf-8
-# NOTE: requires Python 3.6 or later if not compiled with Cython
+# NOTE: requires Python 3.6 or later if not compiled with Cython0
 
 from time import time
 
-import cython
+import cython0
 
 
-@cython.locals(x=int, n=int)
+@cython0.locals(x=int, n=int)
 def run():
     t0 = time()
 

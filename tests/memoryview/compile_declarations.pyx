@@ -1,9 +1,9 @@
 # mode: compile
 
-cimport cython
-# from cython.view cimport contig as foo, full as bar #, follow
+cimport cython0
+# from cython0.view cimport contig as foo, full as bar #, follow
 from cython cimport view
-from cython.view cimport (generic, strided, indirect,
+from cython0.view cimport (generic, strided, indirect,
                           contiguous, indirect_contiguous)
 
 cdef char[:] one_dim
@@ -61,7 +61,7 @@ my_c_contig = a33[0, :, :]
 my_f_contig = a32[0, ...]
 my_c_contig = a33[0, ...]
 
-# Test casting to cython.view.array
+# Test casting to cython0.view.array
 cdef double[:, :] m1 = <double[:10, :10]> NULL
 cdef double[:, :] m2 = <double[:10, :10:1]> NULL
 cdef double[:, :] m3 = <double[:10:1, :10]> NULL

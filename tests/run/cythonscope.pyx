@@ -1,9 +1,9 @@
-cimport cython
+cimport cython0
 
 from cython cimport _testscope as tester
 from cython cimport TestClass, _testclass_new as TestClass_New
 from cython cimport test_call, test_dep
-from cython.view cimport _testscope as viewtester
+from cython0.view cimport _testscope as viewtester
 
 from cpython cimport PyObject
 
@@ -35,12 +35,12 @@ def test_cdef_cython_utility():
     """
     >>> test_cdef_cython_utility()
     hello from cython scope, value=4
-    hello from cython.view scope, value=4
+    hello from cython0.view scope, value=4
     hello from cython scope, value=3
-    hello from cython.view scope, value=3
+    hello from cython0.view scope, value=3
     """
-    print cython._testscope(4)
-    print cython.view._testscope(4)
+    print cython0._testscope(4)
+    print cython0.view._testscope(4)
     print tester(3)
     print viewtester(3)
 
@@ -157,9 +157,9 @@ def viewobjs():
     <contiguous and direct>
     <contiguous and indirect>
     """
-    print cython.view.generic
-    print cython.view.strided
-    print cython.view.indirect
-    #print cython.view.generic_contiguous
-    print cython.view.contiguous
-    print cython.view.indirect_contiguous
+    print cython0.view.generic
+    print cython0.view.strided
+    print cython0.view.indirect
+    #print cython0.view.generic_contiguous
+    print cython0.view.contiguous
+    print cython0.view.indirect_contiguous

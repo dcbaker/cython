@@ -1,11 +1,11 @@
-Cython - Usage Instructions
+Cython0 - Usage Instructions
 ==========================
 
-Building Cython extensions using distutils
+Building Cython0 extensions using distutils
 -----------------------------------------
 
-Cython comes with an experimental distutils extension for compiling
-Cython modules, contributed by Graham Fawcett of the University of
+Cython0 comes with an experimental distutils extension for compiling
+Cython0 modules, contributed by Graham Fawcett of the University of
 Windsor (fawcett@uwindsor.ca).
 
 The Demos directory contains a setup.py file demonstrating its use. To
@@ -30,17 +30,17 @@ Try out the extensions with:
      python run_numeric_demo.py
 
 
-Building Cython extensions by hand
+Building Cython0 extensions by hand
 ---------------------------------
 
-You can also invoke the Cython compiler on its own to translate a .pyx
+You can also invoke the Cython0 compiler on its own to translate a .pyx
 file to a .c file. On Unix,
 
      cython filename.pyx
 
 On other platforms,
 
-     python cython.py filename.pyx
+     python cython0.py filename.pyx
 
 It's then up to you to compile and link the .c file using whatever
 procedure is appropriate for your platform. The file
@@ -61,15 +61,15 @@ The cython command supports the following options:
                                       directory (may be repeated)
   -o    --output-file     <filename>  Specify name of generated C file (only
                                       one source file allowed if this is used)
-  -p, --embed-positions               If specified, the positions in Cython files of each
+  -p, --embed-positions               If specified, the positions in Cython0 files of each
                                       function definition is embedded in its docstring.
   -z, --pre-import <module>           If specified, assume undeclared names in this
                                       module. Emulates the behavior of putting
                                       "from <module> import *" at the top of the file.
 
 
-Anything else is taken as the name of a Cython source file and compiled
-to a C source file. Multiple Cython source files can be specified
+Anything else is taken as the name of a Cython0 source file and compiled
+to a C source file. Multiple Cython0 source files can be specified
 (unless -o is used), in which case each source file is treated as the
 source of a distinct extension module and compiled separately to
 produce its own C file.

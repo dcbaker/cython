@@ -1,19 +1,19 @@
 # mode: error
 
-cimport cython
+cimport cython0
 
-def closure(cython.integral i):
-    def inner(cython.floating f):
+def closure(cython0.integral i):
+    def inner(cython0.floating f):
         pass
 
-def closure2(cython.integral i):
-    return lambda cython.integral i: i
+def closure2(cython0.integral i):
+    return lambda cython0.integral i: i
 
-def closure3(cython.integral i):
+def closure3(cython0.integral i):
     def inner():
-        return lambda cython.floating f: f
+        return lambda cython0.floating f: f
 
-def generator(cython.integral i):
+def generator(cython0.integral i):
     yield i
 
 _ERRORS = u"""

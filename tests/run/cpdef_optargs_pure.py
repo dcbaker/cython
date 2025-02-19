@@ -2,7 +2,7 @@
 # tag: cyfunction
 # cython: binding=True
 
-import cython
+import cython0
 
 
 class PyClass(object):
@@ -36,7 +36,7 @@ def func(x, y=1, z=PyClass):
     return x, y, z.a
 
 
-@cython.ccall
+@cython0.ccall
 def pyfunc(x, y=1, z=PyClass):
     """
     >>> pyfunc(0)

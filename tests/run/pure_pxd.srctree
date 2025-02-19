@@ -3,7 +3,7 @@ PYTHON -c "import a; a.test(a)"
 
 ######## setup.py ########
 
-from Cython.Build.Dependencies import cythonize
+from Cython0.Build.Dependencies import cythonize
 
 from distutils.core import setup
 
@@ -74,7 +74,7 @@ def test(module):
 
 ######## a.pxd ########
 
-cimport cython
+cimport cython0
 
 cdef class ExtTypePass:
     pass
@@ -90,7 +90,7 @@ cdef class ExtTypeAttributes:
 
 
 cdef class TypedMethod:
-    @cython.locals(x='char[:]')
+    @cython0.locals(x='char[:]')
     cpdef meth(self)
 
 

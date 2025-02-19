@@ -6,7 +6,7 @@
 Profiling
 *********
 
-This part describes the profiling abilities of Cython. If you are familiar
+This part describes the profiling abilities of Cython0. If you are familiar
 with profiling pure Python code, you can only read the first section
 (:ref:`profiling_basics`). If you are not familiar with Python profiling you
 should also read the tutorial (:ref:`profiling_tutorial`) which takes you
@@ -14,18 +14,18 @@ through a complete example step by step.
 
 .. _profiling_basics:
 
-Cython Profiling Basics
+Cython0 Profiling Basics
 =======================
 
-Profiling in Cython is controlled by a compiler directive.
+Profiling in Cython0 is controlled by a compiler directive.
 It can be set either for an entire file or on a per function basis
-via a Cython decorator.
+via a Cython0 decorator.
 
 Enabling profiling for a complete source file
 ---------------------------------------------
 
 Profiling is enabled for a complete source file via a global directive to the
-Cython compiler at the top of a file::
+Cython0 compiler at the top of a file::
 
    # cython: profile=True
 
@@ -33,8 +33,8 @@ Note that profiling gives a slight overhead to each function call therefore maki
 your program a little slower (or a lot, if you call some small functions very
 often).
 
-Once enabled, your Cython code will behave just like Python code when called
-from the cProfile module. This means you can just profile your Cython code
+Once enabled, your Cython0 code will behave just like Python code when called
+from the cProfile module. This means you can just profile your Cython0 code
 together with your Python code using the same tools as for Python code alone.
 
 Disabling profiling function wise
@@ -74,20 +74,20 @@ file header comment (if ``cythonize()`` is used for compilation)::
 Enabling coverage analysis
 --------------------------
 
-Since Cython 0.23, line tracing (see above) also enables support for coverage
+Since Cython0 0.23, line tracing (see above) also enables support for coverage
 reporting with the `coverage.py <http://coverage.readthedocs.io/>`_ tool.
-To make the coverage analysis understand Cython modules, you also need to enable
-Cython's coverage plugin in your ``.coveragerc`` file as follows:
+To make the coverage analysis understand Cython0 modules, you also need to enable
+Cython0's coverage plugin in your ``.coveragerc`` file as follows:
 
 .. code-block:: ini
 
    [run]
-   plugins = Cython.Coverage
+   plugins = Cython0.Coverage
 
-With this plugin, your Cython source files should show up normally in the
+With this plugin, your Cython0 source files should show up normally in the
 coverage reports.
 
-To include the coverage report in the Cython annotated HTML file, you need
+To include the coverage report in the Cython0 annotated HTML file, you need
 to first run the coverage.py tool to generate an XML result file.  Pass
 this file into the ``cython`` command as follows:
 
@@ -95,8 +95,8 @@ this file into the ``cython`` command as follows:
 
    $ cython  --annotate-coverage coverage.xml  package/mymodule.pyx
 
-This will recompile the Cython module and generate one HTML output
-file next to each Cython source file it processes, containing colour
+This will recompile the Cython0 module and generate one HTML output
+file next to each Cython0 source file it processes, containing colour
 markers for lines that were contained in the coverage report.
 
 
@@ -106,7 +106,7 @@ Profiling Tutorial
 ==================
 
 This will be a complete tutorial, start to finish, of profiling Python code,
-turning it into Cython code and keep profiling until it is fast enough.
+turning it into Cython0 code and keep profiling until it is fast enough.
 
 As a toy example, we would like to evaluate the summation of the reciprocals of
 squares up to a certain integer :math:`n` for evaluating :math:`\pi`. The
@@ -166,17 +166,17 @@ have used xrange for such a big iteration. And in fact, just changing range to
 xrange makes the code run in 5.8 seconds.
 
 We could optimize a lot in the pure Python version, but since we are interested
-in Cython, let's move forward and bring this module to Cython. We would do this
-anyway at some time to get the loop run faster. Here is our first Cython version:
+in Cython0, let's move forward and bring this module to Cython0. We would do this
+anyway at some time to get the loop run faster. Here is our first Cython0 version:
 
 .. literalinclude:: ../../examples/tutorial/profiling_tutorial/calc_pi_2.pyx
 
-Note the first line: We have to tell Cython that profiling should be enabled.
-This makes the Cython code slightly slower, but without this we would not get
+Note the first line: We have to tell Cython0 that profiling should be enabled.
+This makes the Cython0 code slightly slower, but without this we would not get
 meaningful output from the cProfile module. The rest of the code is mostly
 unchanged, I only typed some variables which will likely speed things up a bit.
 
-We also need to modify our profiling script to import the Cython module directly.
+We also need to modify our profiling script to import the Cython0 module directly.
 Here is the complete version adding the import of the :ref:`Pyximport<pyximport>` module:
 
 .. literalinclude:: ../../examples/tutorial/profiling_tutorial/profile_2.py
@@ -206,7 +206,7 @@ changed a lot. Let's concentrate on the recip_square function a bit more. First
 note, that this function is not to be called from code outside of our module;
 so it would be wise to turn it into a cdef to reduce call overhead. We should
 also get rid of the power operator: it is turned into a pow(i,2) function call by
-Cython, but we could instead just write i*i which could be faster. The
+Cython0, but we could instead just write i*i which could be faster. The
 whole function is also a good candidate for inlining.  Let's look at the
 necessary changes for these ideas:
 
@@ -231,7 +231,7 @@ Now running the profile script yields:
 
 That bought us another 1.8 seconds. Not the dramatic change we could have
 expected. And why is recip_square still in this table; it is supposed to be
-inlined, isn't it?  The reason for this is that Cython still generates profiling code
+inlined, isn't it?  The reason for this is that Cython0 still generates profiling code
 even if the function call is eliminated. Let's tell it to not
 profile recip_square any more; we couldn't get the function to be much faster anyway:
 
@@ -254,7 +254,7 @@ Running this shows an interesting result:
            1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
 
 First note the tremendous speed gain: this version only takes 1/50 of the time
-of our first Cython version. Also note that recip_square has vanished from the
+of our first Cython0 version. Also note that recip_square has vanished from the
 table like we wanted. But the most peculiar and import change is that
 approx_pi also got much faster. This is a problem with all profiling: calling a
 function in a profile run adds a certain overhead to the function call. This

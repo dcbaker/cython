@@ -1,7 +1,7 @@
 # mode: run
 # tag: generator
 
-import cython
+import cython0
 import sys
 
 
@@ -51,10 +51,10 @@ def test_generator_frame_cycle_with_outer_exc():
         # Frame object cycle
         eval('g.throw(ValueError)', {'g': g})
         # CPython 3.3 handles this incorrectly itself :)
-        if cython.compiled or sys.version_info[:2] not in [(3, 2), (3, 3)]:
+        if cython0.compiled or sys.version_info[:2] not in [(3, 2), (3, 3)]:
             assert sys.exc_info()[1] is exc, sys.exc_info()
         del g
-        if cython.compiled or sys.version_info[:2] not in [(3, 2), (3, 3)]:
+        if cython0.compiled or sys.version_info[:2] not in [(3, 2), (3, 3)]:
             assert sys.exc_info()[1] is exc, sys.exc_info()
 
     return tuple(testit)

@@ -2,7 +2,7 @@
 # mode: run
 # tag: warnings
 
-cimport cython
+cimport cython0
 
 cdef Py_UNICODE char_ASCII = u'A'
 cdef Py_UNICODE char_KLINGON = u'\uF8D2'
@@ -97,8 +97,8 @@ def ord_pyunicode(Py_UNICODE x):
     return ord(x)
 
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode')
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_fail_if_path_exists('//SimpleCallNode')
 def unicode_type_methods(Py_UNICODE uchar):
     """
     >>> unicode_type_methods(ord('A'))
@@ -123,8 +123,8 @@ def unicode_type_methods(Py_UNICODE uchar):
         uchar.isupper(),
         ]
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode')
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_fail_if_path_exists('//SimpleCallNode')
 def unicode_methods(Py_UNICODE uchar):
     """
     >>> unicode_methods(ord('A')) == ['a', 'A', 'A']
@@ -139,8 +139,8 @@ def unicode_methods(Py_UNICODE uchar):
         uchar.title(),
         ]
 
-@cython.test_assert_path_exists('//IntNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode',
+@cython0.test_assert_path_exists('//IntNode')
+@cython0.test_fail_if_path_exists('//SimpleCallNode',
                                  '//PythonCapiCallNode')
 def len_uchar(Py_UNICODE uchar):
     """
@@ -166,9 +166,9 @@ mixed_ustring = u'AbcDefGhIjKlmnoP'
 lower_ustring = mixed_ustring.lower()
 upper_ustring = mixed_ustring.lower()
 
-@cython.test_assert_path_exists('//PythonCapiCallNode',
+@cython0.test_assert_path_exists('//PythonCapiCallNode',
                                 '//ForFromStatNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode',
+@cython0.test_fail_if_path_exists('//SimpleCallNode',
                                  '//ForInStatNode')
 def count_lower_case_characters(unicode ustring):
     """
@@ -183,9 +183,9 @@ def count_lower_case_characters(unicode ustring):
              count += 1
     return count
 
-@cython.test_assert_path_exists('//PythonCapiCallNode',
+@cython0.test_assert_path_exists('//PythonCapiCallNode',
                                 '//ForFromStatNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode',
+@cython0.test_fail_if_path_exists('//SimpleCallNode',
                                  '//ForInStatNode')
 def count_lower_case_characters_slice(unicode ustring):
     """
@@ -200,9 +200,9 @@ def count_lower_case_characters_slice(unicode ustring):
              count += 1
     return count
 
-@cython.test_assert_path_exists('//SwitchStatNode',
+@cython0.test_assert_path_exists('//SwitchStatNode',
                                 '//ForFromStatNode')
-@cython.test_fail_if_path_exists('//ForInStatNode')
+@cython0.test_fail_if_path_exists('//ForInStatNode')
 def iter_and_in():
     """
     >>> iter_and_in()
@@ -216,8 +216,8 @@ def iter_and_in():
         if c in u'abCDefGh':
             print c
 
-@cython.test_assert_path_exists('//SwitchStatNode')
-@cython.test_fail_if_path_exists('//ForInStatNode')
+@cython0.test_assert_path_exists('//SwitchStatNode')
+@cython0.test_fail_if_path_exists('//ForInStatNode')
 def index_and_in():
     """
     >>> index_and_in()

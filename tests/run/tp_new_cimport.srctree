@@ -4,7 +4,7 @@ PYTHON -c "import tp_new_tests; tp_new_tests.test_sub()"
 
 ######## setup.py ########
 
-from Cython.Build.Dependencies import cythonize
+from Cython0.Build.Dependencies import cythonize
 from distutils.core import setup
 
 setup(

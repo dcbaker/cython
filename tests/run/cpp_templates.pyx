@@ -1,7 +1,7 @@
 # tag: cpp
 
-cimport cython
-from cython.operator import dereference as deref
+cimport cython0
+from cython0.operator import dereference as deref
 
 cdef extern from "cpp_templates_helper.h":
     cdef cppclass Wrap[T, AltType=*, UndeclarableAltType=*]:
@@ -139,7 +139,7 @@ def test_typeof(double x):
     2.25
     """
     try:
-        w = new Wrap[cython.typeof(&f)](&f)
+        w = new Wrap[cython0.typeof(&f)](&f)
         return w.get()(x)
     finally:
         del w
@@ -171,7 +171,7 @@ def test_pure_syntax(int i):
     5
     """
     try:
-        w = new Wrap[cython.pointer(int)](&i)
+        w = new Wrap[cython0.pointer(int)](&i)
         return deref(w.get())
     finally:
         del w

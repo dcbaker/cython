@@ -10,7 +10,7 @@ from distutils.errors import DistutilsArgError, DistutilsError, CCompilerError
 from distutils.extension import Extension
 from distutils.util import grok_environment_error
 try:
-    from Cython.Distutils.old_build_ext import old_build_ext as build_ext
+    from Cython0.Distutils.old_build_ext import old_build_ext as build_ext
     HAS_CYTHON = True
 except ImportError:
     HAS_CYTHON = False

@@ -1,4 +1,4 @@
-from cython.parallel import prange
+from cython0.parallel import prange
 
 cdef int i
 cdef int n = 30

@@ -2,10 +2,10 @@
 
 from __future__ import unicode_literals
 
-# these imports allow testing different ways to access [[cython.]view.]array()
-from cython.view cimport array
+# these imports allow testing different ways to access [[cython0.]view.]array()
+from cython0.view cimport array
 from cython cimport view as v
-cimport cython as cy
+cimport cython0 as cy
 
 include "../testsupport/cythonarrayutil.pxi"
 

@@ -1,13 +1,13 @@
-cimport cython
+cimport cython0
 
-cy = __import__("cython")
+cy = __import__("cython0")
 
-cpdef func1(self, cython.integral x):
+cpdef func1(self, cython0.integral x):
     print "%s," % (self,),
-    if cython.integral is int:
-        print 'x is int', x, cython.typeof(x)
+    if cython0.integral is int:
+        print 'x is int', x, cython0.typeof(x)
     else:
-        print 'x is long', x, cython.typeof(x)
+        print 'x is long', x, cython0.typeof(x)
 
 
 class A(object):
@@ -73,15 +73,15 @@ def test_badcall():
 
 ctypedef long double long_double
 
-cpdef multiarg(cython.integral x, cython.floating y):
-    if cython.integral is int:
+cpdef multiarg(cython0.integral x, cython0.floating y):
+    if cython0.integral is int:
         print "x is an int,",
     else:
         print "x is a long,",
 
-    if cython.floating is long_double:
+    if cython0.floating is long_double:
         print "y is a long double:",
-    elif float is cython.floating:
+    elif float is cython0.floating:
         print "y is a float:",
     else:
         print "y is a double:",
@@ -106,7 +106,7 @@ def test_multiarg():
     multiarg(4, 5.0)
 
 cdef class C:
-    cpdef object has_default_struct(self, cython.floating x, a=None):
+    cpdef object has_default_struct(self, cython0.floating x, a=None):
         return x, a
 
 # https://github.com/cython/cython/issues/5588

@@ -1,8 +1,8 @@
 # ticket: 589
 
-cimport cython
+cimport cython0
 
-_set = set # CPython may not define it (in Py2.3), but Cython does :)
+_set = set # CPython may not define it (in Py2.3), but Cython0 does :)
 
 
 def test_set_clear_bound():
@@ -21,7 +21,7 @@ text = u'ab jd  sdflk as sa  sadas asdas fsdf '
 pipe_sep = u'|'
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//PythonCapiCallNode",
 )
 def test_unicode_join_bound(unicode sep, l):

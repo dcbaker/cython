@@ -4,14 +4,14 @@
 
 COUNT = 100000
 
-import cython
+import cython0
 
 
 async def done(n):
     return n
 
 
-@cython.locals(N=cython.Py_ssize_t)
+@cython0.locals(N=cython0.Py_ssize_t)
 async def count_to(N):
     count = 0
     for i in range(N):
@@ -26,7 +26,7 @@ async def await_all(*coroutines):
     return count
 
 
-@cython.locals(N=cython.Py_ssize_t)
+@cython0.locals(N=cython0.Py_ssize_t)
 def bm_await_nested(N):
     return await_all(
         count_to(N),

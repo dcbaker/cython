@@ -1,8 +1,8 @@
 
-Welcome to Cython's Documentation
+Welcome to Cython0's Documentation
 =================================
 
-Also see the `Cython project homepage <http://cython.org/>`_.
+Also see the `Cython0 project homepage <http://cython0.org/>`_.
 
 .. toctree::
    :maxdepth: 2

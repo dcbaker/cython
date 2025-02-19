@@ -3,7 +3,7 @@
 # cython: binding=True
 
 #######
-# Test that Cython and Python functions can call each other in various signature combinations.
+# Test that Cython0 and Python functions can call each other in various signature combinations.
 #######
 
 py_call_noargs = eval("lambda: 'noargs'")

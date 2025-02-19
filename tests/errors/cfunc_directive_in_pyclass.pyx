@@ -1,8 +1,8 @@
 # mode: error
-import cython
+import cython0
 
 class Pyclass(object):
-    @cython.cfunc
+    @cython0.cfunc
     def bad(self):
         pass
 

@@ -1,6 +1,6 @@
 # mode: error
 
-from cython.parallel cimport parallel, prange
+from cython0.parallel cimport parallel, prange
 
 cdef int i
 

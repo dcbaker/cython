@@ -1,12 +1,12 @@
-import cython
+import cython0
 from cython import cfunc, cclass, ccall
 
-@cython.test_assert_path_exists('//CFuncDefNode')
-@cython.cfunc
+@cython0.test_assert_path_exists('//CFuncDefNode')
+@cython0.cfunc
 def ftang():
     x = 0
 
-@cython.test_assert_path_exists('//CFuncDefNode')
+@cython0.test_assert_path_exists('//CFuncDefNode')
 @cfunc
 def fpure(a):
     return a*2
@@ -20,15 +20,15 @@ def test():
     return fpure(2)
 
 with cfunc:
-    @cython.test_assert_path_exists('//CFuncDefNode')
+    @cython0.test_assert_path_exists('//CFuncDefNode')
     def fwith1(a):
         return a*3
 
-    @cython.test_assert_path_exists('//CFuncDefNode')
+    @cython0.test_assert_path_exists('//CFuncDefNode')
     def fwith2(a):
         return a*4
 
-    @cython.test_assert_path_exists(
+    @cython0.test_assert_path_exists(
         '//CFuncDefNode',
         '//LambdaNode',
         '//GeneratorDefNode',
@@ -40,13 +40,13 @@ with cfunc:
 
 
 with cclass:
-    @cython.test_assert_path_exists('//CClassDefNode')
+    @cython0.test_assert_path_exists('//CClassDefNode')
     class Egg(object):
         pass
-    @cython.test_assert_path_exists('//CClassDefNode')
+    @cython0.test_assert_path_exists('//CClassDefNode')
     class BigEgg(object):
-        @cython.test_assert_path_exists('//CFuncDefNode')
-        @cython.cfunc
+        @cython0.test_assert_path_exists('//CFuncDefNode')
+        @cython0.cfunc
         def f(self, a):
             return a*10
 
@@ -57,10 +57,10 @@ def test_with():
     """
     return fwith1(1), fwith2(1), BigEgg().f(5)
 
-@cython.test_assert_path_exists('//CClassDefNode')
-@cython.cclass
+@cython0.test_assert_path_exists('//CClassDefNode')
+@cython0.cclass
 class PureFoo(object):
-    a = cython.declare(cython.double)
+    a = cython0.declare(cython0.double)
 
     def __init__(self, a):
         self.a = a
@@ -68,8 +68,8 @@ class PureFoo(object):
     def __call__(self):
         return self.a
 
-    @cython.test_assert_path_exists('//CFuncDefNode')
-    @cython.cfunc
+    @cython0.test_assert_path_exists('//CFuncDefNode')
+    @cython0.cfunc
     def puremeth(self, a):
         return a*2
 
@@ -81,13 +81,13 @@ def test_method():
     """
     x = PureFoo(2)
     print(x.puremeth(2))
-    if cython.compiled:
+    if cython0.compiled:
         print(isinstance(x(), float))
     else:
         print(True)
     return
 
-@cython.ccall
+@cython0.ccall
 def ccall_sqr(x):
     return x*x
 
@@ -122,9 +122,9 @@ def test_ccall_method(x):
     """
     return x.meth()
 
-@cython.cfunc
-@cython.returns(cython.p_int)
-@cython.locals(xptr=cython.p_int)
+@cython0.cfunc
+@cython0.returns(cython0.p_int)
+@cython0.locals(xptr=cython0.p_int)
 def typed_return(xptr):
     return xptr
 
@@ -132,8 +132,8 @@ def test_typed_return():
     """
     >>> test_typed_return()
     """
-    x = cython.declare(int, 5)
-    assert typed_return(cython.address(x))[0] is x
+    x = cython0.declare(int, 5)
+    assert typed_return(cython0.address(x))[0] is x
 
 
 def test_genexpr_in_cdef(l):

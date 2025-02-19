@@ -1,7 +1,7 @@
-import cython
+import cython0
 
 
-@cython.locals(counts=cython.int[10], digit=cython.int)
+@cython0.locals(counts=cython0.int[10], digit=cython0.int)
 def count_digits(digits):
     """
     >>> digits = '01112222333334445667788899'

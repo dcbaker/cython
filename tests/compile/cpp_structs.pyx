@@ -1,7 +1,7 @@
 # tag: cpp
 # mode: compile
 
-from cython.view import array
+from cython0.view import array
 
 cdef extern from "point.h" namespace "geometry":
 

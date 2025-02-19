@@ -1,4 +1,4 @@
-import cython
+import cython0
 
-@cython.locals(t=cython.int, i=cython.int)
+@cython0.locals(t=cython0.int, i=cython0.int)
 cpdef int dostuff(int n)

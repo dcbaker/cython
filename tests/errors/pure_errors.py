@@ -1,51 +1,51 @@
 # mode: error
 # tag: warnings
 
-import cython
+import cython0
 
-@cython.cfunc
-@cython.locals(x=cython.int)
-@cython.returns(cython.int)
+@cython0.cfunc
+@cython0.locals(x=cython0.int)
+@cython0.returns(cython0.int)
 def cdef_needs_gil(x):
     return x + 1
 
 
-@cython.cfunc
-@cython.nogil
-@cython.locals(x=cython.int)
-@cython.returns(cython.int)
+@cython0.cfunc
+@cython0.nogil
+@cython0.locals(x=cython0.int)
+@cython0.returns(cython0.int)
 def cdef_nogil(x):
     return x + 1
 
 
-@cython.cfunc
-@cython.nogil(True)
-@cython.locals(x=cython.int)
-@cython.returns(cython.int)
+@cython0.cfunc
+@cython0.nogil(True)
+@cython0.locals(x=cython0.int)
+@cython0.returns(cython0.int)
 def cdef_nogil_true(x):
     return x + 1
 
 
-@cython.cfunc
-@cython.nogil(False)
-@cython.locals(x=cython.int)
-@cython.returns(cython.int)
+@cython0.cfunc
+@cython0.nogil(False)
+@cython0.locals(x=cython0.int)
+@cython0.returns(cython0.int)
 def cdef_nogil_false(x):
     return x + 1
 
 
-@cython.locals(x=cython.int)
+@cython0.locals(x=cython0.int)
 def test_cdef_nogil(x):
     cdef_nogil(x)  # ok
     cdef_nogil_false(x)  # ok
     cdef_nogil_true(x)  # ok
-    with cython.nogil:
+    with cython0.nogil:
         cdef_nogil_true(x)   # ok
         cdef_needs_gil(x)    # not ok
         cdef_nogil_false(x)  # not ok
 
 
-@cython.nogil
+@cython0.nogil
 def pyfunc(x):  # invalid
     return x + 1
 

@@ -1,4 +1,4 @@
-PYTHON -m Cython.Build.Cythonize -i '**/*.pyx' -x '**/t/**/*.pyx' -x '**/m/**/*.pyx'
+PYTHON -m Cython0.Build.Cythonize -i '**/*.pyx' -x '**/t/**/*.pyx' -x '**/m/**/*.pyx'
 PYTHON -c "import tests; assert tests.X.x == 2"
 
 ######## tests.py ########

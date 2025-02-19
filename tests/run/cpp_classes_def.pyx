@@ -8,7 +8,7 @@ from libc.math cimport sin, cos
 from libcpp cimport bool
 from libcpp.memory cimport unique_ptr
 from libcpp.vector cimport vector
-from cython.operator cimport dereference as deref
+from cython0.operator cimport dereference as deref
 
 cdef extern from "shapes.h" namespace "shapes":
     cdef cppclass Shape:

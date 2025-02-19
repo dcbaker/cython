@@ -7,7 +7,7 @@ ctypedef struct MyStruct:
     int x, y, z
 
 # conversion code for this struct will be generated but not used
-# (there used to be a problem getting Cython conversion code generated here)
+# (there used to be a problem getting Cython0 conversion code generated here)
 cdef MyStruct _no_such_name_ = MyStruct(1, 2, 3)
 
 from libc.math cimport M_PI

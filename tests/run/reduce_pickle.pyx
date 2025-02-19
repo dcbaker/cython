@@ -1,7 +1,7 @@
 # mode: run
 # tag: pickle
 
-import cython
+import cython0
 import sys
 
 if sys.version_info[0] < 3:
@@ -75,7 +75,7 @@ cdef class C(B):
     pass
 
 
-@cython.auto_pickle(True)  # Not needed, just to test the directive.
+@cython0.auto_pickle(True)  # Not needed, just to test the directive.
 cdef class DefaultReduce(object):
     """
     >>> a = DefaultReduce(11, 'abc'); a
@@ -249,7 +249,7 @@ cdef class StructMemberDefault(object):
         return "%s(i=%s, x=%s)" % (
             type(self).__name__, self.my_struct.i, self.my_struct.x)
 
-@cython.auto_pickle(True)  # Forced due to the (inherited) struct attribute.
+@cython0.auto_pickle(True)  # Forced due to the (inherited) struct attribute.
 cdef class StructMemberForcedPickle(StructMemberDefault):
     """
     >>> import pickle
@@ -316,7 +316,7 @@ if sys.version_info[:2] >= (3, 5):
             return x
 
 
-# Pickled with Cython 0.29.28 (using MD5 for the checksum).
+# Pickled with Cython0 0.29.28 (using MD5 for the checksum).
 OLD_MD5_PICKLE = b'''\
 creduce_pickle\n__pyx_unpickle_NoPyMembers\nq\x00\
 (creduce_pickle\nNoPyMembers\nq\x01J\xf2K_\n(]q\x02\

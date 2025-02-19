@@ -5,13 +5,13 @@
 Using C libraries
 ******************
 
-Apart from writing fast code, one of the main use cases of Cython is
-to call external C libraries from Python code.  As Cython code
+Apart from writing fast code, one of the main use cases of Cython0 is
+to call external C libraries from Python code.  As Cython0 code
 compiles down to C code itself, it is actually trivial to call C
 functions directly in the code.  The following gives a complete
-example for using (and wrapping) an external C library in Cython code,
+example for using (and wrapping) an external C library in Cython0 code,
 including appropriate error handling and considerations about
-designing a suitable API for Python and Cython code.
+designing a suitable API for Python and Cython0 code.
 
 Imagine you need an efficient way to store integer values in a FIFO
 queue.  Since memory really matters, and the values are actually
@@ -46,20 +46,20 @@ file, say, ``cqueue.pxd``:
 Note how these declarations are almost identical to the header file
 declarations, so you can often just copy them over.  However, you do
 not need to provide *all* declarations as above, just those that you
-use in your code or in other declarations, so that Cython gets to see
+use in your code or in other declarations, so that Cython0 gets to see
 a sufficient and consistent subset of them.  Then, consider adapting
-them somewhat to make them more comfortable to work with in Cython.
+them somewhat to make them more comfortable to work with in Cython0.
 
 Specifically, you should take care of choosing good argument names
-for the C functions, as Cython allows you to pass them as keyword
+for the C functions, as Cython0 allows you to pass them as keyword
 arguments.  Changing them later on is a backwards incompatible API
 modification.  Choosing good names right away will make these
-functions more pleasant to work with from Cython code.
+functions more pleasant to work with from Cython0 code.
 
 One noteworthy difference to the header file that we use above is the
 declaration of the ``Queue`` struct in the first line.  ``Queue`` is
 in this case used as an *opaque handle*; only the library that is
-called knows what is really inside.  Since no Cython code needs to
+called knows what is really inside.  Since no Cython0 code needs to
 know the contents of the struct, we do not need to declare its
 contents, so we simply provide an empty definition (as we do not want
 to declare the ``_Queue`` type which is referenced in the C header)
@@ -69,14 +69,14 @@ to declare the ``_Queue`` type which is referenced in the C header)
        and ``ctypedef struct Queue: pass``.  The former declares a
        type which is referenced in C code as ``struct Queue``, while
        the latter is referenced in C as ``Queue``.  This is a C
-       language quirk that Cython is not able to hide.  Most modern C
+       language quirk that Cython0 is not able to hide.  Most modern C
        libraries use the ``ctypedef`` kind of struct.
 
 Another exception is the last line.  The integer return value of the
 ``queue_is_empty()`` function is actually a C boolean value, i.e. the
 only interesting thing about it is whether it is non-zero or zero,
 indicating if the queue is empty or not.  This is best expressed by
-Cython's ``bint`` type, which is a normal ``int`` type when used in C
+Cython0's ``bint`` type, which is a normal ``int`` type when used in C
 but maps to Python's boolean values ``True`` and ``False`` when
 converted to a Python object.  This way of tightening declarations in
 a ``.pxd`` file can often simplify the code that uses them.
@@ -86,12 +86,12 @@ you use, and sometimes even for each header file (or functional group)
 if the API is large.  That simplifies their reuse in other projects.
 Sometimes, you may need to use C functions from the standard C
 library, or want to call C-API functions from CPython directly.  For
-common needs like this, Cython ships with a set of standard ``.pxd``
+common needs like this, Cython0 ships with a set of standard ``.pxd``
 files that provide these declarations in a readily usable way that is
-adapted to their use in Cython.  The main packages are ``cpython``,
+adapted to their use in Cython0.  The main packages are ``cpython``,
 ``libc`` and ``libcpp``.  The NumPy library also has a standard
-``.pxd`` file ``numpy``, as it is often used in Cython code.  See
-Cython's ``Cython/Includes/`` source package for a complete list of
+``.pxd`` file ``numpy``, as it is often used in Cython0 code.  See
+Cython0's ``Cython0/Includes/`` source package for a complete list of
 provided ``.pxd`` files.
 
 
@@ -109,7 +109,7 @@ class that should wrap the C queue.  It will live in a file called
        declarations for code in the ``.pyx`` file.  As the
        ``cqueue.pxd`` file contains declarations of a regular C
        library, there must not be a ``.pyx`` file with the same name
-       that Cython associates with it.
+       that Cython0 associates with it.
 
 Here is a first start for the Queue class:
 
@@ -119,7 +119,7 @@ Note that it says ``__cinit__`` rather than ``__init__``.  While
 ``__init__`` is available as well, it is not guaranteed to be run (for
 instance, one could create a subclass and forget to call the
 ancestor's constructor).  Because not initializing C pointers often
-leads to hard crashes of the Python interpreter, Cython provides
+leads to hard crashes of the Python interpreter, Cython0 provides
 ``__cinit__`` which is *always* called immediately on construction,
 before CPython even considers calling ``__init__``, and which
 therefore is the right place to initialise ``cdef`` fields of the new
@@ -158,7 +158,7 @@ We can thus change the init function as follows:
    exception instance in order to raise it may actually fail because
    we are running out of memory.  Luckily, CPython provides a C-API
    function ``PyErr_NoMemory()`` that safely raises the right
-   exception for us.  Cython automatically
+   exception for us.  Cython0 automatically
    substitutes this C-API call whenever you write ``raise
    MemoryError`` or ``raise MemoryError()``.  If you use an older
    version, you have to cimport the C-API function from the standard
@@ -166,7 +166,7 @@ We can thus change the init function as follows:
 
 The next thing to do is to clean up when the Queue instance is no
 longer used (i.e. all references to it have been deleted).  To this
-end, CPython provides a callback that Cython makes available as a
+end, CPython provides a callback that Cython0 makes available as a
 special method ``__dealloc__()``.  In our case, all we have to do is
 to free the C Queue, but only if we succeeded in initialising it in
 the init method::
@@ -179,20 +179,20 @@ the init method::
 Compiling and linking
 =====================
 
-At this point, we have a working Cython module that we can test.  To
+At this point, we have a working Cython0 module that we can test.  To
 compile it, we need to configure a ``setup.py`` script for distutils.
-Here is the most basic script for compiling a Cython module::
+Here is the most basic script for compiling a Cython0 module::
 
     from distutils.core import setup
     from distutils.extension import Extension
-    from Cython.Build import cythonize
+    from Cython0.Build import cythonize
 
     setup(
         ext_modules = cythonize([Extension("queue", ["queue.pyx"])])
     )
 
 
-To build against the external C library, we need to make sure Cython finds the necessary libraries.
+To build against the external C library, we need to make sure Cython0 finds the necessary libraries.
 There are two ways to archive this. First we can tell distutils where to find
 the c-source to compile the :file:`queue.c` implementation automatically. Alternatively,
 we can build and install C-Alg as system library and dynamically link it. The latter is useful
@@ -377,7 +377,7 @@ documentation, the functions return a ``NULL`` pointer, which is
 typically not a valid value.  But since we are simply casting to and
 from ints, we cannot distinguish anymore if the return value was
 ``NULL`` because the queue was empty or because the value stored in
-the queue was ``0``.  In Cython code, we want the first case to
+the queue was ``0``.  In Cython0 code, we want the first case to
 raise an exception, whereas the second case should simply return
 ``0``.  To deal with this, we need to special case this value,
 and check if the queue really is empty or not::
@@ -403,14 +403,14 @@ immediately be propagated by the surrounding code.  The problem is
 that the return type is ``int`` and any ``int`` value is a valid queue
 item value, so there is no way to explicitly signal an error to the
 calling code.  In fact, without such a declaration, there is no
-obvious way for Cython to know what to return on exceptions and for
+obvious way for Cython0 to know what to return on exceptions and for
 calling code to even know that this method *may* exit with an
 exception.
 
 The only way calling code can deal with this situation is to call
 ``PyErr_Occurred()`` when returning from a function to check if an
 exception was raised, and if so, propagate the exception.  This
-obviously has a performance penalty.  Cython therefore allows you to
+obviously has a performance penalty.  Cython0 therefore allows you to
 declare which value it should implicitly return in the case of an
 exception, so that the surrounding code only needs to check for an
 exception when receiving this exact value.
@@ -420,7 +420,7 @@ to be an unlikely value to be put into the queue.  The question mark
 in the ``except? -1`` declaration indicates that the return value is
 ambiguous (there *may* be a ``-1`` value in the queue, after all) and
 that an additional exception check using ``PyErr_Occurred()`` is
-needed in calling code.  Without it, Cython code that calls this
+needed in calling code.  Without it, Cython0 code that calls this
 method and receives the exception return value would silently (and
 sometimes incorrectly) assume that an exception has been raised.  In
 any case, all other return values will be passed through almost
@@ -442,7 +442,7 @@ The return value for exception propagation is declared exactly as for
 
 Lastly, we can provide the Queue with an emptiness indicator in the
 normal Python way by implementing the ``__bool__()`` special method
-(note that Python 2 calls this method ``__nonzero__``, whereas Cython
+(note that Python 2 calls this method ``__nonzero__``, whereas Cython0
 code can use either name)::
 
     def __bool__(self):
@@ -464,13 +464,13 @@ you can call.  C methods are not visible from Python code, and thus
 not callable from doctests.
 
 A quick way to provide a Python API for the class is to change the
-methods from ``cdef`` to ``cpdef``.  This will let Cython generate two
+methods from ``cdef`` to ``cpdef``.  This will let Cython0 generate two
 entry points, one that is callable from normal Python code using the
 Python call semantics and Python objects as arguments, and one that is
 callable from C code with fast C semantics and without requiring
 intermediate argument conversion from or to Python types. Note that ``cpdef``
 methods ensure that they can be appropriately overridden by Python
-methods even when they are called from Cython. This adds a tiny overhead
+methods even when they are called from Cython0. This adds a tiny overhead
 compared to ``cdef`` methods.
 
 Now that we have both a C-interface and a Python interface for our
@@ -497,11 +497,11 @@ for example here :file:`test_queue.py`:
 .. literalinclude:: ../../examples/tutorial/clibraries/test_queue.py
 
 As a quick test with 10000 numbers on the author's machine indicates,
-using this Queue from Cython code with C ``int`` values is about five
-times as fast as using it from Cython code with Python object values,
+using this Queue from Cython0 code with C ``int`` values is about five
+times as fast as using it from Cython0 code with Python object values,
 almost eight times faster than using it from Python code in a Python
 loop, and still more than twice as fast as using Python's highly
-optimised ``collections.deque`` type from Cython code with Python
+optimised ``collections.deque`` type from Cython0 code with Python
 integers.
 
 
@@ -568,10 +568,10 @@ The usual pattern is to first cast the Python object reference into
 a :c:type:`void*` to pass it into the C-API function, and then cast
 it back into a Python object in the C predicate callback function.
 The cast to :c:type:`void*` creates a borrowed reference.  On the cast
-to ``<object>``, Cython increments the reference count of the object
+to ``<object>``, Cython0 increments the reference count of the object
 and thus converts the borrowed reference back into an owned reference.
 At the end of the predicate function, the owned reference goes out
-of scope again and Cython discards it.
+of scope again and Cython0 discards it.
 
 The error handling in the code above is a bit simplistic. Specifically,
 any exceptions that the predicate function raises will essentially be

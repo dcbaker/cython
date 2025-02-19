@@ -1,4 +1,4 @@
-cimport cython
+cimport cython0
 
 from libc.stdint cimport uint64_t
 
@@ -18,8 +18,8 @@ cdef class B:
         return self.pop()
 
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode/AttributeNode')
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_fail_if_path_exists('//SimpleCallNode/AttributeNode')
 def simple_pop(L):
     """
     >>> L = list(range(10))
@@ -43,8 +43,8 @@ def simple_pop(L):
     """
     return L.pop()
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode/AttributeNode')
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_fail_if_path_exists('//SimpleCallNode/AttributeNode')
 def simple_pop_typed(list L):
     """
     >>> L = list(range(10))
@@ -66,8 +66,8 @@ def simple_pop_typed(list L):
     return L.pop()
 
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode/AttributeNode')
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_fail_if_path_exists('//SimpleCallNode/AttributeNode')
 def index_pop(L, int i):
     """
     >>> L = list(range(10))
@@ -102,8 +102,8 @@ def index_pop(L, int i):
     """
     return L.pop(i)
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode/AttributeNode')
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_fail_if_path_exists('//SimpleCallNode/AttributeNode')
 def index_pop_typed(list L, int i):
     """
     >>> L = list(range(10))
@@ -137,8 +137,8 @@ def index_pop_typed(list L, int i):
     return L.pop(i)
 
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode/AttributeNode')
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_fail_if_path_exists('//SimpleCallNode/AttributeNode')
 def index_pop_list_object_index(list L, i):
     """
     >>> L = list(range(10))
@@ -178,8 +178,8 @@ def index_pop_list_object_index(list L, i):
     return L.pop(i)
 
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode/AttributeNode')
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_fail_if_path_exists('//SimpleCallNode/AttributeNode')
 def index_pop_literal(list L):
     """
     >>> L = list(range(10))
@@ -201,7 +201,7 @@ def index_pop_literal(list L):
     return L.pop(0)
 
 
-@cython.test_fail_if_path_exists('//PythonCapiCallNode')
+@cython0.test_fail_if_path_exists('//PythonCapiCallNode')
 def crazy_pop(L):
     """
     >>> crazy_pop(list(range(10)))    # doctest: +ELLIPSIS

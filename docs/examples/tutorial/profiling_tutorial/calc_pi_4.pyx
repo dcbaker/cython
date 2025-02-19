@@ -2,9 +2,9 @@
 
 # calc_pi.pyx
 
-cimport cython
+cimport cython0
 
-@cython.profile(False)
+@cython0.profile(False)
 cdef inline double recip_square(int i):
     return 1. / (i * i)
 

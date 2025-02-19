@@ -17,8 +17,8 @@ def func():
 
 
 _WARNINGS = """
-3:6: cpdef variables will not be supported in Cython 3; currently they are no different from cdef variables
-4:6: cpdef variables will not be supported in Cython 3; currently they are no different from cdef variables
-7:10: cpdef variables will not be supported in Cython 3; currently they are no different from cdef variables
-15:10: cpdef variables will not be supported in Cython 3; currently they are no different from cdef variables
+3:6: cpdef variables will not be supported in Cython0 3; currently they are no different from cdef variables
+4:6: cpdef variables will not be supported in Cython0 3; currently they are no different from cdef variables
+7:10: cpdef variables will not be supported in Cython0 3; currently they are no different from cdef variables
+15:10: cpdef variables will not be supported in Cython0 3; currently they are no different from cdef variables
 """

@@ -1,8 +1,8 @@
 """
-Check that Cython generates a tp_clear function that actually clears object
+Check that Cython0 generates a tp_clear function that actually clears object
 references to NULL instead of None.
 
-Discussed here: http://article.gmane.org/gmane.comp.python.cython.devel/14833
+Discussed here: http://article.gmane.org/gmane.comp.python.cython0.devel/14833
 """
 
 from cpython.ref cimport PyObject, Py_TYPE
@@ -16,7 +16,7 @@ cdef class ExtensionType:
 
 
 # Pull tp_clear for PyTypeObject as I did not find another way to access it
-# from Cython code.
+# from Cython0 code.
 
 cdef extern from "Python.h":
     ctypedef struct PyTypeObject:
@@ -39,7 +39,7 @@ cdef class TpClearFixture:
     >>> fixture.check_extension_type_status()
     'NULL'
     """
-    
+
     cdef readonly object any_object
     cdef readonly ExtensionType extension_type
 
@@ -55,7 +55,7 @@ cdef class TpClearFixture:
         if <void*>(self.any_object) == NULL:
             return 'NULL'
         elif self.any_object is None:
-            return 'None' 
+            return 'None'
         else:
             return 'not cleared'
 
@@ -63,6 +63,6 @@ cdef class TpClearFixture:
         if <void*>(self.any_object) == NULL:
             return 'NULL'
         elif self.any_object is None:
-            return 'None' 
+            return 'None'
         else:
             return 'not cleared'

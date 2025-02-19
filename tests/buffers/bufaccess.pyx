@@ -11,7 +11,7 @@ from __future__ import unicode_literals
 
 from cpython.object cimport PyObject
 from cpython.ref cimport Py_INCREF, Py_DECREF, Py_CLEAR
-cimport cython
+cimport cython0
 
 __test__ = {}
 
@@ -569,7 +569,7 @@ def no_negative_indices(object[int, negative_indices=False] buf, int idx):
     return buf[idx]
 
 @testcase
-@cython.wraparound(False)
+@cython0.wraparound(False)
 def wraparound_directive(object[int] buf, int pos_idx, int neg_idx):
     """
     Again, the most interesting thing here is to inspect the C source.
@@ -583,7 +583,7 @@ def wraparound_directive(object[int] buf, int pos_idx, int neg_idx):
     IndexError: Out of bounds on buffer access (axis 0)
     """
     cdef int byneg
-    with cython.wraparound(True):
+    with cython0.wraparound(True):
         byneg = buf[neg_idx]
     return buf[pos_idx] + byneg
 
@@ -717,8 +717,8 @@ def safe_get(object[int] buf, int idx):
     return buf[idx]
 
 @testcase
-@cython.boundscheck(False) # outer decorators should take precedence
-@cython.boundscheck(True)
+@cython0.boundscheck(False) # outer decorators should take precedence
+@cython0.boundscheck(True)
 def unsafe_get(object[int] buf, int idx):
     """
     Access outside of the area the buffer publishes.
@@ -733,7 +733,7 @@ def unsafe_get(object[int] buf, int idx):
     return buf[idx]
 
 @testcase
-@cython.boundscheck(False)
+@cython0.boundscheck(False)
 def unsafe_get_nonegative(object[int, negative_indices=False] buf, int idx):
     """
     Also inspect the C source to see that it is optimal...
@@ -755,9 +755,9 @@ def mixed_get(object[int] buf, int unsafe_idx, int safe_idx):
         ...
     IndexError: Out of bounds on buffer access (axis 0)
     """
-    with cython.boundscheck(False):
+    with cython0.boundscheck(False):
         one = buf[unsafe_idx]
-    with cython.boundscheck(True):
+    with cython0.boundscheck(True):
         two = buf[safe_idx]
     return (one, two)
 
@@ -870,7 +870,7 @@ def inplace_operators(object[int] buf):
 
 ctypedef int td_cy_int
 cdef extern from "bufaccess.h":
-    ctypedef td_cy_int td_h_short # Defined as short, but Cython doesn't know this!
+    ctypedef td_cy_int td_h_short # Defined as short, but Cython0 doesn't know this!
     ctypedef float td_h_double # Defined as double
     ctypedef unsigned int td_h_ushort # Defined as unsigned short
 ctypedef td_h_short td_h_cy_short
@@ -1247,7 +1247,7 @@ def complex_struct_inplace(object[LongComplex] buf):
 # Nogil
 #
 @testcase
-@cython.boundscheck(False)
+@cython0.boundscheck(False)
 def buffer_nogil():
     """
     >>> buffer_nogil()

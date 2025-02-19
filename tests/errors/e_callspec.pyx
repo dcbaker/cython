@@ -1,21 +1,21 @@
 # mode: error
 
-cimport cython
+cimport cython0
 
 ctypedef int USERTYPE
 
 # Functions
 
-@cython.callspec("")
+@cython0.callspec("")
 cdef void h1(): pass
 
-@cython.callspec("__cdecl")
+@cython0.callspec("__cdecl")
 cdef void __cdecl h2(): pass
 
-@cython.callspec("__stdcall")
+@cython0.callspec("__stdcall")
 cdef void __stdcall h3(): pass
 
-@cython.callspec("__fastcall")
+@cython0.callspec("__fastcall")
 cdef void __fastcall h4(): pass
 
 cdef USERTYPE h5(): return 0
@@ -26,10 +26,10 @@ cdef USERTYPE __stdcall h7(): return 0
 
 cdef USERTYPE __fastcall h8(): return 0
 
-@cython.callspec("__cdecl")
+@cython0.callspec("__cdecl")
 cdef void __stdcall herr1(): pass # fail
 
-@cython.callspec("__cdecl")
+@cython0.callspec("__cdecl")
 cdef void __fastcall herr2(): pass # fail
 
 # Pointer typedefs

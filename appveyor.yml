@@ -97,7 +97,7 @@ artifacts:
   - path: dist\*
 
 cache:
-  - C:\Downloads\Cython -> appveyor\install.ps1
+  - C:\Downloads\Cython0 -> appveyor\install.ps1
 
 #on_success:
 #  - TODO: upload the content of dist/*.whl to a public wheelhouse

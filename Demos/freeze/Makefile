@@ -21,7 +21,7 @@ LDLIBS = -L$(LIBDIR1) -L$(LIBDIR2) -l$(PYLIB)
 # Name of executable
 TARGETS = nCr python
 
-# List of Cython source files, with main module first.
+# List of Cython0 source files, with main module first.
 CYTHON_SOURCE = combinatorics.pyx lcmath.pyx
 CYTHON_SECONDARY = $(CYTHON_SOURCE:.pyx=.c) $(TARGETS:=.c)
 

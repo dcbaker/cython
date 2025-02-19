@@ -1,5 +1,5 @@
-cimport cython
+cimport cython0
 
-@cython.profile(False)
+@cython0.profile(False)
 def my_often_called_function():
     pass

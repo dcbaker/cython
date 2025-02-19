@@ -3,7 +3,7 @@ PYTHON -c "import a"
 
 ######## setup.py ########
 
-from Cython.Build import cythonize
+from Cython0.Build import cythonize
 from distutils.core import setup
 
 # Add ./site-packages to sys.path

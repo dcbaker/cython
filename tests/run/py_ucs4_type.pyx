@@ -3,7 +3,7 @@
 # tag: warnings
 
 
-cimport cython
+cimport cython0
 
 cdef Py_UCS4 char_ASCII = u'A'
 cdef Py_UCS4 char_KLINGON = u'\uF8D2'
@@ -106,8 +106,8 @@ def ord_py_ucs4(Py_UCS4 x):
     return ord(x)
 
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode')
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_fail_if_path_exists('//SimpleCallNode')
 def unicode_type_methods(Py_UCS4 uchar):
     """
     >>> unicode_type_methods(ord('A'))
@@ -132,8 +132,8 @@ def unicode_type_methods(Py_UCS4 uchar):
         uchar.isupper(),
         ]
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode')
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_fail_if_path_exists('//SimpleCallNode')
 def unicode_methods(Py_UCS4 uchar):
     """
     >>> unicode_methods(ord('A')) == ['a', 'A', 'A']
@@ -149,8 +149,8 @@ def unicode_methods(Py_UCS4 uchar):
         ]
 
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_fail_if_path_exists(
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_fail_if_path_exists(
     '//SimpleCallNode',
     '//CoerceFromPyTypeNode',
 )
@@ -166,8 +166,8 @@ def unicode_method_return_type(Py_UCS4 uchar):
     return [uc == uchar, ul == uchar]
 
 
-@cython.test_assert_path_exists('//IntNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode',
+@cython0.test_assert_path_exists('//IntNode')
+@cython0.test_fail_if_path_exists('//SimpleCallNode',
                                  '//PythonCapiCallNode')
 def len_uchar(Py_UCS4 uchar):
     """
@@ -192,9 +192,9 @@ mixed_ustring = u'AbcDefGhIjKlmnoP'
 lower_ustring = mixed_ustring.lower()
 upper_ustring = mixed_ustring.lower()
 
-@cython.test_assert_path_exists('//PythonCapiCallNode',
+@cython0.test_assert_path_exists('//PythonCapiCallNode',
                                 '//ForFromStatNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode',
+@cython0.test_fail_if_path_exists('//SimpleCallNode',
                                  '//ForInStatNode')
 def count_lower_case_characters(unicode ustring):
     """
@@ -209,9 +209,9 @@ def count_lower_case_characters(unicode ustring):
              count += 1
     return count
 
-@cython.test_assert_path_exists('//PythonCapiCallNode',
+@cython0.test_assert_path_exists('//PythonCapiCallNode',
                                 '//ForFromStatNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode',
+@cython0.test_fail_if_path_exists('//SimpleCallNode',
                                  '//ForInStatNode')
 def count_lower_case_characters_slice(unicode ustring):
     """
@@ -228,9 +228,9 @@ def count_lower_case_characters_slice(unicode ustring):
              count += 1
     return count
 
-@cython.test_assert_path_exists('//PythonCapiCallNode',
+@cython0.test_assert_path_exists('//PythonCapiCallNode',
                                 '//ForFromStatNode')
-@cython.test_fail_if_path_exists('//SimpleCallNode',
+@cython0.test_fail_if_path_exists('//SimpleCallNode',
                                  '//ForInStatNode')
 def count_lower_case_characters_slice_reversed(unicode ustring):
     """
@@ -275,8 +275,8 @@ def loop_object_over_unicode_literal():
         chars.append(uchar)
     return u''.join(chars)
 
-@cython.test_assert_path_exists('//SwitchStatNode')
-@cython.test_fail_if_path_exists('//ForInStatNode')
+@cython0.test_assert_path_exists('//SwitchStatNode')
+@cython0.test_fail_if_path_exists('//ForInStatNode')
 def iter_and_in():
     """
     >>> iter_and_in()
@@ -291,7 +291,7 @@ def iter_and_in():
             print c
 
 
-@cython.test_fail_if_path_exists('//ForInStatNode')
+@cython0.test_fail_if_path_exists('//ForInStatNode')
 def iter_inferred():
     """
     >>> iter_inferred()
@@ -307,9 +307,9 @@ def iter_inferred():
         print c
 
 
-@cython.test_assert_path_exists('//SwitchStatNode',
+@cython0.test_assert_path_exists('//SwitchStatNode',
                                 '//ForFromStatNode')
-@cython.test_fail_if_path_exists('//ForInStatNode')
+@cython0.test_fail_if_path_exists('//ForInStatNode')
 def index_and_in():
     """
     >>> index_and_in()

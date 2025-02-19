@@ -1,8 +1,8 @@
 # tag: run
 # tag: openmp
 
-cimport cython.parallel
-from cython.parallel import prange, threadid
+cimport cython0.parallel
+from cython0.parallel import prange, threadid
 cimport openmp
 from libc.stdlib cimport malloc, free
 
@@ -21,11 +21,11 @@ def test_parallel():
     if buf == NULL:
         raise MemoryError
 
-    with nogil, cython.parallel.parallel():
+    with nogil, cython0.parallel.parallel():
         buf[threadid()] = threadid()
         # Recognise threadid() also when it's used in a function argument.
         # See https://github.com/cython/cython/issues/3594
-        buf[forward(cython.parallel.threadid())] = forward(threadid())
+        buf[forward(cython0.parallel.threadid())] = forward(threadid())
 
     for i in range(maxthreads):
         assert buf[i] == i
@@ -51,12 +51,12 @@ def test_num_threads():
 
     openmp.omp_set_dynamic(0)
 
-    with nogil, cython.parallel.parallel(num_threads=1):
+    with nogil, cython0.parallel.parallel(num_threads=1):
         p[0] = openmp.omp_get_num_threads()
 
     print num_threads
 
-    with nogil, cython.parallel.parallel(num_threads=get_num_threads()):
+    with nogil, cython0.parallel.parallel(num_threads=get_num_threads()):
         p[0] = openmp.omp_get_num_threads()
 
     print num_threads

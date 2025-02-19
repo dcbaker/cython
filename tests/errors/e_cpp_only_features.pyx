@@ -1,7 +1,7 @@
 # mode: error
 # tag: no-cpp, werror
 
-from cython.operator import typeid
+from cython0.operator import typeid
 
 def use_typeid():
     cdef int i = 0

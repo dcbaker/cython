@@ -1,14 +1,14 @@
 # mode: run
 # tag: special_method
 
-cimport cython
+cimport cython0
 
 text = u'ab jd  sdflk as sa  sadas asdas fsdf '
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//CoerceFromPyTypeNode")
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//CoerceToPyTypeNode",
     "//AttributeNode",
     "//AttributeNode[@entry.cname = 'PyUnicode_Contains']")
@@ -25,9 +25,9 @@ def unicode_contains(unicode s, substring):
     return s.__contains__(substring)
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//CoerceFromPyTypeNode")
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
 #    "//CoerceToPyTypeNode",
     "//NameNode[@entry.cname = 'PyUnicode_Contains']")
 def unicode_contains_unbound(unicode s, substring):

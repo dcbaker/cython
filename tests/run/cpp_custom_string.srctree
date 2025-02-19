@@ -6,8 +6,8 @@ PYTHON -c "import a; a.test_convert()"
 
 ######## setup.py ########
 
-from Cython.Build.Dependencies import cythonize
-from Cython.Compiler import PyrexTypes
+from Cython0.Build.Dependencies import cythonize
+from Cython0.Compiler import PyrexTypes
 PyrexTypes.cpp_string_conversions += ("MyString", "MyString2")
 
 from distutils.core import setup

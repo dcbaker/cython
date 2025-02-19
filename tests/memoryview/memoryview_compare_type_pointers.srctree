@@ -3,7 +3,7 @@ PYTHON -c "import test_compare_type_pointers"
 
 ######## setup.py ########
 
-from Cython.Build import cythonize
+from Cython0.Build import cythonize
 from distutils.core import setup
 
 setup(

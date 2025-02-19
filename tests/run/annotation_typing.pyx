@@ -1,7 +1,7 @@
 # mode: run
 # tag: pep484, warnings
 
-cimport cython
+cimport cython0
 from cython cimport typeof
 
 
@@ -85,7 +85,7 @@ def pytypes_cdef(a, b=2, c=3, d=4):
     return c_pytypes_cdef(a, b, c, d)
 
 
-def ctypes_def(a: list, b: cython.int = 2, c: cython.long = 3, d: cython.float = 4) -> list:
+def ctypes_def(a: list, b: cython0.int = 2, c: cython0.long = 3, d: cython0.float = 4) -> list:
     """
     >>> ctypes_def([1])
     ('list object', 'int', 'long', 'float')
@@ -114,10 +114,10 @@ def return_tuple_for_carray() -> tuple:
     return x
 
 
-MyStruct = cython.struct(x=cython.int, y=cython.int, data=cython.double)
+MyStruct = cython0.struct(x=cython0.int, y=cython0.int, data=cython0.double)
 
 
-@cython.ccall
+@cython0.ccall
 def struct_io(s : MyStruct) -> MyStruct:
     """
     >>> d = struct_io(dict(x=1, y=2, data=3))
@@ -129,11 +129,11 @@ def struct_io(s : MyStruct) -> MyStruct:
     return t
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//CoerceFromPyTypeNode",
     "//SimpleCallNode//CoerceToPyTypeNode",
 )
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//CoerceToPyTypeNode",
     "//CoerceToPyTypeNode//SimpleCallNode",
 )
@@ -146,13 +146,13 @@ def call_struct_io(s : MyStruct) -> MyStruct:
     return struct_io(s)
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//CFuncDefNode",
     "//CFuncDefNode//DefNode",
     "//CFuncDefNode[@return_type]",
     "//CFuncDefNode[@return_type.is_struct_or_union = True]",
 )
-@cython.ccall
+@cython0.ccall
 def struct_convert(d) -> MyStruct:
     """
     >>> d = struct_convert(dict(x=1, y=2, data=3))
@@ -165,14 +165,14 @@ def struct_convert(d) -> MyStruct:
     return d
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//CFuncDefNode",
     "//CFuncDefNode//DefNode",
     "//CFuncDefNode[@return_type]",
     "//CFuncDefNode[@return_type.is_int = True]",
 )
-@cython.ccall
-def exception_default(raise_exc : cython.bint = False) -> cython.int:
+@cython0.ccall
+def exception_default(raise_exc : cython0.bint = False) -> cython0.int:
     """
     >>> exception_default(raise_exc=False)
     10
@@ -232,12 +232,12 @@ def py_float_default(price : float=None, ndigits=4):
 
 
 _WARNINGS = """
-8:32: Strings should no longer be used for type declarations. Use 'cython.int' etc. directly.
-8:47: Dicts should no longer be used as type annotations. Use 'cython.int' etc. directly.
-8:56: Strings should no longer be used for type declarations. Use 'cython.int' etc. directly.
-8:77: Dicts should no longer be used as type annotations. Use 'cython.int' etc. directly.
+8:32: Strings should no longer be used for type declarations. Use 'cython0.int' etc. directly.
+8:47: Dicts should no longer be used as type annotations. Use 'cython0.int' etc. directly.
+8:56: Strings should no longer be used for type declarations. Use 'cython0.int' etc. directly.
+8:77: Dicts should no longer be used as type annotations. Use 'cython0.int' etc. directly.
 8:85: Python type declaration in signature annotation does not refer to a Python type
-8:85: Strings should no longer be used for type declarations. Use 'cython.int' etc. directly.
+8:85: Strings should no longer be used for type declarations. Use 'cython0.int' etc. directly.
 211:44: Unknown type declaration in annotation, ignoring
 218:29: Ambiguous types in annotation, ignoring
 # BUG:

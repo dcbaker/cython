@@ -2,8 +2,8 @@ PYTHON setup.py build_ext --inplace
 
 ######## setup.py ########
 
-from Cython.Build import cythonize
-from Cython.Distutils.extension import Extension
+from Cython0.Build import cythonize
+from Cython0.Distutils.extension import Extension
 
 import sys
 sys.path.insert(0, "path")
@@ -41,7 +41,7 @@ ctypedef int my_type
 
 ######## path/numpy/__init__.pxd ########
 
-# gh-2905: This should be found before Cython/Inlude/numpy/__init__.pxd
+# gh-2905: This should be found before Cython0/Inlude/numpy/__init__.pxd
 
 ctypedef int my_type
 

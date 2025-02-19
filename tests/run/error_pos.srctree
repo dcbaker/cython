@@ -3,7 +3,7 @@ PYTHON test_error_pos.py
 
 ######## setup.py ###########
 from distutils.core import setup
-from Cython.Build import cythonize
+from Cython0.Build import cythonize
 
 setup(ext_modules=cythonize("error_pos.pyx"))
 

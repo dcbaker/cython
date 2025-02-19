@@ -1,3 +1,3 @@
-import cython
+import cython0
 
-cython.declare(x=cython.int, y=cython.double)  # cdef int x; cdef double y
+cython0.declare(x=cython0.int, y=cython0.double)  # cdef int x; cdef double y

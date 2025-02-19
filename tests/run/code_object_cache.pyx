@@ -5,7 +5,7 @@
 
 ### low level tests
 
-cimport cython
+cimport cython0
 
 cdef extern from *:
     # evil hack to access the internal utility function
@@ -100,7 +100,7 @@ def assert_multi_step_code_object_reuse(recursions=0):
     else:
         raise_keyerror()
 
-def assert_simple_code_object_reuse_fused(cython.floating dummy):
+def assert_simple_code_object_reuse_fused(cython0.floating dummy):
     """
     DISABLED: searching for code objects based on C lineno breaks for specializations
 
@@ -112,7 +112,7 @@ def assert_simple_code_object_reuse_fused(cython.floating dummy):
     """
     raise KeyError
 
-def assert_multi_step_code_object_reuse_fused(recursions=0, cython.floating dummy = 2.0):
+def assert_multi_step_code_object_reuse_fused(recursions=0, cython0.floating dummy = 2.0):
     """
     DISABLED: searching for code objects based on C lineno breaks for specializations
 

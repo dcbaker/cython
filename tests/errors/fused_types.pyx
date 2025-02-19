@@ -1,23 +1,23 @@
 # mode: error
 # ticket: 1772
 
-cimport cython
+cimport cython0
 from cython import fused_type
 
 # This is all invalid
 # ctypedef foo(int) dtype1
 # ctypedef foo.bar(float) dtype2
 # ctypedef fused_type(foo) dtype3
-dtype4 = cython.fused_type(int, long, kw=None)
+dtype4 = cython0.fused_type(int, long, kw=None)
 
-# ctypedef public cython.fused_type(int, long) dtype7
-# ctypedef api cython.fused_type(int, long) dtype8
+# ctypedef public cython0.fused_type(int, long) dtype7
+# ctypedef api cython0.fused_type(int, long) dtype8
 
-int_t = cython.fused_type(short, short, int)
-int2_t = cython.fused_type(int, long)
-dtype9 = cython.fused_type(int2_t, int)
+int_t = cython0.fused_type(short, short, int)
+int2_t = cython0.fused_type(int, long)
+dtype9 = cython0.fused_type(int2_t, int)
 
-floating = cython.fused_type(float, double)
+floating = cython0.fused_type(float, double)
 
 cdef func(floating x, int2_t y):
     print x, y
@@ -31,27 +31,27 @@ func[float, int](x, y, y)
 func(x, y=y)
 
 ctypedef fused memslice_dtype_t:
-    cython.p_int # invalid dtype
-    cython.long
+    cython0.p_int # invalid dtype
+    cython0.long
 
 def f(memslice_dtype_t[:, :] a):
     pass
 
-lambda cython.integral i: i
+lambda cython0.integral i: i
 
 
-cdef cython.floating x
+cdef cython0.floating x
 
 cdef class Foo(object):
-    cdef cython.floating attr
+    cdef cython0.floating attr
 
-def outer(cython.floating f):
+def outer(cython0.floating f):
     def inner():
-        cdef cython.floating g
+        cdef cython0.floating g
 
 # This is all valid
 dtype5 = fused_type(int, long, float)
-dtype6 = cython.fused_type(int, long)
+dtype6 = cython0.fused_type(int, long)
 func[float, int](x, y)
 
 cdef fused fused1:

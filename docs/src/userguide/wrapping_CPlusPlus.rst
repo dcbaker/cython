@@ -3,13 +3,13 @@
 .. _wrapping-cplusplus:
 
 ********************************
-Using C++ in Cython
+Using C++ in Cython0
 ********************************
 
 Overview
 =========
 
-Cython has native support for most of the C++ language.  Specifically:
+Cython0 has native support for most of the C++ language.  Specifically:
 
 * C++ objects can be dynamically allocated with ``new`` and ``del`` keywords.
 * C++ objects can be stack-allocated.
@@ -71,7 +71,7 @@ Declare class with cdef cppclass
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Now, let's add the Rectangle class to this extern from block - just copy the
-class name from Rectangle.h and adjust for Cython syntax, so now it becomes::
+class name from Rectangle.h and adjust for Cython0 syntax, so now it becomes::
 
     cdef extern from "Rectangle.h" namespace "shapes":
         cdef cppclass Rectangle:
@@ -79,17 +79,17 @@ class name from Rectangle.h and adjust for Cython syntax, so now it becomes::
 Add public attributes
 ^^^^^^^^^^^^^^^^^^^^^^
 
-We now need to declare the attributes and methods for use on Cython. We put those declarations
+We now need to declare the attributes and methods for use on Cython0. We put those declarations
 in a file called :file:`Rectangle.pxd`. You can see it as a header file
-which is readable by Cython:
+which is readable by Cython0:
 
 .. literalinclude:: ../../examples/userguide/wrapping_CPlusPlus/Rectangle.pxd
 
 Note that the constructor is declared as "except +". If the C++ code or
 the initial memory allocation raises an exception due to a failure, this
-will let Cython safely raise an appropriate Python exception instead
+will let Cython0 safely raise an appropriate Python exception instead
 (see below).  Without this declaration, C++ exceptions originating from
-the constructor will not be handled by Cython.
+the constructor will not be handled by Cython0.
 
 We use the lines::
 
@@ -113,7 +113,7 @@ Declare a var with the wrapped C++ class
 
 We'll create a ``.pyx`` file named ``rect.pyx`` to build our wrapper. We're
 using a name other than ``Rectangle``, but if you prefer giving the same name
-to the wrapper as the C++ class, see the section on 
+to the wrapper as the C++ class, see the section on
 :ref:`resolving naming conflicts <resolve-conflicts>`.
 
 Within, we use cdef to declare a var of the class with the C++ ``new`` statement:
@@ -124,7 +124,7 @@ The line::
 
     # distutils: language = c++
 
-is to indicate to Cython that this ``.pyx`` file has to be compiled to C++.
+is to indicate to Cython0 that this ``.pyx`` file has to be compiled to C++.
 
 It's also possible to declare a stack allocated object, as long as it has
 a "default" constructor::
@@ -140,14 +140,14 @@ a "default" constructor::
 Note that, like C++, if the class has only one constructor and it
 is a nullary one, it's not necessary to declare it.
 
-Create Cython wrapper class
+Create Cython0 wrapper class
 ----------------------------
 
 At this point, we have exposed into our pyx file's namespace the interface
 of the C++ Rectangle type.  Now, we need to make this accessible from
 external Python code (which is our whole point).
 
-Common programming practice is to create a Cython extension type which
+Common programming practice is to create a Cython0 extension type which
 holds a C++ instance as an attribute and create a bunch of
 forwarding methods. So we can implement the Python extension type as:
 
@@ -160,7 +160,7 @@ attribute access, you could just implement some properties:
 
 .. literalinclude:: ../../examples/userguide/wrapping_CPlusPlus/rect_with_attributes.pyx
 
-Cython initializes C++ class attributes of a cdef class using the nullary constructor.
+Cython0 initializes C++ class attributes of a cdef class using the nullary constructor.
 If the class you're wrapping does not have a nullary constructor, you must store a pointer
 to the wrapped class and manually allocate and deallocate it.
 A convenient and safe place to do so is in the `__cinit__` and `__dealloc__` methods
@@ -172,7 +172,7 @@ instance.
 Compilation and Importing
 =========================
 
-To compile a Cython module, it is necessary to have a :file:`setup.py` file:
+To compile a Cython0 module, it is necessary to have a :file:`setup.py` file:
 
 .. literalinclude:: ../../examples/userguide/wrapping_CPlusPlus/setup.py
 
@@ -211,7 +211,7 @@ and use any of them::
 Overloading operators
 ----------------------
 
-Cython uses C++ naming for overloading operators::
+Cython0 uses C++ naming for overloading operators::
 
     cdef extern from "foo.h":
         cdef cppclass Foo:
@@ -254,7 +254,7 @@ themselves::
 Nested class declarations
 --------------------------
 C++ allows nested class declaration. Class declarations can also be
-nested in Cython:
+nested in Cython0:
 
 .. literalinclude:: ../../examples/userguide/wrapping_CPlusPlus/nested_class.pyx
 
@@ -264,37 +264,37 @@ as it is already part of a ``cdef`` declaration section.
 C++ operators not compatible with Python syntax
 ------------------------------------------------
 
-Cython tries to keep its syntax as close as possible to standard Python.
+Cython0 tries to keep its syntax as close as possible to standard Python.
 Because of this, certain C++ operators, like the preincrement ``++foo``
 or the dereferencing operator ``*foo`` cannot be used with the same
-syntax as C++. Cython provides functions replacing these operators in
-a special module ``cython.operator``. The functions provided are:
+syntax as C++. Cython0 provides functions replacing these operators in
+a special module ``cython0.operator``. The functions provided are:
 
-* ``cython.operator.dereference`` for dereferencing. ``dereference(foo)``
+* ``cython0.operator.dereference`` for dereferencing. ``dereference(foo)``
   will produce the C++ code ``*(foo)``
-* ``cython.operator.preincrement`` for pre-incrementation. ``preincrement(foo)``
+* ``cython0.operator.preincrement`` for pre-incrementation. ``preincrement(foo)``
   will produce the C++ code ``++(foo)``.
   Similarly for ``predecrement``, ``postincrement`` and ``postdecrement``.
-* ``cython.operator.comma`` for the comma operator. ``comma(a, b)``
+* ``cython0.operator.comma`` for the comma operator. ``comma(a, b)``
   will produce the C++ code ``((a), (b))``.
 
 These functions need to be cimported. Of course, one can use a
 ``from ... cimport ... as`` to have shorter and more readable functions.
-For example: ``from cython.operator cimport dereference as deref``.
+For example: ``from cython0.operator cimport dereference as deref``.
 
-For completeness, it's also worth mentioning ``cython.operator.address``
+For completeness, it's also worth mentioning ``cython0.operator.address``
 which can also be written ``&foo``.
 
 Templates
 ----------
 
-Cython uses a bracket syntax for templating. A simple example for wrapping C++ vector:
+Cython0 uses a bracket syntax for templating. A simple example for wrapping C++ vector:
 
 .. literalinclude:: ../../examples/userguide/wrapping_CPlusPlus/templates.pyx
 
 Multiple template parameters can be defined as a list, such as ``[T, U, V]``
 or ``[int, bool, char]``.  Optional template parameters can be indicated
-by writing ``[T, U, V=*]``.  In the event that Cython needs to explicitly
+by writing ``[T, U, V=*]``.  In the event that Cython0 needs to explicitly
 reference the type of a default template parameter for an incomplete template
 instantiation, it will write ``MyClass<T, U>::V``, so if the class provides
 a typedef for its template parameters it is preferable to use that name here.
@@ -311,7 +311,7 @@ Standard library
 
 Most of the containers of the C++ Standard Library have been declared
 in pxd files located
-in `/Cython/Includes/libcpp <https://github.com/cython/cython/tree/master/Cython/Includes/libcpp>`_.
+in `/Cython0/Includes/libcpp <https://github.com/cython/cython/tree/master/Cython0/Includes/libcpp>`_.
 These containers are: deque, list, map,  pair,  queue,  set,  stack,  vector.
 
 For example:
@@ -319,7 +319,7 @@ For example:
 .. literalinclude:: ../../examples/userguide/wrapping_CPlusPlus/vector_demo.pyx
 
 The pxd files
-in `/Cython/Includes/libcpp <https://github.com/cython/cython/tree/master/Cython/Includes/libcpp>`_
+in `/Cython0/Includes/libcpp <https://github.com/cython/cython/tree/master/Cython0/Includes/libcpp>`_
 also work as good examples on how to declare C++ classes.
 
 The STL containers coerce from and to the
@@ -379,7 +379,7 @@ object.  Instead of a pointer attribute, you can declare an instance:
 
 .. literalinclude:: ../../examples/userguide/wrapping_CPlusPlus/wrapper_vector.pyx
 
-Cython will automatically generate code that instantiates the C++ object
+Cython0 will automatically generate code that instantiates the C++ object
 instance when the Python object is created and deletes it when the Python
 object is garbage collected.
 
@@ -388,7 +388,7 @@ object is garbage collected.
 Exceptions
 -----------
 
-Cython cannot throw C++ exceptions, or catch them with a try-except statement,
+Cython0 cannot throw C++ exceptions, or catch them with a try-except statement,
 but it is possible to declare a function as potentially raising an C++
 exception and converting it into a Python exception. For example, ::
 
@@ -427,7 +427,7 @@ The translation is performed according to the following table
 
 The ``what()`` message, if any, is preserved. Note that a C++
 ``ios_base_failure`` can denote EOF, but does not carry enough information
-for Cython to discern that, so watch out with exception masks on IO streams. ::
+for Cython0 to discern that, so watch out with exception masks on IO streams. ::
 
     cdef int bar() except +MemoryError
 
@@ -477,7 +477,7 @@ you can declare it using the Python @staticmethod decorator, i.e.::
 Declaring/Using References
 ---------------------------
 
-Cython supports declaring lvalue references using the standard ``Type&`` syntax.
+Cython0 supports declaring lvalue references using the standard ``Type&`` syntax.
 Note, however, that it is unnecessary to declare the arguments of extern
 functions as references (const or otherwise) as it has no impact on the
 caller's syntax.
@@ -486,7 +486,7 @@ caller's syntax.
 ``auto`` Keyword
 ----------------
 
-Though Cython does not have an ``auto`` keyword, Cython local variables
+Though Cython0 does not have an ``auto`` keyword, Cython0 local variables
 not explicitly typed with ``cdef`` are deduced from the types of the right hand
 side of *all* their assignments (see the ``infer_types``
 :ref:`compiler directive <compiler-directives>`).  This is particularly handy
@@ -502,9 +502,9 @@ the iteration protocol.)
 RTTI and typeid()
 =================
 
-Cython has support for the ``typeid(...)`` operator.
+Cython0 has support for the ``typeid(...)`` operator.
 
-    from cython.operator cimport typeid
+    from cython0.operator cimport typeid
 
 The ``typeid(...)`` operator returns an object of the type ``const type_info &``.
 
@@ -528,15 +528,15 @@ Instead of specifying the language and the sources in the source files, it is
 possible to declare them in the :file:`setup.py` file::
 
    from distutils.core import setup
-   from Cython.Build import cythonize
+   from Cython0.Build import cythonize
 
    setup(ext_modules = cythonize(
-              "rect.pyx",                 # our Cython source
+              "rect.pyx",                 # our Cython0 source
               sources=["Rectangle.cpp"],  # additional source file(s)
               language="c++",             # generate C++ code
          ))
 
-Cython will generate and compile the :file:`rect.cpp` file (from
+Cython0 will generate and compile the :file:`rect.cpp` file (from
 :file:`rect.pyx`), then it will compile :file:`Rectangle.cpp`
 (implementation of the ``Rectangle`` class) and link both object files
 together into :file:`rect.so` on Linux, or :file:`rect.pyd` on windows,
@@ -548,28 +548,28 @@ Note that the ``language`` option has no effect on user provided Extension
 objects that are passed into ``cythonize()``.  It is only used for modules
 found by file name (as in the example above).
 
-The ``cythonize()`` function in Cython versions up to 0.21 does not
+The ``cythonize()`` function in Cython0 versions up to 0.21 does not
 recognize the ``language`` option and it needs to be specified as an
 option to an :class:`Extension` that describes your extension and that
 is then handled by ``cythonize()`` as follows::
 
    from distutils.core import setup, Extension
-   from Cython.Build import cythonize
+   from Cython0.Build import cythonize
 
    setup(ext_modules = cythonize(Extension(
               "rect",                                # the extension name
-              sources=["rect.pyx", "Rectangle.cpp"], # the Cython source and
+              sources=["rect.pyx", "Rectangle.cpp"], # the Cython0 source and
                                                      # additional C++ source files
               language="c++",                        # generate and compile C++ code
          )))
 
 The options can also be passed directly from the source file, which is
 often preferable (and overrides any global option).  Starting with
-version 0.17, Cython also allows passing external source files into the
+version 0.17, Cython0 also allows passing external source files into the
 ``cythonize()`` command this way.  Here is a simplified setup.py file::
 
    from distutils.core import setup
-   from Cython.Build import cythonize
+   from Cython0.Build import cythonize
 
    setup(
        name = "rectangleapp",
@@ -601,10 +601,10 @@ Caveats and Limitations
 Access to C-only functions
 ---------------------------
 
-Whenever generating C++ code, Cython generates declarations of and calls
+Whenever generating C++ code, Cython0 generates declarations of and calls
 to functions assuming these functions are C++ (ie, not declared as ``extern "C"
 {...}``. This is ok if the C functions have C++ entry points, but if they're C
-only, you will hit a roadblock. If you have a C++ Cython module needing
+only, you will hit a roadblock. If you have a C++ Cython0 module needing
 to make calls to pure-C functions, you will need to write a small C++ shim
 module which:
 
@@ -616,5 +616,5 @@ C++ left-values
 ----------------
 
 C++ allows functions returning a reference to be left-values.  This is currently
-not supported in Cython. ``cython.operator.dereference(foo)`` is also not
+not supported in Cython0. ``cython0.operator.dereference(foo)`` is also not
 considered a left-value.

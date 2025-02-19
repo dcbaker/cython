@@ -1,5 +1,5 @@
 
-cimport cython
+cimport cython0
 
 __doc__ = u"""
     >>> s()
@@ -146,7 +146,7 @@ def type_of_unicode():
     s = UNICODE
     return t, s
 
-@cython.test_assert_path_exists('//TupleNode')
+@cython0.test_assert_path_exists('//TupleNode')
 def constant_tuple():
     """
     >>> constant_tuple()[:-1]
@@ -157,7 +157,7 @@ def constant_tuple():
     cdef object t = TUPLE
     return t
 
-@cython.test_assert_path_exists('//IntNode')
+@cython0.test_assert_path_exists('//IntNode')
 def tuple_indexing():
     """
     >>> tuple_indexing()
@@ -182,7 +182,7 @@ def five():
     cdef int five = FIVE
     return five
 
-@cython.test_assert_path_exists('//BoolNode')
+@cython0.test_assert_path_exists('//BoolNode')
 def true():
     """
     >>> true()
@@ -191,7 +191,7 @@ def true():
     cdef bint true = TRUE
     return true
 
-@cython.test_assert_path_exists('//BoolNode')
+@cython0.test_assert_path_exists('//BoolNode')
 def false():
     """
     >>> false()
@@ -207,8 +207,8 @@ def ellipsis():
     """
     return ELLIPSIS
 
-@cython.test_assert_path_exists('//IntNode')
-@cython.test_fail_if_path_exists('//AddNode')
+@cython0.test_assert_path_exists('//IntNode')
+@cython0.test_fail_if_path_exists('//AddNode')
 def expression():
     """
     >>> expression()

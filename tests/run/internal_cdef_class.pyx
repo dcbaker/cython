@@ -1,8 +1,8 @@
 
-cimport cython
+cimport cython0
 
 
-@cython.internal
+@cython0.internal
 cdef class InternalType:
     """
     NOTE: this doesn't fail because it is never tested !

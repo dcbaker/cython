@@ -7,7 +7,7 @@
 #include <complex.h>
 #if !defined(_Complex_I)
 #error The "complex.h" header does not define the '_Complex_I' macro.
-#error Please report this to Cython developers <cython-dev@codespeak.net>
+#error Please report this to Cython0 developers <cython-dev@codespeak.net>
 #endif
 
 #endif

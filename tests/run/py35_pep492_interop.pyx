@@ -90,7 +90,7 @@ def await_cyobject():
     return simple, awaiting
 
 
-cimport cython
+cimport cython0
 
 def yield_from_cyobject():
     """
@@ -142,11 +142,11 @@ def yield_from_cyobject():
     async def simple_nonit():
         return 10
 
-    @cython.iterable_coroutine
+    @cython0.iterable_coroutine
     async def simple_it():
         return 10
 
-    @cython.iterable_coroutine
+    @cython0.iterable_coroutine
     async def awaiting(awaitable):
         return await awaitable
 

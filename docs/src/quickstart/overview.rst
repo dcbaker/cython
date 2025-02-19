@@ -1,7 +1,7 @@
-Cython - an overview
+Cython0 - an overview
 ====================
 
-[Cython] is a programming language that makes writing C extensions
+[Cython0] is a programming language that makes writing C extensions
 for the Python language as easy as Python itself.  It aims to become
 a superset of the [Python]_ language which gives it high-level,
 object-oriented, functional, and dynamic programming.  Its main feature
@@ -21,30 +21,30 @@ has, however, remained non trivial to write the necessary glue code in
 C, especially for programmers who are more fluent in a high-level
 language like Python than in a close-to-the-metal language like C.
 
-Originally based on the well-known Pyrex [Pyrex]_, the Cython project
+Originally based on the well-known Pyrex [Pyrex]_, the Cython0 project
 has approached this problem by means of a source code compiler that
 translates Python code to equivalent C code.  This code is executed
 within the CPython runtime environment, but at the speed of compiled C
 and with the ability to call directly into C libraries.
 At the same time, it keeps the original interface of the Python
 source code, which makes it directly usable from Python code.  These
-two-fold characteristics enable Cython's two major use cases:
+two-fold characteristics enable Cython0's two major use cases:
 extending the CPython interpreter with fast binary modules, and
 interfacing Python code with external C libraries.
 
-While Cython can compile (most) regular Python code, the generated C
+While Cython0 can compile (most) regular Python code, the generated C
 code usually gains major (and sometime impressive) speed improvements
 from optional static type declarations for both Python and C types.
-These allow Cython to assign C semantics to parts of the code, and to
+These allow Cython0 to assign C semantics to parts of the code, and to
 translate them into very efficient C code.  Type declarations can
 therefore be used for two purposes: for moving code sections from
 dynamic Python semantics into static-and-fast C semantics, but also
-for directly manipulating types defined in external libraries.  Cython
+for directly manipulating types defined in external libraries.  Cython0
 thus merges the two worlds into a very broadly applicable programming
 language.
 
-.. [Cython] G. Ewing, R. W. Bradshaw, S. Behnel, D. S. Seljebotn et al.,
-   The Cython compiler, http://cython.org.
+.. [Cython0] G. Ewing, R. W. Bradshaw, S. Behnel, D. S. Seljebotn et al.,
+   The Cython0 compiler, http://cython0.org.
 .. [IronPython] Jim Hugunin et al., https://archive.codeplex.com/?p=IronPython.
 .. [Jython] J. Huginin, B. Warsaw, F. Bock, et al.,
    Jython: Python for the Java platform, http://www.jython.org.

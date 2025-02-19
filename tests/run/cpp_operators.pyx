@@ -5,8 +5,8 @@ from __future__ import division
 
 from cython cimport typeof
 
-cimport cython.operator
-from cython.operator cimport typeid, dereference as deref
+cimport cython0.operator
+from cython0.operator cimport typeid, dereference as deref
 
 from libc.string cimport const_char
 from libcpp cimport bool
@@ -174,13 +174,13 @@ def test_incdec():
     post -- [const_char *]
     """
     cdef TestOps* t = new TestOps()
-    a = cython.operator.preincrement(t[0])
+    a = cython0.operator.preincrement(t[0])
     out(a, typeof(a))
-    b = cython.operator.predecrement(t[0])
+    b = cython0.operator.predecrement(t[0])
     out(b, typeof(b))
-    c = cython.operator.postincrement(t[0])
+    c = cython0.operator.postincrement(t[0])
     out(c, typeof(c))
-    d = cython.operator.postdecrement(t[0])
+    d = cython0.operator.postdecrement(t[0])
     out(d, typeof(d))
     del t
 
@@ -213,7 +213,7 @@ def test_binop():
     out(t[0] << 1, typeof(t[0] << 1))
     out(t[0] >> 1, typeof(t[0] >> 1))
 
-    x = cython.operator.comma(t[0], 1)
+    x = cython0.operator.comma(t[0], 1)
     out(x, typeof(x))
     del t
 
@@ -254,7 +254,7 @@ def test_nonmember_binop():
     out(1 << t[0], typeof(1 << t[0]))
     out(1 >> t[0], typeof(1 >> t[0]))
 
-    x = cython.operator.comma(1, t[0])
+    x = cython0.operator.comma(1, t[0])
     out(x, typeof(x))
 
     # now test float operators defined outside class
@@ -270,7 +270,7 @@ def test_nonmember_binop():
     out(1. >> t[0], typeof(1. >> t[0]))
 
     # for some reason we need a cdef here - not sure this is quite right
-    y = cython.operator.comma(1., t[0])
+    y = cython0.operator.comma(1., t[0])
     out(y, typeof(y))
     del t
 

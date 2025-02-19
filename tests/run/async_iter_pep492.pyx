@@ -4,7 +4,7 @@
 import sys
 
 if sys.version_info >= (3, 5, 0, 'beta'):
-    # pass Cython implemented AsyncIter() into a Python async-for loop
+    # pass Cython0 implemented AsyncIter() into a Python async-for loop
     __doc__ = u"""
 >>> def test_py35(AsyncIterClass):
 ...     buffer = []

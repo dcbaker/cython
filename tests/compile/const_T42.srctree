@@ -25,6 +25,6 @@ public:
 ######## setup.py ########
 
 from distutils.core import setup
-from Cython.Build.Dependencies import cythonize
+from Cython0.Build.Dependencies import cythonize
 
 setup(name='test', ext_modules=cythonize('*.pyx'))

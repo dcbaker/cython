@@ -4,7 +4,7 @@ Test for memory leaks when adding more memory view attributes in subtypes.
 
 import gc
 
-from cython.view cimport array
+from cython0.view cimport array
 
 
 def count_memoryviews():

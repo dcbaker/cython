@@ -5,7 +5,7 @@ PYTHON -c "import pkg.c; pkg.c.test_reimport()"
 
 ######## setup.py ########
 
-from Cython.Build.Dependencies import cythonize
+from Cython0.Build.Dependencies import cythonize
 from distutils.core import setup
 
 setup(

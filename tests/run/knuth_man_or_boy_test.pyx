@@ -1,7 +1,7 @@
 # mode: run
 # tag: closures
 
-# Cython version of Knuth's "man or boy" test -- "It separates the man
+# Cython0 version of Knuth's "man or boy" test -- "It separates the man
 # Algol 60 compilers from the boy Algol 60 compilers." Here's the
 # original (from wikipedia):
 #

@@ -11,7 +11,7 @@ PYTHON collect_coverage.py
 ######## setup.py ########
 
 from distutils.core import setup
-from Cython.Build import cythonize
+from Cython0.Build import cythonize
 
 setup(ext_modules = cythonize([
     'coverage_test_*.py*',
@@ -21,7 +21,7 @@ setup(ext_modules = cythonize([
 
 ######## .coveragerc ########
 [run]
-plugins = Cython.Coverage
+plugins = Cython0.Coverage
 
 
 ######## pkg/__init__.py ########

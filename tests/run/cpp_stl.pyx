@@ -20,7 +20,7 @@ cdef extern from "vector" namespace "std":
         iterator end()
         iterator begin()
 
-from cython.operator cimport dereference as deref, preincrement as inc
+from cython0.operator cimport dereference as deref, preincrement as inc
 
 def test_vector(L):
     """

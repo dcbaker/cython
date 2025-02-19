@@ -1,29 +1,29 @@
 # mode: error
 
-cimport cython.parallel.parallel as p
-from cython.parallel cimport something
+cimport cython0.parallel.parallel as p
+from cython0.parallel cimport something
 
-import cython.parallel.parallel as p
-from cython.parallel import something
+import cython0.parallel.parallel as p
+from cython0.parallel import something
 
-from cython.parallel cimport prange
+from cython0.parallel cimport prange
 
-import cython.parallel
+import cython0.parallel
 
 prange(1, 2, 3, schedule='dynamic')
 
 cdef int i
 
-with nogil, cython.parallel.parallel():
+with nogil, cython0.parallel.parallel():
     for i in prange(10, schedule='invalid_schedule'):
         pass
 
-with cython.parallel.parallel():
+with cython0.parallel.parallel():
     print "hello world!"
 
 cdef int *x = NULL
 
-with nogil, cython.parallel.parallel():
+with nogil, cython0.parallel.parallel():
     for j in prange(10):
         pass
 
@@ -33,10 +33,10 @@ with nogil, cython.parallel.parallel():
     for x in prange(10):
         pass
 
-    with cython.parallel.parallel():
+    with cython0.parallel.parallel():
         pass
 
-with nogil, cython.parallel.parallel:
+with nogil, cython0.parallel.parallel:
     pass
 
 cdef int y
@@ -51,7 +51,7 @@ for i in prange(10, nogil=True):
     y = i
 
 
-with nogil, cython.parallel.parallel():
+with nogil, cython0.parallel.parallel():
     i = y
     y = i
 
@@ -59,16 +59,16 @@ for i in prange(10, nogil=True):
     y += i
     y *= i
 
-with nogil, cython.parallel.parallel("invalid"):
+with nogil, cython0.parallel.parallel("invalid"):
     pass
 
-with nogil, cython.parallel.parallel(invalid=True):
+with nogil, cython0.parallel.parallel(invalid=True):
     pass
 
 def f(x):
     cdef int i
 
-    with nogil, cython.parallel.parallel():
+    with nogil, cython0.parallel.parallel():
         with gil:
             yield x
 
@@ -82,7 +82,7 @@ for i in prange(10, nogil=True):
     for y in prange(10):
         pass
 
-with nogil, cython.parallel.parallel():
+with nogil, cython0.parallel.parallel():
     for i in prange(10):
         for i in prange(10):
             pass
@@ -91,7 +91,7 @@ with nogil, cython.parallel.parallel():
 # Assign to private from parallel block in prange:
 cdef int myprivate1, myprivate2
 
-with nogil, cython.parallel.parallel():
+with nogil, cython0.parallel.parallel():
     myprivate1 = 1
     for i in prange(10):
         myprivate1 = 3
@@ -100,11 +100,11 @@ with nogil, cython.parallel.parallel():
 
 # Disallow parallel with block reductions:
 i = 0
-with nogil, cython.parallel.parallel():
+with nogil, cython0.parallel.parallel():
     i += 1
 
 # Use of privates after the parallel with block
-with nogil, cython.parallel.parallel():
+with nogil, cython0.parallel.parallel():
     i = 1
 
 print i
@@ -145,16 +145,16 @@ cdef int chunksize():
 for i in prange(10, nogil=True, schedule='static', chunksize=chunksize()):
     pass
 
-with nogil, cython.parallel.parallel():
-    with cython.parallel.parallel():
+with nogil, cython0.parallel.parallel():
+    with cython0.parallel.parallel():
         pass
 
 
 _ERRORS = u"""
-3:8: cython.parallel.parallel is not a module
-4:0: No such directive: cython.parallel.something
-6:7: cython.parallel.parallel is not a module
-7:0: No such directive: cython.parallel.something
+3:8: cython0.parallel.parallel is not a module
+4:0: No such directive: cython0.parallel.something
+6:7: cython0.parallel.parallel is not a module
+7:0: No such directive: cython0.parallel.something
 13:6: prange() can only be used as part of a for loop
 13:6: prange() can only be used without the GIL
 18:19: Invalid schedule argument to prange: invalid_schedule
@@ -167,7 +167,7 @@ _ERRORS = u"""
 45:8: local variable 'y' referenced before assignment
 55:8: local variable 'y' referenced before assignment
 60:4: Reduction operator '*' is inconsistent with previous reduction operator '+'
-62:36: cython.parallel.parallel() does not take positional arguments
+62:36: cython0.parallel.parallel() does not take positional arguments
 65:36: Invalid keyword argument: invalid
 73:12: 'yield' not allowed in parallel sections
 77:16: 'yield' not allowed in parallel sections

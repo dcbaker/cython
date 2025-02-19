@@ -16,7 +16,7 @@ def test_traceback(cline_in_traceback=None):
   >>> test_traceback(False)
   """
   if cline_in_traceback is not None:
-    import cython_runtime
+    import cython0_runtime
     cython_runtime.cline_in_traceback = cline_in_traceback
   try:
     foo1()

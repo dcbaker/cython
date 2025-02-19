@@ -5,7 +5,7 @@ PYTHON -c "import a; a.use_vector([1,2,3])"
 
 ######## setup.py ########
 
-from Cython.Build.Dependencies import cythonize
+from Cython0.Build.Dependencies import cythonize
 
 from distutils.core import setup
 

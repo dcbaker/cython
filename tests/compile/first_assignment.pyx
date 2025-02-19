@@ -1,8 +1,8 @@
 # mode: compile
 
-cimport cython
+cimport cython0
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//SingleAssignmentNode",
     "//SingleAssignmentNode[./NameNode[@name = 'a']]",
     "//SingleAssignmentNode[./NameNode[@name = 'a'] and @first = True]",
@@ -10,7 +10,7 @@ cimport cython
 def test_cdef():
     cdef int a = 1
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//SingleAssignmentNode",
     "//SingleAssignmentNode[./NameNode[@name = 'a']]",
 # FIXME: currently not working
@@ -19,7 +19,7 @@ def test_cdef():
 def test_py():
     a = 1
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//SingleAssignmentNode",
     "//SingleAssignmentNode[./NameNode[@name = 'a']]",
 # FIXME: currently not working

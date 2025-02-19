@@ -1,9 +1,9 @@
 # mode: run
 # ticket: 742
 
-import cython
+import cython0
 
-@cython.cclass
+@cython0.cclass
 class ExtType(object):
     def const1(self):
         return 1
@@ -61,7 +61,7 @@ class ExtType(object):
         return func
 
 
-@cython.cclass
+@cython0.cclass
 class GenType(object):
     def const1(self):
         return 1

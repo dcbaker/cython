@@ -3,9 +3,9 @@
 # Test longintrepr declarations by implementing a simple function
 
 from cpython.longintrepr cimport *
-cimport cython
+cimport cython0
 
-@cython.cdivision(True)
+@cython0.cdivision(True)
 def lshift(long a, unsigned long n):
     """
     Return a * 2^n as Python long.

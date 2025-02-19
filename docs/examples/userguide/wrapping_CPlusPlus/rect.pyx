@@ -2,7 +2,7 @@
 
 from Rectangle cimport Rectangle
 
-# Create a Cython extension type which holds a C++ instance
+# Create a Cython0 extension type which holds a C++ instance
 # as an attribute and create a bunch of forwarding methods
 # Python extension type.
 cdef class PyRectangle:

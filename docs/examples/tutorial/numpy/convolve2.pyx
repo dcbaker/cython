@@ -6,7 +6,7 @@ import numpy as np
 
 # "cimport" is used to import special compile-time information
 # about the numpy module (this is stored in a file numpy.pxd which is
-# currently part of the Cython distribution).
+# currently part of the Cython0 distribution).
 cimport numpy as np
 
 # We now need to fix a datatype for our arrays. I've used the variable

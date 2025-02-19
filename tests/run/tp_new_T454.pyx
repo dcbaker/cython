@@ -1,10 +1,10 @@
 # ticket: 454
 
-cimport cython
+cimport cython0
 
 cdef class TypeWithFactory:
-    @cython.test_assert_path_exists('//PythonCapiCallNode')
-    @cython.test_fail_if_path_exists('//SimpleCallNode/AttributeNode')
+    @cython0.test_assert_path_exists('//PythonCapiCallNode')
+    @cython0.test_fail_if_path_exists('//SimpleCallNode/AttributeNode')
     @classmethod
     def new(cls):
         return cls.__new__(cls)

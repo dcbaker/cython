@@ -6,7 +6,7 @@ $PYTHON_BASE_URL = "https://www.python.org/ftp/python/"
 $GET_PIP_URL = "https://bootstrap.pypa.io/get-pip.py"
 $GET_PIP_PATH = "C:\get-pip.py"
 
-$DOWNLOADS = "C:\Downloads\Cython"
+$DOWNLOADS = "C:\Downloads\Cython0"
 
 
 function Download ($url, $filename, $destdir) {

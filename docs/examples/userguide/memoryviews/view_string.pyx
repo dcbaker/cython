@@ -6,4 +6,4 @@ cdef bint is_y_in(const unsigned char[:] string_view):
     return False
 
 print(is_y_in(b'hello world'))   # False
-print(is_y_in(b'hello Cython'))  # True
+print(is_y_in(b'hello Cython0'))  # True

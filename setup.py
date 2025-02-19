@@ -40,22 +40,22 @@ add_command_class('sdist', sdist)
 
 pxd_include_dirs = [
     directory for directory, dirs, files
-    in os.walk(os.path.join('Cython', 'Includes'))
+    in os.walk(os.path.join('Cython0', 'Includes'))
     if '__init__.pyx' in files or '__init__.pxd' in files
-    or directory == os.path.join('Cython', 'Includes')
-    or directory == os.path.join('Cython', 'Includes', 'Deprecated')]
+    or directory == os.path.join('Cython0', 'Includes')
+    or directory == os.path.join('Cython0', 'Includes', 'Deprecated')]
 
 pxd_include_patterns = [
     p+'/*.pxd' for p in pxd_include_dirs ] + [
     p+'/*.pyx' for p in pxd_include_dirs ]
 
 setup_args['package_data'] = {
-    'Cython.Plex'     : ['*.pxd'],
-    'Cython.Compiler' : ['*.pxd'],
-    'Cython.Runtime'  : ['*.pyx', '*.pxd'],
-    'Cython.Utility'  : ['*.pyx', '*.pxd', '*.c', '*.h', '*.cpp'],
-    'Cython'          : [ p[7:] for p in pxd_include_patterns ],
-    'Cython.Debugger.Tests': ['codefile', 'cfuncs.c'],
+    'Cython0.Plex'     : ['*.pxd'],
+    'Cython0.Compiler' : ['*.pxd'],
+    'Cython0.Runtime'  : ['*.pyx', '*.pxd'],
+    'Cython0.Utility'  : ['*.pyx', '*.pxd', '*.c', '*.h', '*.cpp'],
+    'Cython0'          : [ p[len('Cython0.'):] for p in pxd_include_patterns ],
+    'Cython0.Debugger.Tests': ['codefile', 'cfuncs.c'],
 }
 
 # This dict is used for passing extra arguments that are setuptools
@@ -67,44 +67,44 @@ if 'setuptools' in sys.modules:
     setuptools_extra_args['zip_safe'] = False
     setuptools_extra_args['entry_points'] = {
         'console_scripts': [
-            'cython = Cython.Compiler.Main:setuptools_main',
-            'cythonize = Cython.Build.Cythonize:main',
-            'cygdb = Cython.Debugger.Cygdb:main',
+            'cython0 = Cython0.Compiler.Main:setuptools_main',
+            'cythonize0 = Cython0.Build.Cythonize:main',
+            'cygdb0 = Cython0.Debugger.Cygdb:main',
         ]
     }
     scripts = []
 else:
     if os.name == "posix":
-        scripts = ["bin/cython", "bin/cythonize", "bin/cygdb"]
+        scripts = ["bin/cython0", "bin/cythonize0", "bin/cygdb0"]
     else:
-        scripts = ["cython.py", "cythonize.py", "cygdb.py"]
+        scripts = ["cython0.py", "cythonize.py", "cygdb.py"]
 
 
 def compile_cython_modules(profile=False, compile_more=False, cython_with_refnanny=False):
     source_root = os.path.abspath(os.path.dirname(__file__))
     compiled_modules = [
-        "Cython.Plex.Scanners",
-        "Cython.Plex.Actions",
-        "Cython.Compiler.Scanning",
-        "Cython.Compiler.Visitor",
-        "Cython.Compiler.FlowControl",
-        "Cython.Runtime.refnanny",
-        "Cython.Compiler.FusedNode",
-        "Cython.Tempita._tempita",
+        "Cython0.Plex.Scanners",
+        "Cython0.Plex.Actions",
+        "Cython0.Compiler.Scanning",
+        "Cython0.Compiler.Visitor",
+        "Cython0.Compiler.FlowControl",
+        "Cython0.Runtime.refnanny",
+        "Cython0.Compiler.FusedNode",
+        "Cython0.Tempita._tempita",
     ]
     if compile_more:
         compiled_modules.extend([
-            "Cython.StringIOTree",
-            "Cython.Compiler.Code",
-            "Cython.Compiler.Lexicon",
-            "Cython.Compiler.Parsing",
-            "Cython.Compiler.Pythran",
-            "Cython.Build.Dependencies",
-            "Cython.Compiler.ParseTreeTransforms",
-            "Cython.Compiler.Nodes",
-            "Cython.Compiler.ExprNodes",
-            "Cython.Compiler.ModuleNode",
-            "Cython.Compiler.Optimize",
+            "Cython0.StringIOTree",
+            "Cython0.Compiler.Code",
+            "Cython0.Compiler.Lexicon",
+            "Cython0.Compiler.Parsing",
+            "Cython0.Compiler.Pythran",
+            "Cython0.Build.Dependencies",
+            "Cython0.Compiler.ParseTreeTransforms",
+            "Cython0.Compiler.Nodes",
+            "Cython0.Compiler.ExprNodes",
+            "Cython0.Compiler.ModuleNode",
+            "Cython0.Compiler.Optimize",
             ])
 
     from distutils.spawn import find_executable
@@ -114,7 +114,7 @@ def compile_cython_modules(profile=False, compile_more=False, cython_with_refnan
     if not pgen:
         sys.stderr.write("Unable to find pgen, not compiling formal grammar.\n")
     else:
-        parser_dir = os.path.join(os.path.dirname(__file__), 'Cython', 'Parser')
+        parser_dir = os.path.join(os.path.dirname(__file__), 'Cython0', 'Parser')
         grammar = os.path.join(parser_dir, 'Grammar')
         subprocess.check_call([
             pgen,
@@ -127,7 +127,7 @@ def compile_cython_modules(profile=False, compile_more=False, cython_with_refnan
             mtime = os.stat(grammar)[stat.ST_MTIME]
             os.utime(cst_pyx, (mtime, mtime))
         compiled_modules.extend([
-                "Cython.Parser.ConcreteSyntaxTree",
+                "Cython0.Parser.ConcreteSyntaxTree",
             ])
 
     defines = []
@@ -155,12 +155,12 @@ def compile_cython_modules(profile=False, compile_more=False, cython_with_refnan
         # XXX hack around setuptools quirk for '*.pyx' sources
         extensions[-1].sources[0] = pyx_source_file
 
-    from Cython.Distutils.build_ext import new_build_ext
-    from Cython.Compiler.Options import get_directive_defaults
+    from Cython0.Distutils.build_ext import new_build_ext
+    from Cython0.Compiler.Options import get_directive_defaults
     get_directive_defaults()['language_level'] = 2
     if profile:
         get_directive_defaults()['profile'] = True
-        sys.stderr.write("Enabled profiling for the Cython binary modules\n")
+        sys.stderr.write("Enabled profiling for the Cython0 binary modules\n")
 
     # not using cythonize() directly to let distutils decide whether building extensions was requested
     add_command_class("build_ext", new_build_ext)
@@ -194,7 +194,7 @@ if compile_cython_itself and (is_cpython or cython_compile_more):
 
 setup_args.update(setuptools_extra_args)
 
-from Cython import __version__ as version
+from Cython0 import __version__ as version
 
 
 def dev_status():
@@ -209,50 +209,50 @@ def dev_status():
 
 
 packages = [
-    'Cython',
-    'Cython.Build',
-    'Cython.Compiler',
-    'Cython.Runtime',
-    'Cython.Distutils',
-    'Cython.Debugger',
-    'Cython.Debugger.Tests',
-    'Cython.Plex',
-    'Cython.Tests',
-    'Cython.Build.Tests',
-    'Cython.Compiler.Tests',
-    'Cython.Utility',
-    'Cython.Tempita',
+    'Cython0',
+    'Cython0.Build',
+    'Cython0.Compiler',
+    'Cython0.Runtime',
+    'Cython0.Distutils',
+    'Cython0.Debugger',
+    'Cython0.Debugger.Tests',
+    'Cython0.Plex',
+    'Cython0.Tests',
+    'Cython0.Build.Tests',
+    'Cython0.Compiler.Tests',
+    'Cython0.Utility',
+    'Cython0.Tempita',
     'pyximport',
 ]
 
 setup(
-    name='Cython',
+    name='Cython0',
     version=version,
     url='http://cython.org/',
     author='Robert Bradshaw, Stefan Behnel, Dag Seljebotn, Greg Ewing, et al.',
     author_email='cython-devel@python.org',
-    description="The Cython compiler for writing C extensions for the Python language.",
+    description="The Cython0 compiler for writing C extensions for the Python language.",
     long_description=textwrap.dedent("""\
-    The Cython language makes writing C extensions for the Python language as
-    easy as Python itself.  Cython is a source code translator based on Pyrex_,
+    The Cython0 language makes writing C extensions for the Python language as
+    easy as Python itself.  Cython0 is a source code translator based on Pyrex_,
     but supports more cutting edge functionality and optimizations.
 
-    The Cython language is a superset of the Python language (almost all Python
-    code is also valid Cython code), but Cython additionally supports optional
+    The Cython0 language is a superset of the Python language (almost all Python
+    code is also valid Cython0 code), but Cython0 additionally supports optional
     static typing to natively call C functions, operate with C++ classes and
     declare fast C types on variables and class attributes.  This allows the
-    compiler to generate very efficient C code from Cython code.
+    compiler to generate very efficient C code from Cython0 code.
 
-    This makes Cython the ideal language for writing glue code for external
+    This makes Cython0 the ideal language for writing glue code for external
     C/C++ libraries, and for fast C modules that speed up the execution of
     Python code.
 
     Note that for one-time builds, e.g. for CI/testing, on platforms that are not
     covered by one of the wheel packages provided on PyPI *and* the pure Python wheel
     that we provide is not used, it is substantially faster than a full source build
-    to install an uncompiled (slower) version of Cython with::
+    to install an uncompiled (slower) version of Cython0 with::
 
-        pip install Cython --install-option="--no-cython-compile"
+        pip install Cython0 --install-option="--no-cython-compile"
 
     .. _Pyrex: http://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/
     """),
@@ -278,7 +278,7 @@ setup(
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
         "Programming Language :: C",
-        "Programming Language :: Cython",
+        "Programming Language :: Cython0",
         "Topic :: Software Development :: Code Generators",
         "Topic :: Software Development :: Compilers",
         "Topic :: Software Development :: Libraries :: Python Modules"
@@ -293,6 +293,6 @@ setup(
 
     scripts=scripts,
     packages=packages,
-    py_modules=["cython"],
+    py_modules=["cython0"],
     **setup_args
 )

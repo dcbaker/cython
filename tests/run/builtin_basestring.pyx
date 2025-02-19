@@ -1,5 +1,5 @@
 
-cimport cython
+cimport cython0
 
 import sys
 IS_PY3 = sys.version_info[0] >= 3
@@ -88,7 +88,7 @@ def basestring_typed_argument(basestring obj):
     return obj
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//SimpleCallNode",
     "//SimpleCallNode//NoneCheckNode",
     "//SimpleCallNode//AttributeNode[@is_py_attr = false]")

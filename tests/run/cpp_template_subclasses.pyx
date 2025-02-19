@@ -1,7 +1,7 @@
 # mode: run
 # tag: cpp, werror
 
-from cython.operator import dereference as deref
+from cython0.operator import dereference as deref
 from libcpp.pair cimport pair
 from libcpp.vector cimport vector
 

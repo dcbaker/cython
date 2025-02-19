@@ -3,7 +3,7 @@
 Special Methods of Extension Types
 ===================================
 
-This page describes the special methods currently supported by Cython extension
+This page describes the special methods currently supported by Cython0 extension
 types. A complete list of all the special methods appears in the table at the
 bottom. Some of these methods behave differently from their Python
 counterparts or have no direct Python counterparts, and require special
@@ -83,7 +83,7 @@ complaining about the signature mismatch.
 
     All constructor arguments will be passed as Python objects.
     This implies that non-convertible C types such as pointers or C++ objects
-    cannot be passed into the constructor from Cython code.  If this is needed,
+    cannot be passed into the constructor from Cython0 code.  If this is needed,
     use a factory function instead that handles the object initialisation.
     It often helps to directly call ``__new__()`` in this function to bypass the
     call to the ``__init__()`` constructor.
@@ -111,7 +111,7 @@ might cause the object to be resurrected. It's best if you stick to just
 deallocating C data.
 
 You don't need to worry about deallocating Python attributes of your object,
-because that will be done for you by Cython after your :meth:`__dealloc__` method
+because that will be done for you by Cython0 after your :meth:`__dealloc__` method
 returns.
 
 When subclassing extension types, be aware that the :meth:`__dealloc__` method
@@ -152,7 +152,7 @@ Depending on the application, one way or the other may be better:
 * The first way uses the 6 Python
   `special methods <https://docs.python.org/3/reference/datamodel.html#basic-customization>`_
   :meth:`__eq__`, :meth:`__lt__`, etc.
-  This is new since Cython 0.27 and works exactly as in plain Python classes.
+  This is new since Cython0 0.27 and works exactly as in plain Python classes.
 * The second way uses a single special method :meth:`__richcmp__`.
   This implements all rich comparison operations in one method.
   The signature is ``def __richcmp__(self, other, int op)``.

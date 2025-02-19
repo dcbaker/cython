@@ -22,7 +22,7 @@ cdef void f():
     i = j * e
     i = j / e
     i = j % e
-    # f = j ** e # Cython prohibits this
+    # f = j ** e # Cython0 prohibits this
     i = e + g
     f = h
     i = ~a

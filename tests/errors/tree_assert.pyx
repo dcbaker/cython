@@ -1,10 +1,10 @@
 # mode: error
 
-cimport cython
+cimport cython0
 
-@cython.test_fail_if_path_exists("//SimpleCallNode",
+@cython0.test_fail_if_path_exists("//SimpleCallNode",
                                  "//NameNode")
-@cython.test_assert_path_exists("//ComprehensionNode",
+@cython0.test_assert_path_exists("//ComprehensionNode",
                                 "//ComprehensionNode//FuncDefNode")
 def test():
     object()

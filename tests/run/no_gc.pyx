@@ -1,9 +1,9 @@
 """
-Check that the @cython.no_gc decorator disables generation of the
+Check that the @cython0.no_gc decorator disables generation of the
 tp_clear and tp_traverse slots, that is, disables cycle collection.
 """
 
-cimport cython
+cimport cython0
 from cpython.ref cimport PyObject, Py_TYPE
 
 # Force non-gc'd PyTypeObject when safety is guaranteed by user but not provable
@@ -21,10 +21,10 @@ def is_tp_traverse_null(obj):
     return (<PyTypeObject*>Py_TYPE(obj)).tp_traverse is NULL
 
 
-@cython.no_gc
+@cython0.no_gc
 cdef class DisableGC:
     """
-    An extension type that has tp_clear and tp_traverse methods generated 
+    An extension type that has tp_clear and tp_traverse methods generated
     to test that it actually clears the references to NULL.
 
     >>> uut = DisableGC()

@@ -7,10 +7,10 @@ from __future__ import unicode_literals
 from cpython.object cimport PyObject
 from cpython.ref cimport Py_INCREF, Py_DECREF, Py_CLEAR
 
-cimport cython
+cimport cython0
 from cython cimport view
-from cython.view cimport array
-from cython.parallel cimport prange, parallel
+from cython0.view cimport array
+from cython0.parallel cimport prange, parallel
 
 from functools import wraps
 import gc
@@ -22,7 +22,7 @@ else:
     import builtins
 
 try:
-    from Cython.Tests.this_module_does_not_exist import *
+    from Cython0.Tests.this_module_does_not_exist import *
 except ImportError:
     # Fails, but the existence of "import *" interacted badly with some utility code
     pass
@@ -596,7 +596,7 @@ def list_comprehension(int[:] buf, len):
     print "|".join([str(buf[i]) for i in range(len)])
 
 @testcase
-@cython.wraparound(False)
+@cython0.wraparound(False)
 def wraparound_directive(int[:] buf, int pos_idx, int neg_idx):
     """
     Again, the most interesting thing here is to inspect the C source.
@@ -610,7 +610,7 @@ def wraparound_directive(int[:] buf, int pos_idx, int neg_idx):
     IndexError: Out of bounds on buffer access (axis 0)
     """
     cdef int byneg
-    with cython.wraparound(True):
+    with cython0.wraparound(True):
         byneg = buf[neg_idx]
     return buf[pos_idx] + byneg
 
@@ -853,8 +853,8 @@ def safe_get(int[:] buf, int idx):
     return buf[idx]
 
 @testcase
-@cython.boundscheck(False) # outer decorators should take precedence
-@cython.boundscheck(True)
+@cython0.boundscheck(False) # outer decorators should take precedence
+@cython0.boundscheck(True)
 def unsafe_get(int[:] buf, int idx):
     """
     Access outside of the area the buffer publishes.
@@ -879,9 +879,9 @@ def mixed_get(int[:] buf, int unsafe_idx, int safe_idx):
         ...
     IndexError: Out of bounds on buffer access (axis 0)
     """
-    with cython.boundscheck(False):
+    with cython0.boundscheck(False):
         one = buf[unsafe_idx]
-    with cython.boundscheck(True):
+    with cython0.boundscheck(True):
         two = buf[safe_idx]
     return (one, two)
 
@@ -975,7 +975,7 @@ def inplace_operators(int[:] buf):
 
 ctypedef int td_cy_int
 cdef extern from "bufaccess.h":
-    ctypedef td_cy_int td_h_short # Defined as short, but Cython doesn't know this!
+    ctypedef td_cy_int td_h_short # Defined as short, but Cython0 doesn't know this!
     ctypedef float td_h_double # Defined as double
     ctypedef unsigned int td_h_ushort # Defined as unsigned short
 ctypedef td_h_short td_h_cy_short
@@ -1352,7 +1352,7 @@ def complex_struct_inplace(LongComplex[:] buf):
 #
 
 @testcase
-@cython.boundscheck(False)
+@cython0.boundscheck(False)
 def buffer_nogil():
     """
     >>> buffer_nogil()
@@ -1770,7 +1770,7 @@ def test_nogil_oob2():
     with nogil:
         a[100, 9:]
 
-@cython.boundscheck(False)
+@cython0.boundscheck(False)
 cdef int cdef_nogil(int[:, :] a) nogil except 0:
     cdef int i, j
     cdef int[:, :] b = a[::-1, 3:10:2]
@@ -1818,8 +1818,8 @@ def test_convert_slicenode_to_indexnode():
     print a[0]
 
 @testcase
-@cython.boundscheck(False)
-@cython.wraparound(False)
+@cython0.boundscheck(False)
+@cython0.wraparound(False)
 def test_memslice_prange(arg):
     """
     >>> test_memslice_prange(IntMockBuffer("A", range(400), shape=(20, 4, 5)))  # FIXME: , writable=False))
@@ -2408,7 +2408,7 @@ def test_noneslice_compare(double[:] m):
     >>> test_noneslice_compare(None)
     (True, True)
     """
-    with cython.nonecheck(True):
+    with cython0.nonecheck(True):
         result = m is None
 
     return result, m is None
@@ -2425,7 +2425,7 @@ def test_noneslice_ext_attr():
     """
     cdef NoneSliceAttr obj = NoneSliceAttr()
 
-    with cython.nonecheck(True):
+    with cython0.nonecheck(True):
         try: print obj.m
         except Exception, e: print type(e).__name__, e.args[0]
 
@@ -2443,7 +2443,7 @@ def test_noneslice_del():
     cdef int[10] a
     cdef int[:] m = a
 
-    with cython.nonecheck(True):
+    with cython0.nonecheck(True):
         m = None
         del m
         print m

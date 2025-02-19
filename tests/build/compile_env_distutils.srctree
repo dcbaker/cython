@@ -4,8 +4,8 @@ PYTHON -c "import a; import sys; sys.exit(a.compile_env_test())"
 ######## setup.py ########
 
 from distutils.core import setup
-from Cython.Distutils.extension import Extension
-from Cython.Distutils.old_build_ext import old_build_ext
+from Cython0.Distutils.extension import Extension
+from Cython0.Distutils.old_build_ext import old_build_ext
 
 setup(
   cmdclass = {'build_ext': old_build_ext},

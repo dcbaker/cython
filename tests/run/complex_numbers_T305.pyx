@@ -2,7 +2,7 @@
 
 from cpython.object cimport Py_EQ, Py_NE
 
-cimport cython
+cimport cython0
 
 DEF C21 = 2-1j
 
@@ -106,7 +106,7 @@ def test_int_pow(double complex z, int n, tol=None):
         return abs(z**n / <object>z ** <object>n - 1) < tol
 
 
-@cython.cdivision(False)
+@cython0.cdivision(False)
 def test_div_by_zero(double complex z):
     """
     >>> test_div_by_zero(4j)

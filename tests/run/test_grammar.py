@@ -3,7 +3,7 @@
 
 import contextlib
 from tempfile import NamedTemporaryFile
-from Cython.Compiler.Main import compile as cython_compile
+from Cython0.Compiler.Main import compile as cython_compile
 
 
 def _compile(code):
@@ -290,7 +290,7 @@ class GrammarTests(unittest.TestCase):
             x: 1/0
         f_OK()
 
-        ### The following are compile time errors in Cython.
+        ### The following are compile time errors in Cython0.
 
         #def fbad():
         #    x: int
@@ -1556,7 +1556,7 @@ if not hasattr(unittest.TestCase, 'assertIn'):
     TokenTests.assertIn = assertIn
 
 
-# FIXME: disabling some tests for real Cython bugs here
+# FIXME: disabling some tests for real Cython0 bugs here
 del GrammarTests.test_comprehension_specials  # iterable pre-calculation in generator expression
 del GrammarTests.test_funcdef  # annotation mangling
 

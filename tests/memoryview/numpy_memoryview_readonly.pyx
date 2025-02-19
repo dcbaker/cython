@@ -3,7 +3,7 @@
 # ticket: 1772
 
 import numpy as np
-cimport cython
+cimport cython0
 
 def new_array(dtype='float', writeable=True):
     array = np.arange(10, dtype=dtype)
@@ -130,9 +130,9 @@ def test_copy():
     return rw[0], rw[1], rw[2], rw2[0], rw2[1], rw2[2]
 
 
-cdef getmax_floating(const cython.floating[:] x):
+cdef getmax_floating(const cython0.floating[:] x):
     """Function with fused type, should work with both ro and rw memoryviews"""
-    cdef cython.floating max_val = - float('inf')
+    cdef cython0.floating max_val = - float('inf')
     for val in x:
         if val > max_val:
             max_val = val
@@ -151,7 +151,7 @@ def test_mmview_const_fused_cdef():
     assert getmax_floating(data_ro) == 9
 
 
-def test_mmview_const_fused_def(const cython.floating[:] x):
+def test_mmview_const_fused_def(const cython0.floating[:] x):
     """Test def function with const fused type memory view as argument.
 
     With read-write numpy array:
@@ -168,5 +168,5 @@ def test_mmview_const_fused_def(const cython.floating[:] x):
     >>> test_mmview_const_fused_def(new_array('float64', writeable=False))
     0.0
     """
-    cdef cython.floating result = x[0]
+    cdef cython0.floating result = x[0]
     return result

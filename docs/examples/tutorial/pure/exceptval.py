@@ -1,7 +1,7 @@
-import cython
+import cython0
 
-@cython.exceptval(-1)
-def func(x: cython.int) -> cython.int:
+@cython0.exceptval(-1)
+def func(x: cython0.int) -> cython0.int:
     if x < 0:
         raise ValueError("need integer >= 0")
     return x + 1

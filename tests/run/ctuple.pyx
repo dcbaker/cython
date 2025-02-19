@@ -1,4 +1,4 @@
-import cython
+import cython0
 
 def simple_convert(*o):
     """
@@ -142,7 +142,7 @@ cpdef (int, double) cpdef_ctuple_return_type(int x, double y):
     return x, y
 
 
-@cython.infer_types(True)
+@cython0.infer_types(True)
 def test_type_inference():
     """
     >>> test_type_inference()
@@ -151,12 +151,12 @@ def test_type_inference():
     cdef double y = 2
     cdef object o = 3
     xy = (x, y)
-    assert cython.typeof(xy) == "(int, double)", cython.typeof(xy)
+    assert cython0.typeof(xy) == "(int, double)", cython0.typeof(xy)
     xo = (x, o)
-    assert cython.typeof(xo) == "tuple object", cython.typeof(xo)
+    assert cython0.typeof(xo) == "tuple object", cython0.typeof(xo)
 
 
-@cython.locals(a=(int,int), b=(cython.long,cython.float))
+@cython0.locals(a=(int,int), b=(cython0.long,cython0.float))
 def test_pure_python_declaration(x, y):
     """
     >>> test_pure_python_declaration(1, 2)
@@ -173,8 +173,8 @@ def test_pure_python_declaration(x, y):
     """
     a = (x, y)
     b = (x, y)
-    print(cython.typeof(a))
-    print(cython.typeof(b))
+    print(cython0.typeof(a))
+    print(cython0.typeof(b))
     return (a, b)
 
 

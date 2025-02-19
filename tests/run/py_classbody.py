@@ -20,8 +20,8 @@ class TestPyAttr(object):
     pyval2 = pyvar
 
 
-import cython
-cdefvar = cython.declare(int, 10)
+import cython0
+cdefvar = cython0.declare(int, 10)
 
 class TestCdefAttr(object):
     """

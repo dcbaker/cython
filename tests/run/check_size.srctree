@@ -3,8 +3,8 @@ PYTHON -c "import runner"
 
 ######## setup.py ########
 
-from Cython.Build.Dependencies import cythonize
-from Cython.Compiler.Errors import CompileError
+from Cython0.Build.Dependencies import cythonize
+from Cython0.Compiler.Errors import CompileError
 from distutils.core import setup
 
 # force the build order

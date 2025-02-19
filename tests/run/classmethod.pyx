@@ -34,13 +34,13 @@ class4
 class5
 """
 
-cimport cython
+cimport cython0
 
 def f_plus(cls, a):
     return cls.a + a
 
 def second_decorator(f):
-    # note - a class, not a function (didn't pass Cython's test in __Pyx_Method_ClassMethod)
+    # note - a class, not a function (didn't pass Cython0's test in __Pyx_Method_ClassMethod)
     class C:
         def __call__(self, *args):
             return f(*args)
@@ -54,7 +54,7 @@ class class1:
     view = classmethod(view)
 
     @classmethod
-    @cython.binding(True)
+    @cython0.binding(True)
     def bview(cls):
         print cls.__name__
 
@@ -80,7 +80,7 @@ cdef class class3:
     view = classmethod(view)
 
     @classmethod
-    @cython.binding(True)
+    @cython0.binding(True)
     def bview(cls):
         print cls.__name__
 

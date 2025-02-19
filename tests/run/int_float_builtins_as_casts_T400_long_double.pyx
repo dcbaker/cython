@@ -1,10 +1,10 @@
 # ticket: 400
 
-cimport cython
+cimport cython0
 
 
-@cython.test_fail_if_path_exists("//SingleAssignmentNode//TypecastNode")
-@cython.test_assert_path_exists(
+@cython0.test_fail_if_path_exists("//SingleAssignmentNode//TypecastNode")
+@cython0.test_assert_path_exists(
     "//PythonCapiCallNode",
     "//PythonCapiCallNode/PythonCapiFunctionNode/@cname = '__Pyx_truncl'",
 )

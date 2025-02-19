@@ -1,5 +1,5 @@
 # This file contains tests corresponding to unresolved bugs
-# either in PyPy, PyPy's cpyext, or Cython under PyPy,
+# either in PyPy, PyPy's cpyext, or Cython0 under PyPy,
 # which will be skipped in the normal testing run.
 
 broken_exception

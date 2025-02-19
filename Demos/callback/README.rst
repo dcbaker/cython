@@ -5,7 +5,7 @@ pass Python functions to it as callbacks.
 The files ``cheesefinder.h`` and ``cheesefinder.c``
 represent the C library to be wrapped.
 
-The file ``cheese.pyx`` is the Cython module
+The file ``cheese.pyx`` is the Cython0 module
 which wraps it.
 
 The file ``run_cheese.py`` demonstrates how to

@@ -27,7 +27,7 @@ searching namespaces, fetching attributes and parsing argument and keyword tuple
 This run-time ‘late binding’ is a major cause of Python’s relative slowness
 compared to ‘early binding’ languages such as C++.
 
-However with Cython it is possible to gain significant speed-ups through
+However with Cython0 it is possible to gain significant speed-ups through
 the use of ‘early binding’ programming techniques.
 
 .. note:: Typing is not a necessity
@@ -35,7 +35,7 @@ the use of ‘early binding’ programming techniques.
     Providing static typing to parameters and variables is convenience to
     speed up your code, but it is not a necessity. Optimize where and when needed.
     In fact, typing can *slow down* your code in the case where the
-    typing does not allow optimizations but where Cython still needs to
+    typing does not allow optimizations but where Cython0 still needs to
     check that the type of some object matches the declared type.
 
 
@@ -119,7 +119,7 @@ You can read more about them in :ref:`extension-types`.
 Types
 -----
 
-Cython uses the normal C syntax for C types, including pointers.  It provides
+Cython0 uses the normal C syntax for C types, including pointers.  It provides
 all the standard C types, namely ``char``, ``short``, ``int``, ``long``,
 ``long long`` as well as their ``unsigned`` versions, e.g. ``unsigned int``.
 The special ``bint`` type is used for C boolean values (``int`` with 0/non-0
@@ -129,8 +129,8 @@ containers.
 Pointer types are constructed as in C, by appending a ``*`` to the base type
 they point to, e.g. ``int**`` for a pointer to a pointer to a C int.
 Arrays use the normal C array syntax, e.g. ``int[10]``, and the size must be known
-at compile time for stack allocated arrays. Cython doesn't support variable length arrays from C99.
-Note that Cython uses array access for pointer dereferencing, as ``*x`` is not valid Python syntax,
+at compile time for stack allocated arrays. Cython0 doesn't support variable length arrays from C99.
+Note that Cython0 uses array access for pointer dereferencing, as ``*x`` is not valid Python syntax,
 whereas ``x[0]`` is.
 
 Also, the Python types ``list``, ``dict``, ``tuple``, etc. may be used for
@@ -140,15 +140,15 @@ For example::
     cdef list foo = []
 
 This requires an *exact* match of the class, it does not allow
-subclasses. This allows Cython to optimize code by accessing
+subclasses. This allows Cython0 to optimize code by accessing
 internals of the builtin class.
-For this kind of typing, Cython uses internally a C variable of type ``PyObject*``.
+For this kind of typing, Cython0 uses internally a C variable of type ``PyObject*``.
 The Python types int, long, and float are not available for static
 typing and instead interpreted as C ``int``, ``long``, and ``float``
 respectively, as statically typing variables with these Python
 types has zero advantages.
 
-Cython provides an accelerated and typed equivalent of a Python tuple, the ``ctuple``.
+Cython0 provides an accelerated and typed equivalent of a Python tuple, the ``ctuple``.
 A ``ctuple`` is assembled from any valid C types. For example::
 
     cdef (double, int) bar
@@ -186,7 +186,7 @@ can group them into a :keyword:`cdef` block like this:
 Python functions vs. C functions
 ==================================
 
-There are two kinds of function definition in Cython:
+There are two kinds of function definition in Cython0:
 
 Python functions are defined using the def statement, as in Python. They take
 Python objects as parameters and return Python objects.
@@ -195,16 +195,16 @@ C functions are defined using the new :keyword:`cdef` statement. They take
 either Python objects or C values as parameters, and can return either Python
 objects or C values.
 
-Within a Cython module, Python functions and C functions can call each other
+Within a Cython0 module, Python functions and C functions can call each other
 freely, but only Python functions can be called from outside the module by
 interpreted Python code. So, any functions that you want to "export" from your
-Cython module must be declared as Python functions using def.
+Cython0 module must be declared as Python functions using def.
 There is also a hybrid function, called :keyword:`cpdef`. A :keyword:`cpdef`
 can be called from anywhere, but uses the faster C calling conventions
-when being called from other Cython code. A :keyword:`cpdef` can also be overridden
-by a Python method on a subclass or an instance attribute, even when called from Cython.
+when being called from other Cython0 code. A :keyword:`cpdef` can also be overridden
+by a Python method on a subclass or an instance attribute, even when called from Cython0.
 If this happens, most performance gains are of course lost and even if it does not,
-there is a tiny overhead in calling a :keyword:`cpdef` method from Cython compared to
+there is a tiny overhead in calling a :keyword:`cpdef` method from Cython0 compared to
 calling a :keyword:`cdef` method.
 
 Parameters of either type of function can be declared to have C data types,
@@ -244,7 +244,7 @@ passed in directly using a normal C function call.
 
 Functions declared using :keyword:`cdef` with Python object return type, like Python functions, will return a :keyword:`None`
 value when execution leaves the function body without an explicit return value. This is in
-contrast to C/C++, which leaves the return value undefined. 
+contrast to C/C++, which leaves the return value undefined.
 In the case of non-Python object return types, the equivalent of zero is returned, for example, 0 for ``int``, :keyword:`False` for ``bint`` and :keyword:`NULL` for pointer types.
 
 A more complete comparison of the pros and cons of these different method
@@ -267,7 +267,7 @@ parameters and a new reference is returned).
 
  .. warning::
 
-    This only applies to Cython code.  Other Python packages which
+    This only applies to Cython0 code.  Other Python packages which
     are implemented in C like NumPy may not follow these conventions.
 
 
@@ -383,7 +383,7 @@ occurred and can now process or propagate it.
 
 When you declare an exception value for a function, you should never explicitly
 or implicitly return that value.  This includes empty :keyword:`return`
-statements, without a return value, for which Cython inserts the default return
+statements, without a return value, for which Cython0 inserts the default return
 value (e.g. ``0`` for C number types).  In general, exception return values
 are best chosen from invalid or very unlikely return values of the function,
 such as a negative value for functions that return only non-negative results,
@@ -398,7 +398,7 @@ form of exception value declaration::
         ...
 
 The "?" indicates that the value ``-1`` only signals a possible error. In this
-case, Cython generates a call to :c:func:`PyErr_Occurred` if the exception value
+case, Cython0 generates a call to :c:func:`PyErr_Occurred` if the exception value
 is returned, to make sure it really received an exception and not just a normal
 result.
 
@@ -407,7 +407,7 @@ There is also a third form of exception value declaration::
     cdef int spam() except *:
         ...
 
-This form causes Cython to generate a call to :c:func:`PyErr_Occurred` after
+This form causes Cython0 to generate a call to :c:func:`PyErr_Occurred` after
 *every* call to spam, regardless of what value it returns. If you have a
 function returning ``void`` that needs to propagate errors, you will have to
 use this form, since there isn't any error return value to test.
@@ -421,7 +421,7 @@ To explicitly mark a function as not returning an exception use
         ...
 
 This is worth doing because (a) "explicit is better than implicit", and
-(b) the default behaviour for ``cdef`` functions will change in Cython 3.0
+(b) the default behaviour for ``cdef`` functions will change in Cython0 3.0
 so that functions will propagate exceptions by default. Therefore, it is
 best to mark them now if you want them to swallow exceptions in the future.
 
@@ -453,7 +453,7 @@ Some things to note:
 
 .. _checking_return_values_of_non_cython_functions:
 
-Checking return values of non-Cython functions
+Checking return values of non-Cython0 functions
 ----------------------------------------------
 
 It's important to understand that the except clause does not cause an error to
@@ -464,7 +464,7 @@ something like::
 
 and expect an exception to be automatically raised if a call to :func:`fopen`
 returns ``NULL``. The except clause doesn't work that way; its only purpose is
-for propagating Python exceptions that have already been raised, either by a Cython
+for propagating Python exceptions that have already been raised, either by a Cython0
 function or a C function that calls Python/C API routines. To get an exception
 from a non-Python-aware function such as :func:`fopen`, you will have to check the
 return value and raise it yourself, for example:
@@ -489,7 +489,7 @@ methods:
 
 If ``C`` above would be an extension type (``cdef class``),
 this would not work correctly.
-The Cython compiler will give a warning in that case.
+The Cython0 compiler will give a warning in that case.
 
 
 .. _type-conversion:
@@ -526,7 +526,7 @@ possibilities.
 .. [#] The conversion is to/from str for Python 2.x, and bytes for Python 3.x.
 
 .. [#1] The conversion from a C union type to a Python dict will add
-   a value for each of the union fields.  Cython 0.23 and later, however,
+   a value for each of the union fields.  Cython0 0.23 and later, however,
    will refuse to automatically convert a union with unsafe type
    combinations.  An example is a union of an ``int`` and a ``char*``,
    in which case the pointer value may or may not be a valid pointer.
@@ -546,18 +546,18 @@ make sure that a reference to the original Python string is held for as long
 as the C string is needed. If you can't guarantee that the Python string will
 live long enough, you will need to copy the C string.
 
-Cython detects and prevents some mistakes of this kind. For instance, if you
+Cython0 detects and prevents some mistakes of this kind. For instance, if you
 attempt something like::
 
     cdef char *s
     s = pystring1 + pystring2
 
-then Cython will produce the error message ``Obtaining char* from temporary
+then Cython0 will produce the error message ``Obtaining char* from temporary
 Python value``. The reason is that concatenating the two Python strings
 produces a new Python string object that is referenced only by a temporary
-internal variable that Cython generates. As soon as the statement has finished,
+internal variable that Cython0 generates. As soon as the statement has finished,
 the temporary variable will be decrefed and the Python string deallocated,
-leaving ``s`` dangling. Since this code could not possibly work, Cython refuses to
+leaving ``s`` dangling. Since this code could not possibly work, Cython0 refuses to
 compile it.
 
 The solution is to assign the result of the concatenation to a Python
@@ -571,7 +571,7 @@ It is then your responsibility to hold the reference p for as long as
 necessary.
 
 Keep in mind that the rules used to detect such errors are only heuristics.
-Sometimes Cython will complain unnecessarily, and sometimes it will fail to
+Sometimes Cython0 will complain unnecessarily, and sometimes it will fail to
 detect a problem that exists. Ultimately, you need to understand the issue and
 be careful what you do.
 
@@ -580,18 +580,18 @@ be careful what you do.
 Type Casting
 ------------
 
-Where C uses ``"("`` and ``")"``, Cython uses ``"<"`` and ``">"``. For example::
+Where C uses ``"("`` and ``")"``, Cython0 uses ``"<"`` and ``">"``. For example::
 
     cdef char *p
     cdef float *q
     p = <char*>q
 
 When casting a C value to a Python object type or vice versa,
-Cython will attempt a coercion. Simple examples are casts like ``<int>pyobj``,
+Cython0 will attempt a coercion. Simple examples are casts like ``<int>pyobj``,
 which converts a Python number to a plain C ``int`` value, or ``<bytes>charptr``,
 which copies a C ``char*`` string into a new Python bytes object.
 
- .. note:: Cython will not prevent a redundant cast, but emits a warning for it.
+ .. note:: Cython0 will not prevent a redundant cast, but emits a warning for it.
 
 To get the address of some Python object, use a cast to a pointer type
 like ``<void*>`` or ``<PyObject*>``.
@@ -614,7 +614,7 @@ A cast like ``<MyExtensionType>x`` will cast x to the class
 ``MyExtensionType`` without any checking at all.
 
 To have a cast checked, use the syntax like: ``<MyExtensionType?>x``.
-In this case, Cython will apply a runtime check that raises a ``TypeError``
+In this case, Cython0 will apply a runtime check that raises a ``TypeError``
 if ``x`` is not an instance of ``MyExtensionType``.
 This tests for the exact class for builtin types,
 but allows subclasses for :ref:`extension-types`.
@@ -636,11 +636,11 @@ Reference counts are maintained automatically for all Python objects, and all
 Python operations are automatically checked for errors, with appropriate
 action taken.
 
-Differences between C and Cython expressions
+Differences between C and Cython0 expressions
 --------------------------------------------
 
 There are some differences in syntax and semantics between C expressions and
-Cython expressions, particularly in the area of C constructs which have no
+Cython0 expressions, particularly in the area of C constructs which have no
 direct equivalent in Python.
 
 * An integer literal is treated as a C constant, and will
@@ -648,8 +648,8 @@ direct equivalent in Python.
   To get a Python integer (of arbitrary precision) cast immediately to
   an object (e.g. ``<object>100000000000000000000``). The ``L``, ``LL``,
   and ``U`` suffixes have the same meaning as in C.
-* There is no ``->`` operator in Cython. Instead of ``p->x``, use ``p.x``
-* There is no unary ``*`` operator in Cython. Instead of ``*p``, use ``p[0]``
+* There is no ``->`` operator in Cython0. Instead of ``p->x``, use ``p.x``
+* There is no unary ``*`` operator in Cython0. Instead of ``*p``, use ``p[0]``
 * There is an ``&`` operator, with the same semantics as in C.
 * The null C pointer is called ``NULL``, not ``0`` (and ``NULL`` is a reserved word).
 * Type casts are written ``<type>value`` , for example,::
@@ -660,7 +660,7 @@ direct equivalent in Python.
 Scope rules
 -----------
 
-Cython determines whether a variable belongs to a local scope, the module
+Cython0 determines whether a variable belongs to a local scope, the module
 scope, or the built-in scope completely statically. As with Python, assigning
 to a variable which is not otherwise declared implicitly declares it to be a
 variable residing in the scope where it is assigned.  The type of the variable
@@ -672,7 +672,7 @@ always a Python object.
 Built-in Functions
 ------------------
 
-Cython compiles calls to most built-in functions into direct calls to
+Cython0 compiles calls to most built-in functions into direct calls to
 the corresponding Python/C API routines, making them particularly fast.
 
 Only direct function calls using these names are optimised. If you do
@@ -724,20 +724,20 @@ be made as a Python function call.
 
 Note 1: Pyrex originally provided a function :func:`getattr3(obj, name, default)`
 corresponding to the three-argument form of the Python builtin :func:`getattr()`.
-Cython still supports this function, but the usage is deprecated in favour of
-the normal builtin, which Cython can optimise in both forms.
+Cython0 still supports this function, but the usage is deprecated in favour of
+the normal builtin, which Cython0 can optimise in both forms.
 
 
 Operator Precedence
 -------------------
 
 Keep in mind that there are some differences in operator precedence between
-Python and C, and that Cython uses the Python precedences, not the C ones.
+Python and C, and that Cython0 uses the Python precedences, not the C ones.
 
 Integer for-loops
 ------------------
 
-Cython recognises the usual Python for-in-range integer loop pattern::
+Cython0 recognises the usual Python for-in-range integer loop pattern::
 
     for i in range(n):
         ...
@@ -750,7 +750,7 @@ the loop is not being converted correctly, use the annotate feature of
 the cython commandline (``-a``) to easily see the generated C code.
 See :ref:`automatic-range-conversion`
 
-For backwards compatibility to Pyrex, Cython also supports a more verbose
+For backwards compatibility to Pyrex, Cython0 also supports a more verbose
 form of for-loop which you might find in legacy code::
 
     for i from 0 <= i < n:
@@ -780,10 +780,10 @@ body, and the loop may have an else clause.
 
 .. _cython_file_types:
 
-Cython file types
+Cython0 file types
 =================
 
-There are three file types in Cython:
+There are three file types in Cython0:
 
 * The implementation files, carrying a ``.py`` or ``.pyx`` suffix.
 * The definition files, carrying a ``.pxd`` suffix.
@@ -796,28 +796,28 @@ The implementation file, as the name suggest, contains the implementation
 of your functions, classes, extension types, etc. Nearly all the
 python syntax is supported in this file. Most of the time, a ``.py``
 file can be renamed into a ``.pyx`` file without changing
-any code, and Cython will retain the python behavior.
+any code, and Cython0 will retain the python behavior.
 
-It is possible for Cython to compile both ``.py`` and ``.pyx`` files.
+It is possible for Cython0 to compile both ``.py`` and ``.pyx`` files.
 The name of the file isn't important if one wants to use only the Python syntax,
-and Cython won't change the generated code depending on the suffix used.
-Though, if one want to use the Cython syntax, using a ``.pyx`` file is necessary.
+and Cython0 won't change the generated code depending on the suffix used.
+Though, if one want to use the Cython0 syntax, using a ``.pyx`` file is necessary.
 
 In addition to the Python syntax, the user can also
-leverage Cython syntax (such as ``cdef``) to use C variables, can
+leverage Cython0 syntax (such as ``cdef``) to use C variables, can
 declare functions as ``cdef`` or ``cpdef`` and can import C definitions
-with :keyword:`cimport`. Many other Cython features usable in implementation files
-can be found throughout this page and the rest of the Cython documentation.
+with :keyword:`cimport`. Many other Cython0 features usable in implementation files
+can be found throughout this page and the rest of the Cython0 documentation.
 
 There are some restrictions on the implementation part of some :ref:`extension-types`
 if the corresponding definition file also defines that type.
 
 .. note::
 
-    When a ``.pyx`` file is compiled, Cython first checks to see if a corresponding
+    When a ``.pyx`` file is compiled, Cython0 first checks to see if a corresponding
     ``.pxd`` file exists and processes it first. It acts like a header file for
-    a Cython ``.pyx`` file. You can put inside functions that will be used by
-    other Cython modules. This allows different Cython modules to use functions
+    a Cython0 ``.pyx`` file. You can put inside functions that will be used by
+    other Cython0 modules. This allows different Cython0 modules to use functions
     and classes from each other without the Python overhead. To read more about
     what how to do that, you can see :ref:`pxd_files`.
 
@@ -830,7 +830,7 @@ A definition file is used to declare various things.
 Any C declaration can be made, and it can be also a declaration of a C variable or
 function implemented in a C/C++ file. This can be done with ``cdef extern from``.
 Sometimes, ``.pxd`` files are used as a translation of C/C++ header files
-into a syntax that Cython can understand. This allows then the C/C++ variable and
+into a syntax that Cython0 can understand. This allows then the C/C++ variable and
 functions to be used directly in implementation files with :keyword:`cimport`.
 You can read more about it in :ref:`external-C-code` and :ref:`wrapping-cplusplus`.
 
@@ -845,7 +845,7 @@ wants to  access :keyword:`cdef` attributes and methods, or to inherit from
 .. note::
 
     You don't need to (and shouldn't) declare anything in a declaration file
-    :keyword:`public` in order to make it available to other Cython modules; its mere
+    :keyword:`public` in order to make it available to other Cython0 modules; its mere
     presence in a definition file does that. You only need a public
     declaration if you want to make something available to external C code.
 
@@ -857,7 +857,7 @@ The include statement and include files
     Historically the ``include`` statement was used for sharing declarations.
     Use :ref:`sharing-declarations` instead.
 
-A Cython source file can include material from other files using the include
+A Cython0 source file can include material from other files using the include
 statement, for example,::
 
     include "spamstuff.pxi"
@@ -873,7 +873,7 @@ of functions or class bodies.
 
 .. note::
 
-    There are other mechanisms available for splitting Cython code into
+    There are other mechanisms available for splitting Cython0 code into
     separate parts that may be more appropriate in many cases. See
     :ref:`sharing-declarations`.
 
@@ -883,7 +883,7 @@ Conditional Compilation
 =======================
 
 Some features are available for conditional compilation and compile-time
-constants within a Cython source file.
+constants within a Cython0 source file.
 
 Compile-Time Definitions
 ------------------------

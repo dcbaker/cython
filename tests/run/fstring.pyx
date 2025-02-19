@@ -2,10 +2,10 @@
 # tag: f_strings, pep498, werror
 
 ####
-# Cython specific PEP 498 tests in addition to test_fstring.pyx from CPython
+# Cython0 specific PEP 498 tests in addition to test_fstring.pyx from CPython
 ####
 
-cimport cython
+cimport cython0
 
 import sys
 IS_PYPY = hasattr(sys, 'pypy_version_info')
@@ -17,7 +17,7 @@ max_long = LONG_MAX
 min_long = LONG_MIN
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//FormattedValueNode",
     "//JoinedStrNode",
     "//AddNode",
@@ -39,7 +39,7 @@ def escaping():
     assert s == '{{}}', s
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//FormattedValueNode",
     "//JoinedStrNode",
     "//AddNode",
@@ -84,7 +84,7 @@ ctypedef enum TestValues:
     enum_XYZ = 2
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//CoerceToPyTypeNode",
 )
 def format_c_enum():
@@ -160,7 +160,7 @@ def format_c_numbers_unsigned(unsigned char c, unsigned short s, unsigned int n,
     return s1, s2, s3
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//CoerceToPyTypeNode",
 )
 def format_c_numbers_max(int n, long l):
@@ -195,7 +195,7 @@ def format_c_number_const():
     return f"{LONG_MAX}"
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//CoerceToPyTypeNode",
 )
 def format_c_number_range(int n):
@@ -206,7 +206,7 @@ def format_c_number_range(int n):
     return f'{n}'
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//CoerceToPyTypeNode",
 )
 def format_c_number_range_width(int n):
@@ -229,7 +229,7 @@ def format_c_number_range_width0(int n):
     return f'{n:00}'
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//CoerceToPyTypeNode",
 )
 def format_c_number_range_width1(int n):
@@ -242,7 +242,7 @@ def format_c_number_range_width1(int n):
     return f'{n:01}'
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//CoerceToPyTypeNode",
 )
 def format_c_number_range_width_m4(int n):
@@ -267,7 +267,7 @@ def format_c_number_range_dyn_width(int n, int width):
     return f'{n:0{width}}'
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//CoerceToPyTypeNode",
 )
 def format_bool(bint x):
@@ -453,7 +453,7 @@ def format_str(value):
     return a, b
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//FormattedValueNode",  # bytes.decode() returns unicode => formatting is useless
     "//JoinedStrNode",       # replaced by call to PyUnicode_Concat()
     "//PythonCapiCallNode//PythonCapiCallNode",
@@ -466,11 +466,11 @@ def format_decoded_bytes(bytes value):
     return f"U-{value.decode('utf-8')}"
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//AddNode",
     "//ModNode",
 )
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//FormattedValueNode",
     "//JoinedStrNode",
 )
@@ -506,7 +506,7 @@ def generated_fstring(int i, float f, unicode u not None, o):
     )
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//FormattedValueNode",
     "//JoinedStrNode",
 )

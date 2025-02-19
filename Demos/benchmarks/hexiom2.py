@@ -10,7 +10,7 @@ import time
 
 from io import StringIO
 
-import cython
+import cython0
 
 ##################################
 class Dir(object):
@@ -78,7 +78,7 @@ class Done(object):
             if tiles[v] == 0:
                 self.remove_all(v)
 
-    @cython.locals(i=cython.int)
+    @cython0.locals(i=cython0.int)
     def next_cell_min_choice(self):
         minlen = 10
         mini = -1
@@ -88,7 +88,7 @@ class Done(object):
                 mini = i
         return mini
 
-    @cython.locals(i=cython.int)
+    @cython0.locals(i=cython0.int)
     def next_cell_max_choice(self):
         maxlen = 1
         maxi = -1
@@ -98,7 +98,7 @@ class Done(object):
                 maxi = i
         return maxi
 
-    @cython.locals(i=cython.int)
+    @cython0.locals(i=cython0.int)
     def next_cell_highest_value(self):
         maxval = -1
         maxi = -1
@@ -110,14 +110,14 @@ class Done(object):
                     maxi = i
         return maxi
 
-    @cython.locals(i=cython.int)
+    @cython0.locals(i=cython0.int)
     def next_cell_first(self):
         for i in range(self.count):
             if (not self.already_done(i)):
                 return i
         return -1
 
-    @cython.locals(i=cython.int)
+    @cython0.locals(i=cython0.int)
     def next_cell_max_neighbors(self, pos):
         maxn = -1
         maxi = -1
@@ -131,7 +131,7 @@ class Done(object):
                     maxi = i
         return maxi
 
-    @cython.locals(i=cython.int)
+    @cython0.locals(i=cython0.int)
     def next_cell_min_neighbors(self, pos):
         minn = 7
         mini = -1
@@ -171,7 +171,7 @@ class Node(object):
 
 ##################################
 class Hex(object):
-    @cython.locals(size=cython.int, id=cython.int, x=cython.int, y=cython.int)
+    @cython0.locals(size=cython0.int, id=cython0.int, x=cython0.int, y=cython0.int)
     def __init__(self, size):
         self.size = size
         self.count = 3 * size * (size - 1) + 1
@@ -194,7 +194,7 @@ class Hex(object):
                 self.nodes_by_id[node.id] = node
                 id += 1
 
-    @cython.locals(dir=Dir, x=cython.int, y=cython.int, nx=cython.int, ny=cython.int, node=Node)
+    @cython0.locals(dir=Dir, x=cython0.int, y=cython0.int, nx=cython0.int, ny=cython0.int, node=Node)
     def link_nodes(self):
         for node in self.nodes_by_id:
             (x, y) = node.pos
@@ -226,10 +226,10 @@ class Pos(object):
 
 ##################################
 
-@cython.locals(pos=Pos, i=cython.long, v=cython.int,
-               nid=cython.int, num=cython.int,
-               empties=cython.int, filled=cython.int,
-               vmax=cython.int, vmin=cython.int, cell=list, left=cython.int[8])
+@cython0.locals(pos=Pos, i=cython0.long, v=cython0.int,
+               nid=cython0.int, num=cython0.int,
+               empties=cython0.int, filled=cython0.int,
+               vmax=cython0.int, vmin=cython0.int, cell=list, left=cython0.int[8])
 def constraint_pass(pos, last_move=None):
     changed = False
     left = pos.tiles[:]
@@ -332,7 +332,7 @@ def play_move(pos, move):
     (cell_id, i) = move
     pos.done.set_done(cell_id, i)
 
-@cython.locals(x=cython.int, y=cython.int, ry=cython.int, id=cython.int)
+@cython0.locals(x=cython0.int, y=cython0.int, ry=cython0.int, id=cython0.int)
 def print_pos(pos, output):
     hex = pos.hex
     done = pos.done
@@ -365,8 +365,8 @@ OPEN = 0
 SOLVED = 1
 IMPOSSIBLE = -1
 
-@cython.locals(i=cython.int, num=cython.int, nid=cython.int,
-               vmin=cython.int, vmax=cython.int, tiles=cython.int[8])
+@cython0.locals(i=cython0.int, num=cython0.int, nid=cython0.int,
+               vmin=cython0.int, vmax=cython0.int, tiles=cython0.int[8])
 def solved(pos, output, verbose=False):
     hex = pos.hex
     tiles = pos.tiles[:]
@@ -406,7 +406,7 @@ def solved(pos, output, verbose=False):
     print_pos(pos, output)
     return SOLVED
 
-@cython.locals(move=tuple)
+@cython0.locals(move=tuple)
 def solve_step(prev, strategy, order, output, first=False):
     if first:
         pos = prev.clone()
@@ -437,7 +437,7 @@ def solve_step(prev, strategy, order, output, first=False):
     return IMPOSSIBLE
 
 
-@cython.locals(tot=cython.int, tiles=cython.int[8])
+@cython0.locals(tot=cython0.int, tiles=cython0.int[8])
 def check_valid(pos):
     hex = pos.hex
     tiles = pos.tiles
@@ -461,8 +461,8 @@ def solve(pos, strategy, order, output):
 
 # TODO Write an 'iterator' to go over all x,y positions
 
-@cython.locals(x=cython.int, y=cython.int, p=cython.int, tiles=cython.int[8],
-               size=cython.int, inctile=cython.int, linei=cython.int)
+@cython0.locals(x=cython0.int, y=cython0.int, p=cython0.int, tiles=cython0.int[8],
+               size=cython0.int, inctile=cython0.int, linei=cython0.int)
 def read_file(file):
     lines = [line.strip("\r\n") for line in file.splitlines()]
     size = int(lines[0])

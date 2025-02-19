@@ -15,7 +15,7 @@ PYTHON fake_grep.py -c '#include "common/AddTraceback_impl_.*h"' c.c
 ######## setup.py ########
 
 import sys
-from Cython.Build.Dependencies import cythonize
+from Cython0.Build.Dependencies import cythonize
 import platform
 import os
 

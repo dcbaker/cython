@@ -1,28 +1,28 @@
-cimport cython
+cimport cython0
 cimport check_fused_types_pxd
 
 import math
 
 ctypedef char *string_t
 
-fused_t = cython.fused_type(int, long, float, string_t)
-other_t = cython.fused_type(int, long)
-base_t = cython.fused_type(short, int)
+fused_t = cython0.fused_type(int, long, float, string_t)
+other_t = cython0.fused_type(int, long)
+base_t = cython0.fused_type(short, int)
 
-# complex_t = cython.fused_type(cython.floatcomplex, cython.doublecomplex)
+# complex_t = cython0.fused_type(cython0.floatcomplex, cython0.doublecomplex)
 cdef fused complex_t:
     float complex
     double complex
 
 ctypedef base_t **base_t_p_p
 
-# ctypedef cython.fused_type(char, base_t_p_p, fused_t, complex_t) composed_t
+# ctypedef cython0.fused_type(char, base_t_p_p, fused_t, complex_t) composed_t
 cdef fused composed_t:
     char
     int
     float
     string_t
-    cython.pp_int
+    cython0.pp_int
     float complex
     double complex
     int complex

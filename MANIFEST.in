@@ -6,9 +6,9 @@ include tox.ini
 include setup.py
 include setupegg.py
 include bin/*
-include cython.py cythonize.py cygdb.py
-recursive-include Cython *.pyx *.pxd
-include Cython/Parser/Grammar Cython/Parser/__init__.py
+include cython0.py cythonize0.py cygdb0.py
+recursive-include Cython0 *.pyx *.pxd
+include Cython0/Parser/Grammar Cython0/Parser/__init__.py
 include Doc/*
 
 include Demos/*.pyx
@@ -19,16 +19,16 @@ include Demos/embed/*
 include Demos/freeze/*
 include Demos/libraries/*
 include Demos/Makefile*
-recursive-include Cython/Debugger/Tests *.pyx *.pxd *.c *.h
-recursive-include Cython/Utility *.pyx *.pxd *.c *.h *.cpp
+recursive-include Cython0/Debugger/Tests *.pyx *.pxd *.c *.h
+recursive-include Cython0/Utility *.pyx *.pxd *.c *.h *.cpp
 recursive-include Tools *
 recursive-include tests *.pyx *.pxd *.pxi *.py *.h *.hpp *.BROKEN bugs.txt
 recursive-include tests *_lib.cpp *.srctree
 recursive-include docs *
 include runtests.py
 
-include Cython/Debugger/Tests/cfuncs.c
-include Cython/Debugger/Tests/codefile
+include Cython0/Debugger/Tests/cfuncs.c
+include Cython0/Debugger/Tests/codefile
 
 recursive-include pyximport *.py
 include pyximport/PKG-INFO pyximport/README

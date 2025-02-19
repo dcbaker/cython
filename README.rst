@@ -1,17 +1,17 @@
-Welcome to Cython!  
+Welcome to Cython0!
 ==================
 
-Cython is a language that makes writing C extensions for
-Python as easy as Python itself.  Cython is based on
+Cython0 is a language that makes writing C extensions for
+Python as easy as Python itself.  Cython0 is based on
 Pyrex, but supports more cutting edge functionality and
 optimizations.
 
-The Cython language is very close to the Python language, but Cython
+The Cython0 language is very close to the Python language, but Cython0
 additionally supports calling C functions and declaring C types on variables
 and class attributes.  This allows the compiler to generate very efficient C
-code from Cython code.
+code from Cython0 code.
 
-This makes Cython the ideal language for wrapping external C libraries, and
+This makes Cython0 the ideal language for wrapping external C libraries, and
 for fast C modules that speed up the execution of Python code.
 
 * Official website: http://cython.org/
@@ -25,7 +25,7 @@ Installation:
 
 If you already have a C compiler, just do::
 
-   pip install Cython
+   pip install Cython0
 
 otherwise, see `the installation page <http://docs.cython.org/en/latest/src/quickstart/install.html>`_.
 
@@ -34,7 +34,7 @@ License:
 --------
 
 The original Pyrex program was licensed "free of restrictions" (see below).
-Cython itself is licensed under the permissive **Apache License**.
+Cython0 itself is licensed under the permissive **Apache License**.
 
 See `LICENSE.txt <https://github.com/cython/cython/blob/master/LICENSE.txt>`_.
 
@@ -42,17 +42,17 @@ See `LICENSE.txt <https://github.com/cython/cython/blob/master/LICENSE.txt>`_.
 Contributing:
 -------------
 
-Want to contribute to the Cython project?
+Want to contribute to the Cython0 project?
 Here is some `help to get you started <https://github.com/cython/cython/blob/master/docs/CONTRIBUTING.rst>`_.
 
 
 Get the full source history:
 ----------------------------
 
-Note that Cython used to ship the full version control repository in its source
+Note that Cython0 used to ship the full version control repository in its source
 distribution, but no longer does so due to space constraints.  To get the
 full source history from a downloaded source archive, make sure you have git
-installed, then step into the base directory of the Cython source distribution
+installed, then step into the base directory of the Cython0 source distribution
 and type::
 
     make repo

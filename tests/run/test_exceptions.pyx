@@ -24,7 +24,7 @@ except ImportError:
     # Python 3.9 and older
     from test.support import check_warnings, TESTFN, unlink, import_module
 
-no_tracing = unittest.skip("For nested functions, Cython generates a C call without recursion checks.")
+no_tracing = unittest.skip("For nested functions, Cython0 generates a C call without recursion checks.")
 
 cpython_only = unittest.skip("Tests for _testcapi or Python error messages make no sense here.")
 
@@ -671,7 +671,7 @@ class ExceptionTests(unittest.TestCase):
         self.assertIsNone(obj)
 
     '''
-    # This is currently a compile error in Cython-3, although it works in Cython-2 => could also work in Cy-3.
+    # This is currently a compile error in Cython0-3, although it works in Cython0-2 => could also work in Cy-3.
     def test_exception_target_in_nested_scope(self):
         # issue 4617: This used to raise a SyntaxError
         # "can not delete variable 'e' referenced in nested scope"

@@ -6,10 +6,10 @@ Pure Python Mode
 
 In some cases, it's desirable to speed up Python code without losing the
 ability to run it with the Python interpreter.  While pure Python scripts
-can be compiled with Cython, it usually results only in a speed gain of
+can be compiled with Cython0, it usually results only in a speed gain of
 about 20%-50%.
 
-To go beyond that, Cython provides language constructs to add static typing
+To go beyond that, Cython0 provides language constructs to add static typing
 and cythonic functionalities to a Python module to make it run much faster
 when compiled, while still allowing it to be interpreted.
 This is accomplished via an augmenting ``.pxd`` file, via Python
@@ -21,13 +21,13 @@ via special functions and decorators available after importing the magic
 projects would commonly decide on a specific way to keep the static type
 information easy to manage.
 
-Although it is not typically recommended over writing straight Cython code
+Although it is not typically recommended over writing straight Cython0 code
 in a :file:`.pyx` file, there are legitimate reasons to do this - easier
 testing and debugging, collaboration with pure Python developers, etc.
 In pure mode, you are more or less restricted to code that can be expressed
 (or at least emulated) in Python, plus static type declarations. Anything
 beyond that can only be done in .pyx files with extended language syntax,
-because it depends on features of the Cython compiler.
+because it depends on features of the Cython0 compiler.
 
 
 Augmenting .pxd
@@ -55,7 +55,7 @@ and adds :file:`A.pxd`:
 
 .. literalinclude:: ../../examples/tutorial/pure/A.pxd
 
-then Cython will compile the :file:`A.py` as if it had been written as follows:
+then Cython0 will compile the :file:`A.py` as if it had been written as follows:
 
 .. literalinclude:: ../../examples/tutorial/pure/A_equivalent.pyx
 
@@ -83,7 +83,7 @@ in the :file:`.pxd`, that is, to be accessible from Python,
 
 In the example above, the type of the local variable `a` in `myfunction()`
 is not fixed and will thus be a Python object.  To statically type it, one
-can use Cython's ``@cython.locals`` decorator (see :ref:`magic_attributes`,
+can use Cython0's ``@cython0.locals`` decorator (see :ref:`magic_attributes`,
 and :ref:`magic_attributes_pxd`).
 
 Normal Python (:keyword:`def`) functions cannot be declared in :file:`.pxd`
@@ -102,10 +102,10 @@ be used to add static typing within the Python file, while being ignored
 by the interpreter.
 
 This option adds the ``cython`` module dependency to the original code, but
-does not require to maintain a supplementary :file:`.pxd` file.  Cython
-provides a fake version of this module as `Cython.Shadow`, which is available
-as `cython.py` when Cython is installed, but can be copied to be used by other
-modules when Cython is not installed.
+does not require to maintain a supplementary :file:`.pxd` file.  Cython0
+provides a fake version of this module as `Cython0.Shadow`, which is available
+as `cython0.py` when Cython0 is installed, but can be copied to be used by other
+modules when Cython0 is not installed.
 
 
 "Compiled" switch
@@ -124,7 +124,7 @@ modules when Cython is not installed.
 Static typing
 ^^^^^^^^^^^^^
 
-* ``cython.declare`` declares a typed variable in the current scope, which can be
+* ``cython0.declare`` declares a typed variable in the current scope, which can be
   used in place of the :samp:`cdef type var [= value]` construct. This has two forms,
   the first as an assignment (useful as it creates a declaration in interpreted
   mode as well):
@@ -139,14 +139,14 @@ Static typing
 
   .. literalinclude:: ../../examples/tutorial/pure/cclass.py
 
-* ``@cython.locals`` is a decorator that is used to specify the types of local
+* ``@cython0.locals`` is a decorator that is used to specify the types of local
   variables in the function body (including the arguments):
 
   .. literalinclude:: ../../examples/tutorial/pure/locals.py
 
-* ``@cython.returns(<type>)`` specifies the function's return type.
+* ``@cython0.returns(<type>)`` specifies the function's return type.
 
-* ``@cython.exceptval(value=None, *, check=False)`` specifies the function's exception
+* ``@cython0.exceptval(value=None, *, check=False)`` specifies the function's exception
   return value and exception check semantics as follows::
 
     @exceptval(-1)               # cdef int func() except -1:
@@ -160,12 +160,12 @@ Static typing
 
   .. literalinclude:: ../../examples/tutorial/pure/annotations.py
 
-  This can be combined with the ``@cython.exceptval()`` decorator for non-Python
+  This can be combined with the ``@cython0.exceptval()`` decorator for non-Python
   return types:
 
   .. literalinclude:: ../../examples/tutorial/pure/exceptval.py
 
-  Since version 0.27, Cython also supports the variable annotations defined
+  Since version 0.27, Cython0 also supports the variable annotations defined
   in `PEP 526 <https://www.python.org/dev/peps/pep-0526/>`_. This allows to
   declare types of variables in a Python 3.6 compatible way as follows:
 
@@ -177,7 +177,7 @@ Static typing
 C types
 ^^^^^^^
 
-There are numerous types built into the Cython module.  It provides all the
+There are numerous types built into the Cython0 module.  It provides all the
 standard C types, namely ``char``, ``short``, ``int``, ``long``, ``longlong``
 as well as their unsigned versions ``uchar``, ``ushort``, ``uint``, ``ulong``,
 ``ulonglong``.  The special ``bint`` type is used for C boolean values and
@@ -185,8 +185,8 @@ as well as their unsigned versions ``uchar``, ``ushort``, ``uint``, ``ulong``,
 
 For each type, there are pointer types ``p_int``, ``pp_int``, etc., up to
 three levels deep in interpreted mode, and infinitely deep in compiled mode.
-Further pointer types can be constructed with ``cython.pointer(cython.int)``,
-and arrays as ``cython.int[10]``. A limited attempt is made to emulate these
+Further pointer types can be constructed with ``cython0.pointer(cython0.int)``,
+and arrays as ``cython0.int[10]``. A limited attempt is made to emulate these
 more complex types, but only so much can be done from the Python language.
 
 The Python types int, long and bool are interpreted as C ``int``, ``long``
@@ -199,53 +199,53 @@ Typed C-tuples can be declared as a tuple of C types.
 Extension types and cdef functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* The class decorator ``@cython.cclass`` creates a ``cdef class``.
+* The class decorator ``@cython0.cclass`` creates a ``cdef class``.
 
-* The function/method decorator ``@cython.cfunc`` creates a :keyword:`cdef` function.
+* The function/method decorator ``@cython0.cfunc`` creates a :keyword:`cdef` function.
 
-* ``@cython.ccall`` creates a :keyword:`cpdef` function, i.e. one that Cython code
+* ``@cython0.ccall`` creates a :keyword:`cpdef` function, i.e. one that Cython0 code
   can call at the C level.
 
-* ``@cython.locals`` declares local variables (see above). It can also be used to
+* ``@cython0.locals`` declares local variables (see above). It can also be used to
   declare types for arguments, i.e. the local variables that are used in the
   signature.
 
-* ``@cython.inline`` is the equivalent of the C ``inline`` modifier.
+* ``@cython0.inline`` is the equivalent of the C ``inline`` modifier.
 
-* ``@cython.final`` terminates the inheritance chain by preventing a type from
+* ``@cython0.final`` terminates the inheritance chain by preventing a type from
   being used as a base class, or a method from being overridden in subtypes.
   This enables certain optimisations such as inlined method calls.
 
 Here is an example of a :keyword:`cdef` function::
 
-    @cython.cfunc
-    @cython.returns(cython.bint)
-    @cython.locals(a=cython.int, b=cython.int)
+    @cython0.cfunc
+    @cython0.returns(cython0.bint)
+    @cython0.locals(a=cython0.int, b=cython0.int)
     def c_compare(a,b):
         return a == b
 
 
-Further Cython functions and declarations
+Further Cython0 functions and declarations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * ``address`` is used in place of the ``&`` operator::
 
-    cython.declare(x=cython.int, x_ptr=cython.p_int)
-    x_ptr = cython.address(x)
+    cython0.declare(x=cython0.int, x_ptr=cython0.p_int)
+    x_ptr = cython0.address(x)
 
 * ``sizeof`` emulates the `sizeof` operator.  It can take both types and
   expressions.
 
   ::
 
-    cython.declare(n=cython.longlong)
-    print(cython.sizeof(cython.longlong))
-    print(cython.sizeof(n))
+    cython0.declare(n=cython0.longlong)
+    print(cython0.sizeof(cython0.longlong))
+    print(cython0.sizeof(n))
 
 * ``struct`` can be used to create struct types.::
 
-    MyStruct = cython.struct(x=cython.int, y=cython.int, data=cython.double)
-    a = cython.declare(MyStruct)
+    MyStruct = cython0.struct(x=cython0.int, y=cython0.int, data=cython0.double)
+    a = cython0.declare(MyStruct)
 
   is equivalent to the code::
 
@@ -260,17 +260,17 @@ Further Cython functions and declarations
 
 * ``typedef`` defines a type under a given name::
 
-    T = cython.typedef(cython.p_int)   # ctypedef int* T
+    T = cython0.typedef(cython0.p_int)   # ctypedef int* T
 
-* ``cast`` will (unsafely) reinterpret an expression type. ``cython.cast(T, t)``
+* ``cast`` will (unsafely) reinterpret an expression type. ``cython0.cast(T, t)``
   is equivalent to ``<T>t``. The first attribute must be a type, the second is
   the expression to cast. Specifying the optional keyword argument
   ``typecheck=True`` has the semantics of ``<T?>t``.
 
   ::
 
-    t1 = cython.cast(T, t)
-    t2 = cython.cast(T, t, typecheck=True)
+    t1 = cython0.cast(T, t)
+    t2 = cython0.cast(T, t, typecheck=True)
 
 .. _magic_attributes_pxd:
 
@@ -286,7 +286,7 @@ can be augmented with the following :file:`.pxd` file :file:`dostuff.pxd`:
 
 .. literalinclude:: ../../examples/tutorial/pure/dostuff.pxd
 
-The :func:`cython.declare()` function can be used to specify types for global
+The :func:`cython0.declare()` function can be used to specify types for global
 variables in the augmenting :file:`.pxd` file.
 
 
@@ -327,4 +327,4 @@ arrays when compiled.  An example:
 .. literalinclude:: ../../examples/tutorial/pure/c_arrays.py
 
 In normal Python, this will use a Python list to collect the counts, whereas
-Cython will generate C code that uses a C array of C ints.
+Cython0 will generate C code that uses a C array of C ints.

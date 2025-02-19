@@ -1,6 +1,6 @@
 # cython: infer_types=True
 import numpy as np
-cimport cython
+cimport cython0
 
 DTYPE = np.intc
 
@@ -9,13 +9,13 @@ cdef int clip(int a, int min_value, int max_value):
     return min(max(a, min_value), max_value)
 
 
-@cython.boundscheck(False)
-@cython.wraparound(False)
+@cython0.boundscheck(False)
+@cython0.wraparound(False)
 def compute(int[:, ::1] array_1, int[:, ::1] array_2, int a, int b, int c):
-     
+
     x_max = array_1.shape[0]
     y_max = array_1.shape[1]
-    
+
     assert tuple(array_1.shape) == tuple(array_2.shape)
 
     result = np.zeros((x_max, y_max), dtype=DTYPE)

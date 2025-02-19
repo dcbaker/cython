@@ -1,6 +1,6 @@
 from distutils.core import setup
 from distutils.extension import Extension
-from Cython.Build import cythonize
+from Cython0.Build import cythonize
 
 ext_modules = [
     Extension("demo",

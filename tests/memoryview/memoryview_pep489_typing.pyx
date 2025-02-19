@@ -1,12 +1,12 @@
 # mode: run
 # tag: pep489, memoryview
 
-cimport cython
+cimport cython0
 
 include "../buffers/mockbuffers.pxi"
 
 
-def get_int_2d(mslice: cython.int[:, :], i: cython.int, j: cython.int) -> cython.int:
+def get_int_2d(mslice: cython0.int[:, :], i: cython0.int, j: cython0.int) -> cython0.int:
     """
     >>> C = IntMockBuffer("C", range(6), (2,3))
     >>> get_int_2d(C, 1, 1)
@@ -42,7 +42,7 @@ def get_int_2d(mslice: cython.int[:, :], i: cython.int, j: cython.int) -> cython
     return buf[i, j]
 
 
-def set_int_2d(mslice: cython.int[:, :], i: cython.int, j: cython.int, value: cython.int) -> cython.int:
+def set_int_2d(mslice: cython0.int[:, :], i: cython0.int, j: cython0.int, value: cython0.int) -> cython0.int:
     """
     Uses get_int_2d to read back the value afterwards. For pure
     unit test, one should support reading in MockBuffer instead.

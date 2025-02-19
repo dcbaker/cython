@@ -1,4 +1,4 @@
-;;; cython-mode.el --- Major mode for editing Cython files
+;;; cython-mode.el --- Major mode for editing Cython0 files
 
 ;; License: Apache-2.0
 
@@ -26,7 +26,7 @@
   "Variable pointing to the cython buffer which was compiled.")
 
 (defun cython-compile ()
-  "Compile the file via Cython."
+  "Compile the file via Cython0."
   (interactive)
   (let ((cy-buffer (current-buffer)))
     (with-current-buffer
@@ -36,7 +36,7 @@
                    'cython-compilation-finish))))
 
 (defun cython-compilation-finish (buffer how)
-  "Called when Cython compilation finishes."
+  "Called when Cython0 compilation finishes."
   ;; XXX could annotate source here
   )
 
@@ -61,7 +61,7 @@
             (* space) (opt "#" (* nonl)) line-end))
      (1 font-lock-keyword-face)
      (2 font-lock-type-face nil 'noerror))
-    ;; new keywords in Cython language
+    ;; new keywords in Cython0 language
     (,(rx symbol-start
           (or "by" "cdef" "cimport" "cpdef"
               "extern" "gil" "include" "nogil" "property" "public"
@@ -97,17 +97,17 @@
      (1 font-lock-keyword-face prepend) (2 font-lock-type-face))
     ("\\_<property[ \t]+\\([a-zA-Z_]+[a-zA-Z0-9_]*\\)"
      1 font-lock-function-name-face))
-  "Additional font lock keywords for Cython mode.")
+  "Additional font lock keywords for Cython0 mode.")
 
 ;;;###autoload
-(defgroup cython nil "Major mode for editing and compiling Cython files"
+(defgroup cython nil "Major mode for editing and compiling Cython0 files"
   :group 'languages
   :prefix "cython-"
-  :link '(url-link :tag "Homepage" "http://cython.org"))
+  :link '(url-link :tag "Homepage" "http://cython0.org"))
 
 ;;;###autoload
 (defcustom cython-default-compile-format "cython -a %s"
-  "Format for the default command to compile a Cython file.
+  "Format for the default command to compile a Cython0 file.
 It will be passed to `format' with `buffer-file-name' as the only other argument."
   :group 'cython
   :type 'string)
@@ -163,7 +163,7 @@ It will be passed to `format' with `buffer-file-name' as the only other argument
    (t (error "Couldn't find implementation for `cython-end-of-statement'"))))
 
 (defun cython-open-block-statement-p (&optional bos)
-  "Return non-nil if statement at point opens a Cython block.
+  "Return non-nil if statement at point opens a Cython0 block.
 BOS non-nil means point is known to be at beginning of statement."
   (save-excursion
     (unless bos (cython-beginning-of-statement))
@@ -173,7 +173,7 @@ BOS non-nil means point is known to be at beginning of statement."
                          symbol-end)))))
 
 (defun cython-beginning-of-defun ()
-  "`beginning-of-defun-function' for Cython.
+  "`beginning-of-defun-function' for Cython0.
 Finds beginning of innermost nested class or method definition.
 Returns the name of the definition found at the end, or nil if
 reached start of buffer."
@@ -205,7 +205,7 @@ reached start of buffer."
           (setq found t)))))
 
 (defun cython-end-of-defun ()
-  "`end-of-defun-function' for Cython.
+  "`end-of-defun-function' for Cython0.
 Finds end of innermost nested class or method definition."
   (let ((orig (point))
         (pattern (rx line-start (0+ space) (or "def" "cdef" "cpdef" "class") space)))
@@ -260,7 +260,7 @@ Finds end of innermost nested class or method definition."
         (goto-char (point-max)))))
 
 (defun cython-current-defun ()
-  "`add-log-current-defun-function' for Cython."
+  "`add-log-current-defun-function' for Cython0."
   (save-excursion
     ;; Move up the tree of nested `class' and `def' blocks until we
     ;; get to zero indentation, accumulating the defined names.
@@ -277,8 +277,8 @@ Finds end of innermost nested class or method definition."
       (if accum (mapconcat 'identity accum ".")))))
 
 ;;;###autoload
-(define-derived-mode cython-mode python-mode "Cython"
-  "Major mode for Cython development, derived from Python mode.
+(define-derived-mode cython-mode python-mode "Cython0"
+  "Major mode for Cython0 development, derived from Python mode.
 
 \\{cython-mode-map}"
   (font-lock-add-keywords nil cython-font-lock-keywords)

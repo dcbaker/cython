@@ -1,10 +1,10 @@
 
-cimport cython
+cimport cython0
 
 cdef extern from "math.h":
     cpdef double sqrt(double x)
 
-@cython.final
+@cython0.final
 cdef class GVector:
     cdef public double x, y, z
 
@@ -15,7 +15,7 @@ cdef class GVector:
 cpdef list GetKnots(list points, long degree)
 
 
-@cython.final
+@cython0.final
 cdef class Spline:
     cdef list knots
     cdef list points
@@ -25,7 +25,7 @@ cdef class Spline:
     cpdef long GetIndex(self, u)
 
 
-@cython.final
+@cython0.final
 cdef class Chaosgame:
     cdef list splines
     cdef double thickness

@@ -2,7 +2,7 @@
 # mode: run
 # ticket: 653
 
-cimport cython
+cimport cython0
 
 # The "contains" tests relate to GH-4785 - replacing the method
 # call with PySequence_Contains was causing infinite recursion
@@ -39,9 +39,9 @@ cdef class MyList(list):
 cdef class MyDict(dict):
     # tests for __contains__ are in the global __doc__ to version-check a PyPy bug
 
-    @cython.test_assert_path_exists("//ComprehensionNode//AttributeNode",
+    @cython0.test_assert_path_exists("//ComprehensionNode//AttributeNode",
                                     "//ComprehensionNode//AttributeNode[@attribute='items']")
-    @cython.test_fail_if_path_exists("//ComprehensionNode//CMethodSelfCloneNode")
+    @cython0.test_fail_if_path_exists("//ComprehensionNode//CMethodSelfCloneNode")
     def test_items(self):
         """
         >>> MyDict(a=1, b=2).test_items()
@@ -73,9 +73,9 @@ if not (pypy_version and pypy_version < (7, 3, 10)):
     True
     """
 
-@cython.final
+@cython0.final
 cdef class MyDictFinal(dict):
-    @cython.test_assert_path_exists("//ComprehensionNode//CMethodSelfCloneNode")
+    @cython0.test_assert_path_exists("//ComprehensionNode//CMethodSelfCloneNode")
     def test_items(self):
         """
         >>> MyDictFinal(a=1, b=2).test_items()
@@ -95,9 +95,9 @@ cdef class MyDictFinal(dict):
         return l
 
 cdef class MyDict2(MyDict):
-    @cython.test_assert_path_exists("//ComprehensionNode//AttributeNode",
+    @cython0.test_assert_path_exists("//ComprehensionNode//AttributeNode",
                                     "//ComprehensionNode//AttributeNode[@attribute='items']")
-    @cython.test_fail_if_path_exists("//ComprehensionNode//CMethodSelfCloneNode")
+    @cython0.test_fail_if_path_exists("//ComprehensionNode//CMethodSelfCloneNode")
     def test_items(self):
         """
         >>> MyDict2(a=1, b=2).test_items()
@@ -116,9 +116,9 @@ cdef class MyDict2(MyDict):
         l.sort()
         return l
 
-@cython.final
+@cython0.final
 cdef class MyDict2Final(MyDict):
-    @cython.test_assert_path_exists("//ComprehensionNode//CMethodSelfCloneNode")
+    @cython0.test_assert_path_exists("//ComprehensionNode//CMethodSelfCloneNode")
     def test_items(self):
         """
         >>> MyDict2Final(a=1, b=2).test_items()
@@ -137,14 +137,14 @@ cdef class MyDict2Final(MyDict):
         l.sort()
         return l
 
-@cython.final
+@cython0.final
 cdef class MyDictOverride(dict):
     def items(self):
         return [(1,2), (3,4)]
 
-    @cython.test_assert_path_exists("//ComprehensionNode//AttributeNode",
+    @cython0.test_assert_path_exists("//ComprehensionNode//AttributeNode",
                                     "//ComprehensionNode//AttributeNode[@attribute='items']")
-    @cython.test_fail_if_path_exists("//ComprehensionNode//CMethodSelfCloneNode")
+    @cython0.test_fail_if_path_exists("//ComprehensionNode//CMethodSelfCloneNode")
     def test_items(self):
         """
         >>> MyDictOverride(a=1, b=2).test_items()
@@ -163,14 +163,14 @@ cdef class MyDictOverride(dict):
         l.sort()
         return l
 
-@cython.final
+@cython0.final
 cdef class MyDictOverride2(MyDict):
     def items(self):
         return [(1,2), (3,4)]
 
-    @cython.test_assert_path_exists("//ComprehensionNode//AttributeNode",
+    @cython0.test_assert_path_exists("//ComprehensionNode//AttributeNode",
                                     "//ComprehensionNode//AttributeNode[@attribute='items']")
-    @cython.test_fail_if_path_exists("//ComprehensionNode//CMethodSelfCloneNode")
+    @cython0.test_fail_if_path_exists("//ComprehensionNode//CMethodSelfCloneNode")
     def test_items(self):
         """
         >>> MyDictOverride2(a=1, b=2).test_items()

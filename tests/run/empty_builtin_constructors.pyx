@@ -1,5 +1,5 @@
 
-cimport cython
+cimport cython0
 import sys
 
 IS_PY3 = sys.version_info[0] >= 3
@@ -81,7 +81,7 @@ def _dict():
     """
     return dict()
 
-py_set = cython.set
+py_set = cython0.set
 
 def _set():
     """
@@ -90,7 +90,7 @@ def _set():
     """
     return set()
 
-py_frozenset = cython.frozenset
+py_frozenset = cython0.frozenset
 
 def _frozenset():
     """

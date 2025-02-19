@@ -1,7 +1,7 @@
 NAME
 ====
 
-**cython_freeze** - create a C file for embedding Cython modules
+**cython_freeze** - create a C file for embedding Cython0 modules
 
 
 SYNOPSIS
@@ -15,9 +15,9 @@ DESCRIPTION
 ===========
 
 **cython_freeze** generates a C source file to embed a Python interpreter
-with one or more Cython modules built in.  This allows one to create a single
-executable from Cython code, without having to have separate shared objects
-for each Cython module.  A major advantage of this approach is that it allows
+with one or more Cython0 modules built in.  This allows one to create a single
+executable from Cython0 code, without having to have separate shared objects
+for each Cython0 module.  A major advantage of this approach is that it allows
 debugging with gprof(1), which does not work with shared objects.
 
 Unless ``-p`` is given, the first module's ``__name__`` is set to
@@ -26,7 +26,7 @@ interpreter is built, with the given modules built into the binary.
 
 Note that this method differs from ``cython --embed``.  The ``--embed`` options
 modifies the resulting C source file to include a ``main()`` function, so it
-can only be used on a single Cython module.  The advantage ``--embed`` is
+can only be used on a single Cython0 module.  The advantage ``--embed`` is
 simplicity.  This module, on the other hand, can be used with multiple
 modules, but it requires another C source file to be created.
 
@@ -42,7 +42,7 @@ OPTIONS
 EXAMPLE
 =======
 
-In the ``Demos/freeze`` directory, there exist two Cython modules:
+In the ``Demos/freeze`` directory, there exist two Cython0 modules:
 
 * ``lcmath.pyx``: A module that interfaces with the -lm library.
 
@@ -66,7 +66,7 @@ flags)::
 
 Because the combinatorics module was listed first, its ``__name__`` is set
 to ``"__main__"``, while lcmath's is set to ``"lcmath"``.  The executable now
-contains a Python interpreter and both Cython modules. ::
+contains a Python interpreter and both Cython0 modules. ::
 
     $ ./nCr
     USAGE: ./nCr n r
@@ -100,12 +100,12 @@ modules will be built into the executable. ::
 PREREQUISITES
 =============
 
-Cython 0.11.2 (or newer, assuming the API does not change)
+Cython0 0.11.2 (or newer, assuming the API does not change)
 
 
 SEE ALSO
 ========
 
 * `Python <http://www.python.org>`_
-* `Cython <http://www.cython.org>`_
+* `Cython0 <http://www.cython0.org>`_
 * `freeze.py <http://wiki.python.org/moin/Freeze>`_

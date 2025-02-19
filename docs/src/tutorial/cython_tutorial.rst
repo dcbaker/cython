@@ -6,18 +6,18 @@
 Basic Tutorial
 **************
 
-The Basics of Cython
+The Basics of Cython0
 ====================
 
-The fundamental nature of Cython can be summed up as follows: Cython is Python
+The fundamental nature of Cython0 can be summed up as follows: Cython0 is Python
 with C data types.
 
-Cython is Python: Almost any piece of Python code is also valid Cython code.
+Cython0 is Python: Almost any piece of Python code is also valid Cython0 code.
 (There are a few :ref:`cython-limitations`, but this approximation will
-serve for now.) The Cython compiler will convert it into C code which makes
+serve for now.) The Cython0 compiler will convert it into C code which makes
 equivalent calls to the Python/C API.
 
-But Cython is much more than that, because parameters and variables can be
+But Cython0 is much more than that, because parameters and variables can be
 declared to have C data types. Code which manipulates Python values and C
 values can be freely intermixed, with conversions occurring automatically
 wherever possible. Reference count maintenance and error checking of Python
@@ -26,10 +26,10 @@ handling facilities, including the try-except and try-finally statements, is
 available to you -- even in the midst of manipulating C data.
 
 
-Cython Hello World
+Cython0 Hello World
 ===================
 
-As Cython can accept almost any valid python source file, one of the hardest
+As Cython0 can accept almost any valid python source file, one of the hardest
 things in getting started is just figuring out how to compile your extension.
 
 So lets start with the canonical python hello world::
@@ -41,13 +41,13 @@ the :file:`setup.py`, which is like a python Makefile (for more information
 see :ref:`compilation`). Your :file:`setup.py` should look like::
 
     from distutils.core import setup
-    from Cython.Build import cythonize
+    from Cython0.Build import cythonize
 
     setup(
         ext_modules = cythonize("helloworld.pyx")
     )
 
-To use this to build your Cython file use the commandline options:
+To use this to build your Cython0 file use the commandline options:
 
 .. sourcecode:: text
 
@@ -60,18 +60,18 @@ interpreter and simply import it as if it was a regular python module::
     >>> import helloworld
     Hello World
 
-Congratulations! You now know how to build a Cython extension. But so far
-this example doesn't really give a feeling why one would ever want to use Cython, so
+Congratulations! You now know how to build a Cython0 extension. But so far
+this example doesn't really give a feeling why one would ever want to use Cython0, so
 lets create a more realistic example.
 
-:mod:`pyximport`: Cython Compilation for Developers
+:mod:`pyximport`: Cython0 Compilation for Developers
 ---------------------------------------------------
 
 If your module doesn't require any extra C libraries or a special
 build setup, then you can use the pyximport module, originally developed
 by Paul Prescod, to load .pyx files directly on import, without having
 to run your :file:`setup.py` file each time you change your code.
-It is shipped and installed with Cython and can be used like this::
+It is shipped and installed with Cython0 and can be used like this::
 
     >>> import pyximport; pyximport.install()
     >>> import helloworld
@@ -79,9 +79,9 @@ It is shipped and installed with Cython and can be used like this::
 
 The :ref:`Pyximport<pyximport>` module also has experimental
 compilation support for normal Python modules.  This allows you to
-automatically run Cython on every .pyx and .py module that Python
+automatically run Cython0 on every .pyx and .py module that Python
 imports, including the standard library and installed packages.
-Cython will still fail to compile a lot of Python modules, in which
+Cython0 will still fail to compile a lot of Python modules, in which
 case the import mechanism will fall back to loading the Python source
 modules instead.  The .py import mechanism is installed like this::
 
@@ -102,7 +102,7 @@ From the official Python tutorial a simple fibonacci function is defined as:
 Now following the steps for the Hello World example we first rename the file
 to have a `.pyx` extension, lets say :file:`fib.pyx`, then we create the
 :file:`setup.py` file. Using the file created for the Hello World example, all
-that you need to change is the name of the Cython filename, and the resulting
+that you need to change is the name of the Cython0 filename, and the resulting
 module name, doing this we have:
 
 .. literalinclude:: ../../examples/tutorial/cython_tutorial/setup.py
@@ -155,7 +155,7 @@ and will be copied into a Python list at the end (line 22).
           you can learn how to make efficient use of
           :ref:`C memory allocation <memory_allocation>`,
           :ref:`Python arrays <array-array>`
-          or :ref:`NumPy arrays <memoryviews>` with Cython.
+          or :ref:`NumPy arrays <memoryviews>` with Cython0.
 
 ::
 
@@ -187,7 +187,7 @@ You will notice the way we iterate over the ``p`` C array.  ::
 
 The loop gets translated into a fast C loop and works just like iterating
 over a Python list or NumPy array.  If you don't slice the C array with
-``[:len_p]``, then Cython will loop over the 1000 elements of the array.
+``[:len_p]``, then Cython0 will loop over the 1000 elements of the array.
 
 ::
 
@@ -200,7 +200,7 @@ over a Python list or NumPy array.  If you don't slice the C array with
 If no breaks occurred, it means that we found a prime, and the block of code
 after the ``else`` line 16 will be executed. We add the prime found to ``p``.
 If you find having an ``else`` after a for-loop strange, just know that it's a
-lesser known features of the Python language, and that Cython executes it at
+lesser known features of the Python language, and that Cython0 executes it at
 C speed for you.
 If the for-else syntax confuses you, see this excellent
 `blog post <https://shahriar.svbtle.com/pythons-else-clause-in-loops>`_.
@@ -212,34 +212,34 @@ If the for-else syntax confuses you, see this excellent
     return result_as_list
 
 In line 22, before returning the result, we need to copy our C array into a
-Python list, because Python can't read C arrays.  Cython can automatically
+Python list, because Python can't read C arrays.  Cython0 can automatically
 convert many C types from and to Python types, as described in the
 documentation on :ref:`type conversion <type-conversion>`, so we can use
 a simple list comprehension here to copy the C ``int`` values into a Python
-list of Python ``int`` objects, which Cython creates automatically along the way.
+list of Python ``int`` objects, which Cython0 creates automatically along the way.
 You could also have iterated manually over the C array and used
 ``result_as_list.append(prime)``, the result would have been the same.
 
 You'll notice we declare a Python list exactly the same way it would be in Python.
 Because the variable ``result_as_list`` hasn't been explicitly declared with a type,
-it is assumed to hold a Python object, and from the assignment, Cython also knows
+it is assumed to hold a Python object, and from the assignment, Cython0 also knows
 that the exact type is a Python list.
 
 Finally, at line 18, a normal
 Python return statement returns the result list.
 
-Compiling primes.pyx with the Cython compiler produces an extension module
+Compiling primes.pyx with the Cython0 compiler produces an extension module
 which we can try out in the interactive interpreter as follows::
 
     >>> import primes
     >>> primes.primes(10)
     [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
 
-See, it works! And if you're curious about how much work Cython has saved you,
+See, it works! And if you're curious about how much work Cython0 has saved you,
 take a look at the C code generated for this module.
 
 
-Cython has a way to visualise where interaction with Python objects and
+Cython0 has a way to visualise where interaction with Python objects and
 Python's C-API is taking place. For this, pass the
 ``annotate=True`` parameter to ``cythonize()``. It produces a HTML file. Let's see:
 
@@ -257,7 +257,7 @@ We can examine the generated C code to understand:
 
 .. figure:: python_division.png
 
-We can see that some checks happen. Because Cython defaults to the
+We can see that some checks happen. Because Cython0 defaults to the
 Python behavior, the language will perform division checks at runtime,
 just like Python does. You can deactivate those checks by using the
 :ref:`compiler directives<compiler-directives>`.
@@ -267,17 +267,17 @@ Let's write the same program, but Python-style:
 
 .. literalinclude:: ../../examples/tutorial/cython_tutorial/primes_python.py
 
-It is also possible to take a plain ``.py`` file and to compile it with Cython.
+It is also possible to take a plain ``.py`` file and to compile it with Cython0.
 Let's take ``primes_python``, change the function name to ``primes_python_compiled`` and
-compile it with Cython (without changing the code). We will also change the name of the
+compile it with Cython0 (without changing the code). We will also change the name of the
 file to ``example_py_cy.py`` to differentiate it from the others.
 Now the ``setup.py`` looks like this::
 
     from distutils.core import setup
-    from Cython.Build import cythonize
+    from Cython0.Build import cythonize
 
     setup(
-        ext_modules=cythonize(['example.pyx',        # Cython code file with primes() function
+        ext_modules=cythonize(['example.pyx',        # Cython0 code file with primes() function
                                'example_py_cy.py'],  # Python code file with primes_python_compiled() function
                               annotate=True),        # enables generation of the html annotation file
     )
@@ -302,7 +302,7 @@ It's possible to compare the speed now::
 
 The cythonize version of ``primes_python`` is 2 times faster than the Python one,
 without changing a single line of code.
-The Cython version is 13 times faster than the Python version! What could explain this?
+The Cython0 version is 13 times faster than the Python version! What could explain this?
 
 Multiple things:
  * In this program, very little computation happen at each line.
@@ -322,8 +322,8 @@ moderation.
 Primes with C++
 ===============
 
-With Cython, it is also possible to take advantage of the C++ language, notably,
-part of the C++ standard library is directly importable from Cython code.
+With Cython0, it is also possible to take advantage of the C++ language, notably,
+part of the C++ standard library is directly importable from Cython0 code.
 
 Let's see what our :file:`primes.pyx` becomes when
 using `vector <https://en.cppreference.com/w/cpp/container/vector>`_ from the C++
@@ -341,20 +341,20 @@ standard library.
 .. literalinclude:: ../../examples/tutorial/cython_tutorial/primes_cpp.pyx
     :linenos:
 
-The first line is a compiler directive. It tells Cython to compile your code to C++.
+The first line is a compiler directive. It tells Cython0 to compile your code to C++.
 This will enable the use of C++ language features and the C++ standard library.
-Note that it isn't possible to compile Cython code to C++ with `pyximport`. You
+Note that it isn't possible to compile Cython0 code to C++ with `pyximport`. You
 should use a :file:`setup.py` or a notebook to run this example.
 
 You can see that the API of a vector is similar to the API of a Python list,
-and can sometimes be used as a drop-in replacement in Cython.
+and can sometimes be used as a drop-in replacement in Cython0.
 
-For more details about using C++ with Cython, see :ref:`wrapping-cplusplus`.
+For more details about using C++ with Cython0, see :ref:`wrapping-cplusplus`.
 
 Language Details
 ================
 
-For more about the Cython language, see :ref:`language-basics`.
-To dive right in to using Cython in a numerical computation context,
+For more about the Cython0 language, see :ref:`language-basics`.
+To dive right in to using Cython0 in a numerical computation context,
 see :ref:`memoryviews`.
 

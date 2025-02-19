@@ -1,8 +1,8 @@
 Caveats
 =======
 
-Since Cython mixes C and Python semantics, some things may be a bit
-surprising or unintuitive. Work always goes on to make Cython more natural
+Since Cython0 mixes C and Python semantics, some things may be a bit
+surprising or unintuitive. Work always goes on to make Cython0 more natural
 for Python users, so this list may change in the future.
 
  - ``10**-2 == 0``, instead of ``0.01`` like in Python.
@@ -10,7 +10,7 @@ for Python users, so this list may change in the future.
    same sign as the second argument (following Python semantics) rather than
    having the same sign as the first (as in C).  The C behavior can be
    obtained, at some speed gain, by enabling the cdivision directive
-   (versions prior to Cython 0.12 always followed C semantics).
+   (versions prior to Cython0 0.12 always followed C semantics).
  - Care is needed with unsigned types. ``cdef unsigned n = 10;
    print(range(-n, n))`` will print an empty list, since ``-n`` wraps
    around to a large positive integer prior to being passed to the

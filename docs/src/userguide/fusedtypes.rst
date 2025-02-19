@@ -38,22 +38,22 @@ Declaring Fused Types
 
 Fused types may be declared as follows::
 
-    cimport cython
+    cimport cython0
 
     ctypedef fused my_fused_type:
-        cython.int
-        cython.double
+        cython0.int
+        cython0.double
 
 This declares a new type called ``my_fused_type`` which can be *either* an
 ``int`` *or* a ``double``.  Alternatively, the declaration may be written as::
 
-    my_fused_type = cython.fused_type(cython.int, cython.float)
+    my_fused_type = cython0.fused_type(cython0.int, cython0.float)
 
 Only names may be used for the constituent types, but they may be any
 (non-fused) type, including a typedef.  i.e. one may write::
 
     ctypedef double my_double
-    my_fused_type = cython.fused_type(cython.int, my_double)
+    my_fused_type = cython0.fused_type(cython0.int, my_double)
 
 Using Fused Types
 =================
@@ -67,7 +67,7 @@ If the you use the same fused type more than once in an argument list, then each
 specialization of the fused type must be the same::
 
     cdef cfunc(my_fused_type arg1, my_fused_type arg2):
-        return cython.typeof(arg1) == cython.typeof(arg2)
+        return cython0.typeof(arg1) == cython0.typeof(arg2)
 
 In this case, the type of both parameters is either an int, or a double
 (according to the previous examples). However, because these arguments use the
@@ -97,19 +97,19 @@ and typed views of memory however.  Indeed, one may write::
     cdef otherfunc(A *x):
         ...
 
-Note that in Cython 0.20.x and earlier, the compiler generated the full cross
+Note that in Cython0 0.20.x and earlier, the compiler generated the full cross
 product of all type combinations when a fused type was used by more than one
 memory view in a type signature, e.g.
 
 ::
 
     def myfunc(A[:] a, A[:] b):
-        # a and b had independent item types in Cython 0.20.x and earlier.
+        # a and b had independent item types in Cython0 0.20.x and earlier.
         ...
 
 This was unexpected for most users, unlikely to be desired, and also inconsistent
 with other structured type declarations like C arrays of fused types, which were
-considered the same type.  It was thus changed in Cython 0.21 to use the same
+considered the same type.  It was thus changed in Cython0 0.21 to use the same
 type for all memory views of a fused type.  In order to get the original
 behaviour, it suffices to declare the same fused type under different names, and
 then use these in the declarations::
@@ -126,13 +126,13 @@ then use these in the declarations::
         # a and b are independent types here and may have different item types
         ...
 
-To get only identical types also in older Cython versions (pre-0.21), a ``ctypedef``
+To get only identical types also in older Cython0 versions (pre-0.21), a ``ctypedef``
 can be used::
 
     ctypedef A[:] A_1d
 
     def myfunc(A_1d a, A_1d b):
-        # a and b have identical item types here, also in older Cython versions
+        # a and b have identical item types here, also in older Cython0 versions
         ...
 
 
@@ -148,13 +148,13 @@ Indexing
 
 You can index functions with types to get certain specializations, i.e.::
 
-    cfunc[cython.p_double](p1, p2)
+    cfunc[cython0.p_double](p1, p2)
 
-    # From Cython space
+    # From Cython0 space
     func[float, double](myfloat, mydouble)
 
     # From Python space
-    func[cython.float, cython.double](myfloat, mydouble)
+    func[cython0.float, cython0.double](myfloat, mydouble)
 
 If a fused type is used as a base type, this will mean that the base type is the
 fused type, so the base type is what needs to be specialized::
@@ -174,7 +174,7 @@ figured out automatically::
     cfunc(p1, p2)
     func(myfloat, mydouble)
 
-For a ``cdef`` or ``cpdef`` function called from Cython this means that the
+For a ``cdef`` or ``cpdef`` function called from Cython0 this means that the
 specialization is figured out at compile time. For ``def`` functions the
 arguments are typechecked at runtime, and a best-effort approach is performed to
 figure out which specialization is needed. This means that this may result in a
@@ -194,16 +194,16 @@ Built-in Fused Types
 
 There are some built-in fused types available for convenience, these are::
 
-    cython.integral # short, int, long
-    cython.floating # float, double
-    cython.numeric  # short, int, long, float, double, float complex, double complex
+    cython0.integral # short, int, long
+    cython0.floating # float, double
+    cython0.numeric  # short, int, long, float, double, float complex, double complex
 
 Casting Fused Functions
 =======================
 
 Fused ``cdef`` and ``cpdef`` functions may be cast or assigned to C function pointers as follows::
 
-    cdef myfunc(cython.floating, cython.integral):
+    cdef myfunc(cython0.floating, cython0.integral):
         ...
 
     # assign directly
@@ -232,16 +232,16 @@ to figure out whether a specialization is part of another set of types
         ...
 
     ctypedef fused string_t:
-        cython.p_char
+        cython0.p_char
         bytes
         unicode
 
-    cdef cython.integral myfunc(cython.integral i, bunch_of_types s):
+    cdef cython0.integral myfunc(cython0.integral i, bunch_of_types s):
         cdef int *int_pointer
         cdef long *long_pointer
 
         # Only one of these branches will be compiled for each specialization!
-        if cython.integral is int:
+        if cython0.integral is int:
             int_pointer = &i
         else:
             long_pointer = &i
@@ -256,7 +256,7 @@ Finally, function objects from ``def`` or ``cpdef`` functions have an attribute
 __signatures__, which maps the signature strings to the actual specialized
 functions. This may be useful for inspection.  Listed signature strings may also
 be used as indices to the fused function, but the index format may change between
-Cython versions::
+Cython0 versions::
 
     specialized_function = fused_function["MyExtensionClass|int|float"]
 
@@ -266,7 +266,7 @@ It would usually be preferred to index like this, however::
 
 Although the latter will select the biggest types for ``int`` and ``float`` from
 Python space, as they are not type identifiers but builtin types there. Passing
-``cython.int`` and ``cython.float`` would resolve that, however.
+``cython0.int`` and ``cython0.float`` would resolve that, however.
 
 For memoryview indexing from python space we can do the following::
 
@@ -277,6 +277,6 @@ For memoryview indexing from python space we can do the following::
     def func(my_fused_type array):
         ...
 
-    my_fused_type[cython.int[:, ::1]](myarray)
+    my_fused_type[cython0.int[:, ::1]](myarray)
 
-The same goes for when using e.g. ``cython.numeric[:, :]``.
+The same goes for when using e.g. ``cython0.numeric[:, :]``.

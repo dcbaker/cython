@@ -15,7 +15,7 @@ __doc__ = u"""
 2
 """
 
-cimport cython
+cimport cython0
 
 def f_plus(a):
     return a + 1
@@ -35,7 +35,7 @@ class class4:
         return a + 1
 
     @staticmethod
-    @cython.binding(True)
+    @cython0.binding(True)
     def bplus1(a):
         return a + 1
 
@@ -79,7 +79,7 @@ cdef class BaseClass(object):
         print arg1
 
     @staticmethod
-    @cython.binding(True)
+    @cython0.binding(True)
     def mystaticmethod2(a, b, c):
         print a, b, c
 

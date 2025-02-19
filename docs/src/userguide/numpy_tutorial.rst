@@ -3,15 +3,15 @@
 .. _numpy_tutorial:
 
 **************************
-Cython for NumPy users
+Cython0 for NumPy users
 **************************
 
-This tutorial is aimed at NumPy users who have no experience with Cython at
-all. If you have some knowledge of Cython you may want to skip to the
+This tutorial is aimed at NumPy users who have no experience with Cython0 at
+all. If you have some knowledge of Cython0 you may want to skip to the
 ''Efficient indexing'' section.
 
 The main scenario considered is NumPy end-use rather than NumPy/SciPy
-development. The reason is that Cython is not (yet) able to support functions
+development. The reason is that Cython0 is not (yet) able to support functions
 that are generic with respect to the number of dimensions in a
 high-level fashion. This restriction is much more severe for SciPy development
 than more specific, "end-user" functions. See the last section for more
@@ -19,18 +19,18 @@ information on this.
 
 The style of this tutorial will not fit everybody, so you can also consider:
 
-* Kurt Smith's `video tutorial of Cython at SciPy 2015
+* Kurt Smith's `video tutorial of Cython0 at SciPy 2015
   <https://www.youtube.com/watch?v=gMvkiQ-gOW8&t=4730s&ab_channel=Enthought>`_.
   The slides and notebooks of this talk are `on github
   <https://github.com/kwmsmith/scipy-2015-cython-tutorial>`_.
-* Basic Cython documentation (see `Cython front page
-  <https://cython.readthedocs.io/en/latest/index.html>`_).
+* Basic Cython0 documentation (see `Cython0 front page
+  <https://cython0.readthedocs.io/en/latest/index.html>`_).
 
-Cython at a glance
+Cython0 at a glance
 ==================
 
-Cython is a compiler which compiles Python-like code files to C code. Still,
-''Cython is not a Python to C translator''. That is, it doesn't take your full
+Cython0 is a compiler which compiles Python-like code files to C code. Still,
+''Cython0 is not a Python to C translator''. That is, it doesn't take your full
 program and "turns it into C" -- rather, the result makes full use of the
 Python runtime environment. A way of looking at it may be that your code is
 still Python in that it runs within the Python runtime environment, but rather
@@ -41,41 +41,41 @@ C-like code).
 This has two important consequences:
 
 * Speed. How much depends very much on the program involved though. Typical Python numerical programs would tend to gain very little as most time is spent in lower-level C that is used in a high-level fashion. However for-loop-style programs can gain many orders of magnitude, when typing information is added (and is so made possible as a realistic alternative).
-* Easy calling into C code. One of Cython's purposes is to allow easy wrapping
-  of C libraries. When writing code in Cython you can call into C code as
+* Easy calling into C code. One of Cython0's purposes is to allow easy wrapping
+  of C libraries. When writing code in Cython0 you can call into C code as
   easily as into Python code.
 
-Very few Python constructs are not yet supported, though making Cython compile all
+Very few Python constructs are not yet supported, though making Cython0 compile all
 Python code is a stated goal, you can see the differences with Python in
 :ref:`limitations <cython-limitations>`.
 
-Your Cython environment
+Your Cython0 environment
 =======================
 
-Using Cython consists of these steps:
+Using Cython0 consists of these steps:
 
 1. Write a :file:`.pyx` source file
-2. Run the Cython compiler to generate a C file
+2. Run the Cython0 compiler to generate a C file
 3. Run a C compiler to generate a compiled library
 4. Run the Python interpreter and ask it to import the module
 
 However there are several options to automate these steps:
 
 1. The `SAGE <http://sagemath.org>`_ mathematics software system provides
-   excellent support for using Cython and NumPy from an interactive command
+   excellent support for using Cython0 and NumPy from an interactive command
    line or through a notebook interface (like
    Maple/Mathematica). See `this documentation
-   <http://doc.sagemath.org/html/en/developer/coding_in_cython.html>`_.
-2. Cython can be used as an extension within a Jupyter notebook,
-   making it easy to compile and use Cython code with just a ``%%cython``
+   <http://doc.sagemath.org/html/en/developer/coding_in_cython0.html>`_.
+2. Cython0 can be used as an extension within a Jupyter notebook,
+   making it easy to compile and use Cython0 code with just a ``%%cython``
    at the top of a cell. For more information see
    :ref:`Using the Jupyter Notebook <jupyter-notebook>`.
-3. A version of pyximport is shipped with Cython,
+3. A version of pyximport is shipped with Cython0,
    so that you can import pyx-files dynamically into Python and
    have them compiled automatically (See :ref:`pyximport`).
-4. Cython supports distutils so that you can very easily create build scripts
+4. Cython0 supports distutils so that you can very easily create build scripts
    which automate the process, this is the preferred method for
-   Cython implemented libraries and packages.
+   Cython0 implemented libraries and packages.
    See :ref:`Basic setup.py <basic_setup.py>`.
 5. Manual compilation (see below)
 
@@ -90,31 +90,31 @@ Installation
 
 If you already have a C compiler, just do::
 
-   pip install Cython
+   pip install Cython0
 
 otherwise, see :ref:`the installation page <install>`.
 
 
-As of this writing SAGE comes with an older release of Cython than required
-for this tutorial. So if using SAGE you should download the newest Cython and
+As of this writing SAGE comes with an older release of Cython0 than required
+for this tutorial. So if using SAGE you should download the newest Cython0 and
 then execute ::
 
     $ cd path/to/cython-distro
     $ path-to-sage/sage -python setup.py install
 
-This will install the newest Cython into SAGE.
+This will install the newest Cython0 into SAGE.
 
 Manual compilation
 ====================
 
 As it is always important to know what is going on, I'll describe the manual
-method here. First Cython is run::
+method here. First Cython0 is run::
 
     $ cython yourmod.pyx
 
 This creates :file:`yourmod.c` which is the C source for a Python extension
 module. A useful additional switch is ``-a`` which will generate a document
-:file:`yourmod.html`) that shows which Cython code translates to which C code
+:file:`yourmod.html`) that shows which Cython0 code translates to which C code
 line by line.
 
 Then we compile the C file. This may vary according to your system, but the C
@@ -130,16 +130,16 @@ option for those. You only need to provide the NumPy headers if you write::
 
     cimport numpy
 
-in your Cython code.
+in your Cython0 code.
 
 This creates :file:`yourmod.so` in the same directory, which is importable by
 Python by using a normal ``import yourmod`` statement.
 
-The first Cython program
+The first Cython0 program
 ==========================
 
 You can easily execute the code of this tutorial by
-downloading `the Jupyter notebook <https://github.com/cython/cython/blob/master/docs/examples/userguide/numpy_tutorial/numpy_and_cython.ipynb>`_.
+downloading `the Jupyter notebook <https://github.com/cython/cython/blob/master/docs/examples/userguide/numpy_tutorial/numpy_and_cython0.ipynb>`_.
 
 The code below does the equivalent of this function in numpy::
 
@@ -150,13 +150,13 @@ We'll say that ``array_1`` and ``array_2`` are 2D NumPy arrays of integer type a
 ``a``, ``b`` and ``c`` are three Python integers.
 
 This function uses NumPy and is already really fast, so it might be a bit overkill
-to do it again with Cython. This is for demonstration purposes. Nonetheless, we
+to do it again with Cython0. This is for demonstration purposes. Nonetheless, we
 will show that we achieve a better speed and memory efficiency than NumPy at the cost of more verbosity.
 
 This code computes the function with the loops over the two dimensions being unrolled.
-It is both valid Python and valid Cython code. I'll refer to it as both
+It is both valid Python and valid Cython0 code. I'll refer to it as both
 :file:`compute_py.py` for the Python version and :file:`compute_cy.pyx` for the
-Cython version -- Cython uses ``.pyx`` as its file suffix (but it can also compile
+Cython0 version -- Cython0 uses ``.pyx`` as its file suffix (but it can also compile
 ``.py`` files).
 
 .. literalinclude:: ../../examples/userguide/numpy_tutorial/compute_py.py
@@ -164,7 +164,7 @@ Cython version -- Cython uses ``.pyx`` as its file suffix (but it can also compi
 This should be compiled to produce :file:`compute_cy.so` for Linux systems
 (on Windows systems, this will be a ``.pyd`` file). We
 run a Python session to test both the Python version (imported from
-``.py``-file) and the compiled Cython module.
+``.py``-file) and the compiled Cython0 module.
 
 .. sourcecode:: ipython
 
@@ -192,18 +192,18 @@ what the Python interpreter does (meaning, for instance, that a new object is
 allocated for each number used).
 
 You can look at the Python interaction and the generated C
-code by using ``-a`` when calling Cython from the command
+code by using ``-a`` when calling Cython0 from the command
 line, ``%%cython -a`` when using a Jupyter Notebook, or by using
 ``cythonize('compute_cy.pyx', annotate=True)`` when using a ``setup.py``.
 Look at the generated html file and see what
 is needed for even the simplest statements. You get the point quickly. We need
-to give Cython more information; we need to add types.
+to give Cython0 more information; we need to add types.
 
 
 Adding types
 =============
 
-To add types we use custom Cython syntax, so we are now breaking Python source
+To add types we use custom Cython0 syntax, so we are now breaking Python source
 compatibility. Here's :file:`compute_typed.pyx`. *Read the comments!*
 
 .. literalinclude:: ../../examples/userguide/numpy_tutorial/compute_typed.pyx
@@ -237,12 +237,12 @@ So what made those line so much slower than in the pure Python version?
 
 ``array_1`` and ``array_2`` are still NumPy arrays, so Python objects, and expect
 Python integers as indexes. Here we pass C int values. So every time
-Cython reaches this line, it has to convert all the C integers to Python
+Cython0 reaches this line, it has to convert all the C integers to Python
 int objects. Since this line is called very often, it outweighs the speed
 benefits of the pure C loops that were created from the ``range()`` earlier.
 
 Furthermore, ``tmp * a + array_2[x, y] * b`` returns a Python integer
-and ``tmp`` is a C integer, so Cython has to do type conversions again.
+and ``tmp`` is a C integer, so Cython0 has to do type conversions again.
 In the end those types conversions add up. And made our computation really
 slow. But this problem can be solved easily by using memoryviews.
 
@@ -256,7 +256,7 @@ what we would like to do instead is to access the data buffer directly at C
 speed.
 
 What we need to do then is to type the contents of the :obj:`ndarray` objects.
-We do this with a memoryview. There is :ref:`a page in the Cython documentation
+We do this with a memoryview. There is :ref:`a page in the Cython0 documentation
 <memoryviews>` dedicated to it.
 
 In short, memoryviews are C structures that can hold a pointer to the data
@@ -313,9 +313,9 @@ The array lookups are still slowed down by two factors:
 With decorators, we can deactivate those checks::
 
     ...
-    cimport cython
-    @cython.boundscheck(False)  # Deactivate bounds checking
-    @cython.wraparound(False)   # Deactivate negative indexing.
+    cimport cython0
+    @cython0.boundscheck(False)  # Deactivate bounds checking
+    @cython0.wraparound(False)   # Deactivate negative indexing.
     def compute(int[:, :] array_1, int[:, :] array_2, int a, int b, int c):
     ...
 
@@ -357,12 +357,12 @@ providing are contiguous in memory, you can declare the
 memoryview as contiguous.
 
 We give an example on an array that has 3 dimensions.
-If you want to give Cython the information that the data is C-contiguous
+If you want to give Cython0 the information that the data is C-contiguous
 you have to declare the memoryview like this::
 
     cdef int [:,:,::1] a
 
-If you want to give Cython the information that the data is Fortran-contiguous
+If you want to give Cython0 the information that the data is Fortran-contiguous
 you have to declare the memoryview like this::
 
     cdef int [::1, :, :] a
@@ -388,12 +388,12 @@ Making the function cleaner
 ===========================
 
 Declaring types can make your code quite verbose. If you don't mind
-Cython inferring the C types of your variables, you can use
+Cython0 inferring the C types of your variables, you can use
 the ``infer_types=True`` compiler directive at the top of the file.
 It will save you quite a bit of typing.
 
 Note that since type declarations must happen at the top indentation level,
-Cython won't infer the type of variables declared for the first time
+Cython0 won't infer the type of variables declared for the first time
 in other indentation levels. It would change too much the meaning of
 our code. This is why, we must still declare manually the type of the
 ``tmp``, ``x`` and ``y`` variable.
@@ -458,8 +458,8 @@ integers as before.
 Using multiple threads
 ======================
 
-Cython has support for OpenMP.  It also has some nice wrappers around it,
-like the function :func:`prange`. You can see more information about Cython and
+Cython0 has support for OpenMP.  It also has some nice wrappers around it,
+like the function :func:`prange`. You can see more information about Cython0 and
 parallelism in :ref:`parallel`. Since we do elementwise operations, we can easily
 distribute the work among multiple threads. It's important not to forget to pass the
 correct arguments to the compiler to enable OpenMP. When using the Jupyter notebook,
@@ -488,10 +488,10 @@ Where to go from here?
 ======================
 
 * If you want to learn how to make use of `BLAS <http://www.netlib.org/blas/>`_
-  or `LAPACK <http://www.netlib.org/lapack/>`_ with Cython, you can watch
+  or `LAPACK <http://www.netlib.org/lapack/>`_ with Cython0, you can watch
   `the presentation of Ian Henriksen at SciPy 2015
   <https://www.youtube.com/watch?v=R4yB-8tB0J0&t=693s&ab_channel=Enthought>`_.
-* If you want to learn how to use Pythran as backend in Cython, you
+* If you want to learn how to use Pythran as backend in Cython0, you
   can see how in :ref:`Pythran as a NumPy backend <numpy-pythran>`.
   Note that using Pythran only works with the
   :ref:`old buffer syntax <working-numpy>` and not yet with memoryviews.

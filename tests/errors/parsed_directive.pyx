@@ -1,10 +1,10 @@
 # mode: error
 
-cimport cython
+cimport cython0
 
 cdef class TestClass:
     def foo(self):
-        with cython.c_string_encoding("ascii"):
+        with cython0.c_string_encoding("ascii"):
             return
 
 

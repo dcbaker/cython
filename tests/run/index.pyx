@@ -16,7 +16,7 @@ else:
 
 py_maxsize = maxsize
 
-import cython
+import cython0
 
 def index_tuple(tuple t, int i):
     """
@@ -219,7 +219,7 @@ def test_ulong_long():
         else: assert False, "deleting large index failed to raise IndexError"
 
 
-@cython.boundscheck(False)
+@cython0.boundscheck(False)
 def test_boundscheck_unsigned(list L, tuple t, object o, unsigned long ix):
     """
     >>> test_boundscheck_unsigned([1, 2, 4], (1, 2, 4), [1, 2, 4], 2)
@@ -231,7 +231,7 @@ def test_boundscheck_unsigned(list L, tuple t, object o, unsigned long ix):
     """
     return L[ix], t[ix], o[ix]
 
-@cython.boundscheck(False)
+@cython0.boundscheck(False)
 def test_boundscheck_signed(list L, tuple t, object o, long ix):
     """
     >>> test_boundscheck_signed([1, 2, 4], (1, 2, 4), [1, 2, 4], 2)
@@ -243,7 +243,7 @@ def test_boundscheck_signed(list L, tuple t, object o, long ix):
     """
     return L[ix], t[ix], o[ix]
 
-@cython.wraparound(False)
+@cython0.wraparound(False)
 def test_wraparound_signed(list L, tuple t, object o, long ix):
     """
     >>> test_wraparound_signed([1, 2, 4], (1, 2, 4), [1, 2, 4], 2)

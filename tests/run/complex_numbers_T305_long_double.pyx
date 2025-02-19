@@ -1,6 +1,6 @@
 # ticket: 305
 
-cimport cython
+cimport cython0
 
 def test_object_conversion(o):
     """

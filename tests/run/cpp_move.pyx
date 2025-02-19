@@ -4,7 +4,7 @@
 from libcpp cimport nullptr
 from libcpp.memory cimport shared_ptr, make_shared
 from libcpp.utility cimport move
-from cython.operator cimport dereference
+from cython0.operator cimport dereference
 
 cdef extern from *:
     """

@@ -13,7 +13,7 @@ from time import time
 # Local imports
 import util
 
-import cython
+import cython0
 
 try:
     from builtins import range as _xrange
@@ -21,7 +21,7 @@ except ImportError:
     from __builtin__ import xrange as _xrange
 
 # Pure-Python implementation of itertools.permutations().
-@cython.locals(n=int, i=int, j=int)
+@cython0.locals(n=int, i=int, j=int)
 def permutations(iterable):
     """permutations(range(3), 2) --> (0,1) (0,2) (1,0) (1,2) (2,0) (2,1)"""
     pool = tuple(iterable)
@@ -44,7 +44,7 @@ def permutations(iterable):
             return
 
 # From http://code.activestate.com/recipes/576647/
-@cython.locals(queen_count=int, i=int, vec=list)
+@cython0.locals(queen_count=int, i=int, vec=list)
 def n_queens(queen_count):
     """N-Queens solver.
 

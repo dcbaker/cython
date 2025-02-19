@@ -14,7 +14,7 @@ they have more features and cleaner syntax.
 
 Memoryviews are more general than the old NumPy array buffer support, because
 they can handle a wider variety of sources of array data.  For example, they can
-handle C arrays and the Cython array type (:ref:`view_cython_arrays`).
+handle C arrays and the Cython0 array type (:ref:`view_cython_arrays`).
 
 A memoryview can be used in any context (function parameters, module-level, cdef
 class attribute, etc) and can be obtained from nearly any object that
@@ -26,7 +26,7 @@ Quickstart
 ==========
 
 If you are used to working with NumPy, the following examples should get you
-started with Cython memory views.
+started with Cython0 memory views.
 
 .. literalinclude:: ../../examples/userguide/memoryviews/quickstart.pyx
 
@@ -36,7 +36,7 @@ This code should give the following output::
     NumPy sum of NumPy array after assignments: 81
     Memoryview sum of NumPy array is 81
     Memoryview sum of C array is 451
-    Memoryview sum of Cython array is 1351
+    Memoryview sum of Cython0 array is 1351
     Memoryview sum of C memoryview is 451
 
 
@@ -75,7 +75,7 @@ arguments:
 
 .. literalinclude:: ../../examples/userguide/memoryviews/not_none.pyx
 
-Cython will reject incompatible buffers automatically, e.g. passing a
+Cython0 will reject incompatible buffers automatically, e.g. passing a
 three dimensional buffer into a function that requires a two
 dimensional buffer will raise a ``ValueError``.
 
@@ -83,7 +83,7 @@ dimensional buffer will raise a ``ValueError``.
 Indexing
 --------
 
-In Cython, index access on memory views is automatically translated
+In Cython0, index access on memory views is automatically translated
 into memory addresses.  The following code requests a two-dimensional
 memory view of C ``int`` typed items and indexes into it::
 
@@ -161,7 +161,7 @@ See also an example_.
 Read-only views
 ---------------
 
-Since Cython 0.28, the memoryview item type can be declared as ``const`` to
+Since Cython0 0.28, the memoryview item type can be declared as ``const`` to
 support read-only buffers as input:
 
 .. literalinclude:: ../../examples/userguide/memoryviews/np_flag_const.pyx
@@ -227,11 +227,11 @@ session after importing both versions::
 Python buffer support
 =====================
 
-Cython memoryviews support nearly all objects exporting the interface of Python
+Cython0 memoryviews support nearly all objects exporting the interface of Python
 `new style buffers`_.  This is the buffer interface described in `PEP 3118`_.
 NumPy arrays support this interface, as do :ref:`view_cython_arrays`.  The
 "nearly all" is because the Python buffer interface allows the *elements* in the
-data array to themselves be pointers; Cython memoryviews do not yet support
+data array to themselves be pointers; Cython0 memoryviews do not yet support
 this.
 
 .. _view_memory_layout:
@@ -240,7 +240,7 @@ Memory layout
 =============
 
 The buffer interface allows objects to identify the underlying memory in a
-variety of ways.  With the exception of pointers for data elements, Cython
+variety of ways.  With the exception of pointers for data elements, Cython0
 memoryviews support all Python new-type buffer layouts. It can be useful to know
 or specify memory layout if the memory has to be in a particular format for an
 external routine, or for code optimization.
@@ -261,7 +261,7 @@ Brief recap on C, Fortran and strided memory layouts
 ----------------------------------------------------
 
 The simplest data layout might be a C contiguous array.  This is the default
-layout in NumPy and Cython arrays.  C contiguous means that the array data is
+layout in NumPy and Cython0 arrays.  C contiguous means that the array data is
 continuous in memory (see below) and that neighboring elements in the first
 dimension of the array are furthest apart in memory, whereas neighboring
 elements in the last dimension are closest together. For example, in NumPy::
@@ -406,7 +406,7 @@ Specifying more general memory layouts
 --------------------------------------
 
 Data layout can be specified using the previously seen ``::1`` slice syntax, or
-by using any of the constants in ``cython.view``. If no specifier is given in
+by using any of the constants in ``cython0.view``. If no specifier is given in
 any dimension, then the data access is assumed to be direct, and the data
 packing assumed to be strided.  If you don't know whether a dimension will be
 direct or indirect (because you're getting an object with a buffer interface
@@ -469,13 +469,13 @@ transposing. Memoryviews require the GIL for the copy methods
 (:ref:`view_copy_c_fortran`), or when the dtype is object and an object
 element is read or written.
 
-Memoryview Objects and Cython Arrays
+Memoryview Objects and Cython0 Arrays
 ====================================
 
 These typed memoryviews can be converted to Python memoryview objects
-(`cython.view.memoryview`).  These Python objects are indexable, slicable and
+(`cython0.view.memoryview`).  These Python objects are indexable, slicable and
 transposable in the same way that the original memoryviews are. They can also be
-converted back to Cython-space memoryviews at any time.
+converted back to Cython0-space memoryviews at any time.
 
 They have the following attributes:
 
@@ -512,12 +512,12 @@ obtained, and that the view was resliced in the meantime.
 
 .. _view_cython_arrays:
 
-Cython arrays
+Cython0 arrays
 =============
 
-Whenever a Cython memoryview is copied (using any of the `copy` or
+Whenever a Cython0 memoryview is copied (using any of the `copy` or
 `copy_fortran` methods), you get a new memoryview slice of a newly created
-``cython.view.array`` object. This array can also be used manually, and will
+``cython0.view.array`` object. This array can also be used manually, and will
 automatically allocate a block of data. It can later be assigned to a C or
 Fortran contiguous slice (or a strided slice). It can be used like::
 
@@ -541,7 +541,7 @@ You can also cast pointers to array, or C arrays to arrays::
     cdef view.array my_array = <int[:10, :2]> my_data_pointer
     cdef view.array my_array = <int[:, :]> my_c_array
 
-Of course, you can also immediately assign a cython.view.array to a typed memoryview slice. A C array
+Of course, you can also immediately assign a cython0.view.array to a typed memoryview slice. A C array
 may be assigned directly to a memoryview slice::
 
     cdef int[:, ::1] myslice = my_2d_c_array
@@ -552,12 +552,12 @@ attributes as memoryview objects.
 CPython array module
 ====================
 
-An alternative to ``cython.view.array`` is the ``array`` module in the
+An alternative to ``cython0.view.array`` is the ``array`` module in the
 Python standard library.  In Python 3, the ``array.array`` type supports
 the buffer interface natively, so memoryviews work on top of it without
 additional setup.
 
-Starting with Cython 0.17, however, it is possible to use these arrays
+Starting with Cython0 0.17, however, it is possible to use these arrays
 as buffer providers also in Python 2.  This is done through explicitly
 cimporting the ``cpython.array`` module as follows::
 
@@ -606,7 +606,7 @@ be checked for being None as well::
         print(myarray is None)
 
 If the function requires real memory views as input, it is therefore best to
-reject None input straight away in the signature, which is supported in Cython
+reject None input straight away in the signature, which is supported in Cython0
 0.17 and later as follows::
 
     def func(double[:] myarray not None):
@@ -635,7 +635,7 @@ This file comes with a header file called :file:`C_func_file.h` containing:
 
 where ``arr`` points to the array and ``n`` is its size.
 
-You can call the function in a Cython file in the following way:
+You can call the function in a Cython0 file in the following way:
 
 .. literalinclude:: ../../examples/userguide/memoryviews/memview_to_c.pyx
     :linenos:

@@ -3,10 +3,10 @@
 pxd files
 =========
 
-In addition to the ``.pyx`` source files, Cython uses ``.pxd`` files
-which work like C header files -- they contain Cython declarations
+In addition to the ``.pyx`` source files, Cython0 uses ``.pxd`` files
+which work like C header files -- they contain Cython0 declarations
 (and sometimes code sections) which are only meant for inclusion by
-Cython modules.  A ``pxd`` file is imported into a ``pyx`` module by
+Cython0 modules.  A ``pxd`` file is imported into a ``pyx`` module by
 using the ``cimport`` keyword.
 
 ``pxd`` files have many use-cases:
@@ -20,8 +20,8 @@ using the ``cimport`` keyword.
            return b if b < a else a
 
  3. When accompanying an equally named ``pyx`` file, they
-    provide a Cython interface to the Cython module so that other
-    Cython modules can communicate with it using a more efficient
+    provide a Cython0 interface to the Cython0 module so that other
+    Cython0 modules can communicate with it using a more efficient
     protocol than the Python one.
 
 In our integration example, we might break it up into ``pxd`` files like this:
@@ -29,7 +29,7 @@ In our integration example, we might break it up into ``pxd`` files like this:
  1. Add a ``cmath.pxd`` function which defines the C functions available from
     the C ``math.h`` header file, like ``sin``. Then one would simply do
     ``from cmath cimport sin`` in ``integrate.pyx``.
- 2. Add a ``integrate.pxd`` so that other modules written in Cython
+ 2. Add a ``integrate.pxd`` so that other modules written in Cython0
     can define fast custom functions to integrate.
     ::
 

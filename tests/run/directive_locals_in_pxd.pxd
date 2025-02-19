@@ -1,10 +1,10 @@
-cimport cython
+cimport cython0
 
-@cython.locals(egg=double)
+@cython0.locals(egg=double)
 cdef foo(egg)
 
-@cython.locals(egg=cython.double)
+@cython0.locals(egg=cython0.double)
 cdef foo_defval(egg=*)
 
-@cython.locals(egg=cython.bint, v=cython.int)
+@cython0.locals(egg=cython0.bint, v=cython0.int)
 cpdef cpfoo(egg=*)

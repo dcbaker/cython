@@ -3,7 +3,7 @@
 # NOTE: Py2.6+ only
 
 
-cimport cython
+cimport cython0
 
 cpdef bytearray coerce_to_charptr(char* b):
     """
@@ -56,7 +56,7 @@ def infer_concatenation_types(bytearray b):
 
     e = b + b
 
-    return b, c, d, e, cython.typeof(b), cython.typeof(c), cython.typeof(d), cython.typeof(e)
+    return b, c, d, e, cython0.typeof(b), cython0.typeof(c), cython0.typeof(d), cython0.typeof(e)
 
 
 def infer_index_types(bytearray b):
@@ -66,11 +66,11 @@ def infer_index_types(bytearray b):
     (254, 254, 254, 'unsigned char', 'unsigned char', 'unsigned char', 'int')
     """
     c = b[1]
-    with cython.wraparound(False):
+    with cython0.wraparound(False):
         d = b[1]
-    with cython.boundscheck(False):
+    with cython0.boundscheck(False):
         e = b[1]
-    return c, d, e, cython.typeof(c), cython.typeof(d), cython.typeof(e), cython.typeof(b[1])
+    return c, d, e, cython0.typeof(c), cython0.typeof(d), cython0.typeof(e), cython0.typeof(b[1])
 
 
 def infer_slice_types(bytearray b):
@@ -80,11 +80,11 @@ def infer_slice_types(bytearray b):
     (bytearray(b'bc'), bytearray(b'bc'), bytearray(b'bc'), 'bytearray object', 'bytearray object', 'bytearray object', 'bytearray object')
     """
     c = b[1:]
-    with cython.boundscheck(False):
+    with cython0.boundscheck(False):
         d = b[1:]
-    with cython.boundscheck(False), cython.wraparound(False):
+    with cython0.boundscheck(False), cython0.wraparound(False):
         e = b[1:]
-    return c, d, e, cython.typeof(c), cython.typeof(d), cython.typeof(e), cython.typeof(b[1:])
+    return c, d, e, cython0.typeof(c), cython0.typeof(d), cython0.typeof(e), cython0.typeof(b[1:])
 
 
 def assign_to_index(bytearray b, value):

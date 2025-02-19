@@ -53,11 +53,11 @@ __doc__ = br"""
     True
     >>> d == u'üÖä'
     True
-    >>> e == u'\x03\x67\xf8\uf8d2Søk ik'     # unescaped by Cython
+    >>> e == u'\x03\x67\xf8\uf8d2Søk ik'     # unescaped by Cython0
     True
     >>> e == u'\\x03\\x67\\xf8\\uf8d2Søk ik' # unescaped by Python
     True
-    >>> f == u'\xf8'  # unescaped by Cython
+    >>> f == u'\xf8'  # unescaped by Cython0
     True
     >>> f == u'\\xf8' # unescaped by Python
     True

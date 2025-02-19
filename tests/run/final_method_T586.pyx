@@ -1,9 +1,9 @@
 # mode: run
 # ticket: 568
 
-cimport cython
+cimport cython0
 
-@cython.final
+@cython0.final
 cdef class FinalType(object):
     """
     >>> obj = FinalType()
@@ -11,20 +11,20 @@ cdef class FinalType(object):
     >>> obj.test_cpdef()
     """
 
-    @cython.test_assert_path_exists("//CFuncDefNode[@entry.is_final_cmethod=True]")
+    @cython0.test_assert_path_exists("//CFuncDefNode[@entry.is_final_cmethod=True]")
     cdef cdef_method(self):
         pass
 
-    @cython.test_assert_path_exists("//CFuncDefNode[@entry.is_final_cmethod=True]")
-    @cython.test_fail_if_path_exists("//CFuncDefNode//OverrideCheckNode")
+    @cython0.test_assert_path_exists("//CFuncDefNode[@entry.is_final_cmethod=True]")
+    @cython0.test_fail_if_path_exists("//CFuncDefNode//OverrideCheckNode")
     cpdef cpdef_method(self):
         pass
 
-    @cython.test_assert_path_exists("//AttributeNode[@entry.is_final_cmethod=True]")
+    @cython0.test_assert_path_exists("//AttributeNode[@entry.is_final_cmethod=True]")
     def test_cdef(self):
         self.cdef_method()
 
-    @cython.test_assert_path_exists("//AttributeNode[@entry.is_final_cmethod=True]")
+    @cython0.test_assert_path_exists("//AttributeNode[@entry.is_final_cmethod=True]")
     def test_cpdef(self):
         self.cpdef_method()
 
@@ -49,12 +49,12 @@ cdef class BaseTypeWithFinalMethods(object):
     >>> obj.test_cdef()
     """
 
-    @cython.test_assert_path_exists("//CFuncDefNode[@entry.is_final_cmethod=True]")
-    @cython.final
+    @cython0.test_assert_path_exists("//CFuncDefNode[@entry.is_final_cmethod=True]")
+    @cython0.final
     cdef cdef_method(self):
         pass
 
-    @cython.test_assert_path_exists("//AttributeNode[@entry.is_final_cmethod=True]")
+    @cython0.test_assert_path_exists("//AttributeNode[@entry.is_final_cmethod=True]")
     def test_cdef(self):
         self.cdef_method()
 
@@ -64,6 +64,6 @@ cdef class SubType(BaseTypeWithFinalMethods):
     >>> obj = SubType()
     >>> obj.test_cdef()
     """
-    @cython.test_assert_path_exists("//AttributeNode[@entry.is_final_cmethod=True]")
+    @cython0.test_assert_path_exists("//AttributeNode[@entry.is_final_cmethod=True]")
     def test_cdef(self):
         self.cdef_method()

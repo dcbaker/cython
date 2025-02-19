@@ -4,7 +4,7 @@
 # preparse: id
 # preparse: def_to_cdef
 
-cimport cython
+cimport cython0
 
 def add_n(int n):
     """
@@ -193,11 +193,11 @@ def more_inner_funcs(x):
     return resolve
 
 
-@cython.test_assert_path_exists("//DefNode//DefNode//DefNode//DefNode",
+@cython0.test_assert_path_exists("//DefNode//DefNode//DefNode//DefNode",
                                 "//DefNode[@needs_outer_scope = False]", # deep_inner()
                                 "//DefNode//DefNode//DefNode//DefNode[@needs_closure = False]", # h()
                                 )
-@cython.test_fail_if_path_exists("//DefNode//DefNode[@needs_outer_scope = False]")
+@cython0.test_fail_if_path_exists("//DefNode//DefNode[@needs_outer_scope = False]")
 def deep_inner():
     """
     >>> deep_inner()()
@@ -213,11 +213,11 @@ def deep_inner():
     return f()
 
 
-@cython.test_assert_path_exists("//DefNode//DefNode//DefNode",
+@cython0.test_assert_path_exists("//DefNode//DefNode//DefNode",
                                 "//DefNode//DefNode//DefNode[@needs_outer_scope = False]",  # a()
                                 "//DefNode//DefNode//DefNode[@needs_closure = False]", # a(), g(), h()
                                 )
-@cython.test_fail_if_path_exists("//DefNode//DefNode//DefNode[@needs_closure = True]") # a(), g(), h()
+@cython0.test_fail_if_path_exists("//DefNode//DefNode//DefNode[@needs_closure = True]") # a(), g(), h()
 def deep_inner_sibling():
     """
     >>> deep_inner_sibling()()

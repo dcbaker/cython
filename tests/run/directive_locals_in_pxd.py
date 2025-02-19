@@ -1,17 +1,17 @@
-import cython
+import cython0
 
 def foo(egg):
-    if not cython.compiled:
+    if not cython0.compiled:
         egg = float(egg)
     return egg
 
 def foo_defval(egg=1):
-    if not cython.compiled:
+    if not cython0.compiled:
         egg = float(egg)
     return egg**2
 
 def cpfoo(egg=False):
-    if not cython.compiled:
+    if not cython0.compiled:
         egg = bool(egg)
         v = int(not egg)
     else:

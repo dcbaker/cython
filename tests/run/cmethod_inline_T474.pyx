@@ -1,6 +1,6 @@
 # mode: run
 # ticket: 474
-cimport cython
+cimport cython0
 
 
 cdef class TestInlineMethod(object):
@@ -10,7 +10,7 @@ cdef class TestInlineMethod(object):
     0
     """
 
-    @cython.test_assert_path_exists(
+    @cython0.test_assert_path_exists(
         "//AttributeNode[@entry.is_inline_cmethod=True]",
         "//AttributeNode[@entry.is_final_cmethod=True]")
     def test_cdef_method(self):
@@ -24,7 +24,7 @@ cdef class Subtyping(TestInlineMethod):
     0
     """
 
-    @cython.test_assert_path_exists(
+    @cython0.test_assert_path_exists(
         "//AttributeNode[@entry.is_inline_cmethod=True]",
         "//AttributeNode[@entry.is_final_cmethod=True]")
     def test_cdef_subtyping(self):

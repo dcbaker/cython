@@ -1,10 +1,10 @@
 # mode: run
 # tag: list, tuple, slice, slicing
 
-cimport cython
+cimport cython0
 
 
-@cython.test_fail_if_path_exists("//CondExprNode")
+@cython0.test_fail_if_path_exists("//CondExprNode")
 def slice_list(list l, int start, int stop):
     """
     >>> slice_list([1,2,3,4], 1, 3)
@@ -26,7 +26,7 @@ def slice_list(list l, int start, int stop):
     """
     return l[start:stop]
 
-@cython.test_fail_if_path_exists("//CondExprNode")
+@cython0.test_fail_if_path_exists("//CondExprNode")
 def slice_list_start(list l, int start):
     """
     >>> slice_list_start([1,2,3,4], 1)
@@ -49,7 +49,7 @@ def slice_list_start(list l, int start):
     return l[start:]
 
 
-@cython.test_fail_if_path_exists("//CondExprNode")
+@cython0.test_fail_if_path_exists("//CondExprNode")
 def slice_list_stop(list l, int stop):
     """
     >>> slice_list_stop([1,2,3,4], 3)
@@ -74,7 +74,7 @@ def slice_list_stop(list l, int stop):
     return l[:stop]
 
 
-@cython.test_fail_if_path_exists("//CondExprNode")
+@cython0.test_fail_if_path_exists("//CondExprNode")
 def slice_list_copy(list l):
     """
     >>> slice_list_copy([])
@@ -85,7 +85,7 @@ def slice_list_copy(list l):
     return l[:]
 
 
-@cython.test_fail_if_path_exists("//CondExprNode")
+@cython0.test_fail_if_path_exists("//CondExprNode")
 def slice_tuple_copy(tuple l):
     """
     >>> slice_tuple_copy(())
@@ -96,7 +96,7 @@ def slice_tuple_copy(tuple l):
     return l[:]
 
 
-@cython.test_fail_if_path_exists("//CondExprNode")
+@cython0.test_fail_if_path_exists("//CondExprNode")
 def slice_tuple(tuple t, int start, int stop):
     """
     >>> slice_tuple((1,2,3,4), 1, 3)
@@ -119,7 +119,7 @@ def slice_tuple(tuple t, int start, int stop):
     return t[start:stop]
 
 
-@cython.test_fail_if_path_exists("//CondExprNode")
+@cython0.test_fail_if_path_exists("//CondExprNode")
 def slice_tuple_start(tuple t, int start):
     """
     >>> slice_tuple_start((1,2,3,4), 1)
@@ -140,7 +140,7 @@ def slice_tuple_start(tuple t, int start):
     return t[start:]
 
 
-@cython.test_fail_if_path_exists("//CondExprNode")
+@cython0.test_fail_if_path_exists("//CondExprNode")
 def slice_tuple_stop(tuple t, int stop):
     """
     >>> slice_tuple_stop((1,2,3,4), 3)
@@ -159,7 +159,7 @@ def slice_tuple_stop(tuple t, int stop):
     return t[:stop]
 
 
-@cython.test_fail_if_path_exists("//CondExprNode")
+@cython0.test_fail_if_path_exists("//CondExprNode")
 def slice_list_assign_list(list l):
     """
     >>> l = [1,2,3,4]
@@ -171,7 +171,7 @@ def slice_list_assign_list(list l):
     return l
 
 
-@cython.test_fail_if_path_exists("//CondExprNode")
+@cython0.test_fail_if_path_exists("//CondExprNode")
 def slice_list_assign_tuple(list l):
     """
     >>> l = [1,2,3,4]
@@ -183,7 +183,7 @@ def slice_list_assign_tuple(list l):
     return l
 
 
-@cython.test_fail_if_path_exists("//CondExprNode")
+@cython0.test_fail_if_path_exists("//CondExprNode")
 def slice_list_assign(list l, value):
     """
     >>> l = [1,2,3,4]
@@ -244,7 +244,7 @@ ctypedef fused slicable:
     unicode
 
 
-@cython.test_assert_path_exists("//SliceIndexNode//CondExprNode")
+@cython0.test_assert_path_exists("//SliceIndexNode//CondExprNode")
 def slice_fused_type_start(slicable seq, start):
     """
     >>> l = [1,2,3,4,5]
@@ -258,7 +258,7 @@ def slice_fused_type_start(slicable seq, start):
     >>> for i in range(len(o)):
     ...     for s in (0, len(l) - 1, len(l), -1, -len(l), None):
     ...         print(r(i, s))
-    ... 
+    ...
     list[0:] -> [1, 2, 3, 4, 5]
     list[4:] -> [5]
     list[5:] -> []
@@ -273,13 +273,13 @@ def slice_fused_type_start(slicable seq, start):
     tuple[None:] -> (1, 2, 3, 4, 5)
     bytes[0:] -> 12345
     bytes[4:] -> 5
-    bytes[5:] -> 
+    bytes[5:] ->
     bytes[-1:] -> 5
     bytes[-5:] -> 12345
     bytes[None:] -> 12345
     unicode[0:] -> 12345
     unicode[4:] -> 5
-    unicode[5:] -> 
+    unicode[5:] ->
     unicode[-1:] -> 5
     unicode[-5:] -> 12345
     unicode[None:] -> 12345
@@ -288,7 +288,7 @@ def slice_fused_type_start(slicable seq, start):
     return obj
 
 
-@cython.test_assert_path_exists("//SliceIndexNode//CondExprNode")
+@cython0.test_assert_path_exists("//SliceIndexNode//CondExprNode")
 def slice_fused_type_stop(slicable seq, stop):
     """
     >>> l = [1,2,3,4,5]
@@ -302,7 +302,7 @@ def slice_fused_type_stop(slicable seq, stop):
     >>> for i in range(len(o)):
     ...     for s in (0, len(l) - 1, len(l), -1, -len(l), None):
     ...         print(r(i, s))
-    ... 
+    ...
     list[:0] -> []
     list[:4] -> [1, 2, 3, 4]
     list[:5] -> [1, 2, 3, 4, 5]
@@ -315,24 +315,24 @@ def slice_fused_type_stop(slicable seq, stop):
     tuple[:-1] -> (1, 2, 3, 4)
     tuple[:-5] -> ()
     tuple[:None] -> (1, 2, 3, 4, 5)
-    bytes[:0] -> 
+    bytes[:0] ->
     bytes[:4] -> 1234
     bytes[:5] -> 12345
     bytes[:-1] -> 1234
-    bytes[:-5] -> 
+    bytes[:-5] ->
     bytes[:None] -> 12345
-    unicode[:0] -> 
+    unicode[:0] ->
     unicode[:4] -> 1234
     unicode[:5] -> 12345
     unicode[:-1] -> 1234
-    unicode[:-5] -> 
+    unicode[:-5] ->
     unicode[:None] -> 12345
     """
     obj = seq[:stop]
     return obj
 
 
-@cython.test_assert_path_exists("//SliceIndexNode//CondExprNode")
+@cython0.test_assert_path_exists("//SliceIndexNode//CondExprNode")
 def slice_fused_type_start_and_stop(slicable seq, start, stop):
     """
     >>> l = [1,2,3,4,5]
@@ -343,11 +343,11 @@ def slice_fused_type_start_and_stop(slicable seq, start, stop):
     >>> n = ('list', 'tuple', 'bytes', 'unicode')
     >>> p = lambda o: o.decode() if isinstance(o, type(b)) else str(o)
     >>> r = lambda i, t, s: '%s[%r:%r] -> %s' % (n[i], t, s, p(slice_fused_type_start_and_stop(o[i], t, s)))
-    >>> for i in range(len(o)): 
+    >>> for i in range(len(o)):
     ...     for start, stop in ((0, len(l)), (0, None), (None, len(l)),
     ...                         (-len(l), 0), (1, 0), (0, 1)):
     ...         print(r(i, start, stop))
-    ... 
+    ...
     list[0:5] -> [1, 2, 3, 4, 5]
     list[0:None] -> [1, 2, 3, 4, 5]
     list[None:5] -> [1, 2, 3, 4, 5]
@@ -363,14 +363,14 @@ def slice_fused_type_start_and_stop(slicable seq, start, stop):
     bytes[0:5] -> 12345
     bytes[0:None] -> 12345
     bytes[None:5] -> 12345
-    bytes[-5:0] -> 
-    bytes[1:0] -> 
+    bytes[-5:0] ->
+    bytes[1:0] ->
     bytes[0:1] -> 1
     unicode[0:5] -> 12345
     unicode[0:None] -> 12345
     unicode[None:5] -> 12345
-    unicode[-5:0] -> 
-    unicode[1:0] -> 
+    unicode[-5:0] ->
+    unicode[1:0] ->
     unicode[0:1] -> 1
     """
     obj = seq[start:stop]
@@ -390,7 +390,7 @@ def slice_fused_type_step(slicable seq, step):
     >>> for i in range(len(o)):
     ...     for s in (1, -1, 2, -3, 5, -5, None):
     ...         print(r(i, s))
-    ... 
+    ...
     list[::1] -> [1, 2, 3, 4, 5]
     list[::-1] -> [5, 4, 3, 2, 1]
     list[::2] -> [1, 3, 5]
@@ -444,7 +444,7 @@ def slice_fused_type_start_and_step(slicable seq, start, step):
     ...                         (None, 1), (None, -1), (None, None),
     ...                         (1, 2), (len(l), -2), (len(l), len(l))):
     ...         print(r(i, start, step))
-    ... 
+    ...
     list[0::1] -> [1, 2, 3, 4, 5]
     list[0::-1] -> [1]
     list[1::1] -> [2, 3, 4, 5]
@@ -474,7 +474,7 @@ def slice_fused_type_start_and_step(slicable seq, start, step):
     bytes[None::None] -> 12345
     bytes[1::2] -> 24
     bytes[5::-2] -> 531
-    bytes[5::5] -> 
+    bytes[5::5] ->
     unicode[0::1] -> 12345
     unicode[0::-1] -> 1
     unicode[1::1] -> 2345
@@ -484,7 +484,7 @@ def slice_fused_type_start_and_step(slicable seq, start, step):
     unicode[None::None] -> 12345
     unicode[1::2] -> 24
     unicode[5::-2] -> 531
-    unicode[5::5] -> 
+    unicode[5::5] ->
     >>> for o in (l, t, b):
     ...     try: slice_fused_type_start_and_step(o, 0, 0)
     ...     except ValueError: pass
@@ -508,7 +508,7 @@ def slice_fused_type_stop_and_step(slicable seq, stop, step):
     ...                        (len(l), -1), (len(l) - 1, 2), (len(l), -2),
     ...                        (len(l), len(l))):
     ...         print(r(i, stop, step))
-    ... 
+    ...
     list[:5:1] -> [1, 2, 3, 4, 5]
     list[:5:None] -> [1, 2, 3, 4, 5]
     list[:None:1] -> [1, 2, 3, 4, 5]
@@ -526,16 +526,16 @@ def slice_fused_type_stop_and_step(slicable seq, stop, step):
     bytes[:5:1] -> 12345
     bytes[:5:None] -> 12345
     bytes[:None:1] -> 12345
-    bytes[:5:-1] -> 
+    bytes[:5:-1] ->
     bytes[:4:2] -> 13
-    bytes[:5:-2] -> 
+    bytes[:5:-2] ->
     bytes[:5:5] -> 1
     unicode[:5:1] -> 12345
     unicode[:5:None] -> 12345
     unicode[:None:1] -> 12345
-    unicode[:5:-1] -> 
+    unicode[:5:-1] ->
     unicode[:4:2] -> 13
-    unicode[:5:-2] -> 
+    unicode[:5:-2] ->
     unicode[:5:5] -> 1
     >>> for v in o:
     ...     try: slice_fused_type_stop_and_step(v, len(l), 0)
@@ -562,7 +562,7 @@ def slice_fused_type_all(slicable seq, start, stop, step):
     ...                  (len(l), None, -1), (-len(l), len(l), None), (None, None, None),
     ...                  (1, 3, 2), (len(l), 1, -3), (len(l), 0, 1)):
     ...         print(r(i, *args))
-    ... 
+    ...
     list[0:5:1] -> [1, 2, 3, 4, 5]
     list[5:0:-1] -> [5, 4, 3, 2]
     list[None:5:1] -> [1, 2, 3, 4, 5]
@@ -589,7 +589,7 @@ def slice_fused_type_all(slicable seq, start, stop, step):
     bytes[None:None:None] -> 12345
     bytes[1:3:2] -> 2
     bytes[5:1:-3] -> 5
-    bytes[5:0:1] -> 
+    bytes[5:0:1] ->
     unicode[0:5:1] -> 12345
     unicode[5:0:-1] -> 5432
     unicode[None:5:1] -> 12345
@@ -598,7 +598,7 @@ def slice_fused_type_all(slicable seq, start, stop, step):
     unicode[None:None:None] -> 12345
     unicode[1:3:2] -> 2
     unicode[5:1:-3] -> 5
-    unicode[5:0:1] -> 
+    unicode[5:0:1] ->
     >>> for v in o:
     ...     try: slice_fused_type_stop_and_step(v, len(l), 0)
     ...     except ValueError: pass

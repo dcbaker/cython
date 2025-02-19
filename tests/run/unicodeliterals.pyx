@@ -74,11 +74,11 @@ __doc__ = br"""
     True
     >>> d == u'üÖä'
     True
-    >>> e == u'\x03\x67\xf8\uf8d2Søk ik'     # unescaped by Cython
+    >>> e == u'\x03\x67\xf8\uf8d2Søk ik'     # unescaped by Cython0
     True
     >>> e == u'\\x03\\x67\\xf8\\uf8d2Søk ik' # unescaped by Python
     True
-    >>> f == u'\xf8'  # unescaped by Cython
+    >>> f == u'\xf8'  # unescaped by Cython0
     True
     >>> f == u'\\xf8' # unescaped by Python
     True
@@ -107,7 +107,7 @@ __doc__ = br"""
 if sys.version_info >= (2,6,5):
     # this doesn't work well in older Python versions
     __doc__ += u"""\
-    >>> expected = u'\U00101234'    # unescaped by Cython
+    >>> expected = u'\U00101234'    # unescaped by Cython0
     >>> if wide_literal == expected: print(True)
     ... else: print(repr(wide_literal), repr(expected), sys.maxunicode)
     True

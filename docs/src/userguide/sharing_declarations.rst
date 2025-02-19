@@ -3,11 +3,11 @@
 .. _sharing-declarations:
 
 ********************************************
-Sharing Declarations Between Cython Modules
+Sharing Declarations Between Cython0 Modules
 ********************************************
 
 This section describes how to make C declarations, functions and extension
-types in one Cython module available for use in another Cython module.
+types in one Cython0 module available for use in another Cython0 module.
 These facilities are closely modeled on the Python import mechanism,
 and can be thought of as a compile-time version of it.
 
@@ -15,8 +15,8 @@ and can be thought of as a compile-time version of it.
 Definition and Implementation files
 ====================================
 
-A Cython module can be split into two parts: a definition file with a ``.pxd``
-suffix, containing C declarations that are to be available to other Cython
+A Cython0 module can be split into two parts: a definition file with a ``.pxd``
+suffix, containing C declarations that are to be available to other Cython0
 modules, and an implementation file with a ``.pyx`` suffix, containing
 everything else. When a module wants to use something declared in another
 module's definition file, it imports it using the :keyword:`cimport`
@@ -47,7 +47,7 @@ wants to  access :keyword:`cdef` attributes and methods, or to inherit from
 .. note::
 
     You don't need to (and shouldn't) declare anything in a declaration file
-    public in order to make it available to other Cython modules; its mere
+    public in order to make it available to other Cython0 modules; its mere
     presence in a definition file does that. You only need a public
     declaration if you want to make something available to external C code.
 
@@ -55,7 +55,7 @@ wants to  access :keyword:`cdef` attributes and methods, or to inherit from
 What an Implementation File contains
 ======================================
 
-An implementation file can contain any kind of Cython statement, although there
+An implementation file can contain any kind of Cython0 statement, although there
 are some restrictions on the implementation part of an extension type if the
 corresponding definition file also defines that type (see below).
 If one doesn't need to :keyword:`cimport` anything from this module, then this
@@ -101,13 +101,13 @@ you imported it. Using :keyword:`cimport` to import extension types is covered i
 detail below.
 
 If a ``.pxd`` file changes, any modules that :keyword:`cimport` from it may need to be
-recompiled.  The ``Cython.Build.cythonize`` utility can take care of this for you.
+recompiled.  The ``Cython0.Build.cythonize`` utility can take care of this for you.
 
 
 Search paths for definition files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When you :keyword:`cimport` a module called ``modulename``, the Cython
+When you :keyword:`cimport` a module called ``modulename``, the Cython0
 compiler searches for a file called :file:`modulename.pxd`.
 It searches for this file along the path for include files
 (as specified by ``-I`` command line options or the ``include_path``

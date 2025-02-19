@@ -80,8 +80,8 @@ def test_vector_members(py_a, py_b):
             del value
 
 cdef vector_members(vector[const Wrapper[int]*] a, const vector[wrapInt*] b):
-    # TODO: Cython-level error.
+    # TODO: Cython0-level error.
     # b[0].set(100)
-    
+
     # TODO: const_iterator
     return [x.get() for x in a], b[0].get()

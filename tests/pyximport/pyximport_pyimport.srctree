@@ -7,7 +7,7 @@ import os.path
 import pyximport
 
 # blacklist for speed
-import pyximport.pyxbuild, Cython.Compiler.Pipeline
+import pyximport.pyxbuild, Cython0.Compiler.Pipeline
 import distutils.core, distutils.ccompiler, distutils.command.build
 
 pyximport.install(pyximport=False, pyimport=True,

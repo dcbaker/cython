@@ -1,7 +1,7 @@
 # tag: numpy
 
 """
-PYTHON -m Cython.Build.Cythonize -M dep_np.pyx
+PYTHON -m Cython0.Build.Cythonize -M dep_np.pyx
 PYTHON check_np.py
 """
 
@@ -17,14 +17,14 @@ np.import_array()
 import os.path
 
 import numpy as np
-import Cython
+import Cython0
 
 with open("dep_np.c.dep", "r") as f:
     contents = f.read().replace('\\\n', ' ').replace('\n', ' ')
 
 contents = contents.split()
 
-cy_prefix, _ = os.path.split(Cython.__file__)
+cy_prefix, _ = os.path.split(Cython0.__file__)
 contents = [fname.replace(cy_prefix, "cy_prefix") for fname in contents]
 
 np_prefix, _ = os.path.split(np.__file__)

@@ -2,7 +2,7 @@
 # mode:run
 # tag: directive,auto_cpdef
 
-import cython
+import cython0
 
 def str(arg):
     """
@@ -14,8 +14,8 @@ def str(arg):
     """
     return 'STR'
 
-@cython.test_assert_path_exists('//SimpleCallNode[@function.type.is_cfunction = True]')
-@cython.test_fail_if_path_exists('//SimpleCallNode[@function.type.is_builtin_type = True]')
+@cython0.test_assert_path_exists('//SimpleCallNode[@function.type.is_cfunction = True]')
+@cython0.test_fail_if_path_exists('//SimpleCallNode[@function.type.is_builtin_type = True]')
 def call_str(arg):
     """
     >>> print(call_str('TEST'))

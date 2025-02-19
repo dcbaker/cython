@@ -10,7 +10,7 @@ Language Basics
     The sections in this page were moved to the :ref:`language-basics` in the userguide.
 
 =================
-Cython File Types
+Cython0 File Types
 =================
 
 This section was moved to :ref:`cython_file_types`.
@@ -98,7 +98,7 @@ Statements and Expressions
 
 This section was moved to :ref:`statements_and_expressions`.
 
-Differences Between Cython and C
+Differences Between Cython0 and C
 ================================
 
 Scope Rules
@@ -158,7 +158,7 @@ Error and Exception Handling
 
 This section was moved to :ref:`error_return_values`.
 
-Checking return values for non-Cython functions..
+Checking return values for non-Cython0 functions..
 =================================================
 
 This section was moved to :ref:`checking_return_values_of_non_cython_functions`.

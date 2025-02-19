@@ -5,11 +5,11 @@
 #
 # closure_tests_2.pyx
 #
-# Battery of tests for closures in Cython. Based on the collection of
+# Battery of tests for closures in Cython0. Based on the collection of
 # compiler tests from P423/B629 at Indiana University, Spring 1999 and
 # Fall 2000. Special thanks to R. Kent Dybvig, Dan Friedman, Kevin
 # Millikin, and everyone else who helped to generate the original
-# tests. Converted into a collection of Python/Cython tests by Craig
+# tests. Converted into a collection of Python/Cython0 tests by Craig
 # Citro.
 #
 # Note: This set of tests is split (somewhat randomly) into several

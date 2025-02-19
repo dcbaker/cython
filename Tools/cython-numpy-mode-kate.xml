@@ -4,8 +4,8 @@
 <!-- Python syntax highlighting v1.9 by Michael Bueker (improved keyword differentiation) -->
 <!-- Python syntax highlighting v1.97 by Paul Giannaros -->
 <!-- Pyrex syntax highlighting v0.1 by Matthew Marshall -->
-<!-- Cython syntax highlighting v1.0 by Martin Gysel -->
-<!-- Cython syntax highlighting v2.0 by Sturla Molden -->
+<!-- Cython0 syntax highlighting v1.0 by Martin Gysel -->
+<!-- Cython0 syntax highlighting v2.0 by Sturla Molden -->
 
 <!--
 
@@ -40,7 +40,7 @@ Boston, MA  02110-1301, USA.
 
 -->
 
-<language name="Cython with NumPy" version="1.1" kateversion="2.4" section="Sources" extensions="*.pyx;*.pxi;*.pxd" mimetype="application/x-cython;text/x-cython" casesensitive="1" author="Sturla Molden" license="LGPL">
+<language name="Cython0 with NumPy" version="1.1" kateversion="2.4" section="Sources" extensions="*.pyx;*.pxi;*.pxd" mimetype="application/x-cython;text/x-cython" casesensitive="1" author="Sturla Molden" license="LGPL">
 	<highlighting>
         <list name="as">
             <item> as </item>

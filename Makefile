@@ -1,8 +1,8 @@
-PACKAGENAME=Cython
+PACKAGENAME=Cython0
 PYTHON?=python
 TESTOPTS?=
 REPO = git://github.com/cython/cython.git
-VERSION?=$(shell sed -ne 's|^__version__\s*=\s*"\([^"]*\)".*|\1|p' Cython/Shadow.py)
+VERSION?=$(shell sed -ne 's|^__version__\s*=\s*"\([^"]*\)".*|\1|p' Cython0/Shadow.py)
 
 MANYLINUX_CFLAGS=-O3 -g0 -mtune=generic -pipe -fPIC
 MANYLINUX_LDFLAGS=
@@ -55,10 +55,10 @@ clean:
 	@rm -f *.pyd */*.pyd */*/*.pyd
 	@rm -f *~ */*~ */*/*~
 	@rm -f core */core
-	@rm -f Cython/Compiler/*.c
-	@rm -f Cython/Plex/*.c
-	@rm -f Cython/Tempita/*.c
-	@rm -f Cython/Runtime/refnanny.c
+	@rm -f Cython0/Compiler/*.c
+	@rm -f Cython0/Plex/*.c
+	@rm -f Cython0/Tempita/*.c
+	@rm -f Cython0/Runtime/refnanny.c
 	@(cd Demos; $(MAKE) clean)
 
 testclean:

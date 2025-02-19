@@ -5,7 +5,7 @@ import sys
 
 from distutils.core import setup
 from distutils.extension import Extension
-from Cython.Build import cythonize
+from Cython0.Build import cythonize
 
 
 # For demo purposes, we build our own tiny library.

@@ -1,13 +1,13 @@
 # tag: numpy_old
 # tag: openmp
 
-cimport cython
-from cython.parallel import prange
+cimport cython0
+from cython0.parallel import prange
 cimport numpy as np
 include "numpy_common.pxi"
 
 
-@cython.boundscheck(False)
+@cython0.boundscheck(False)
 def test_parallel_numpy_arrays():
     """
     >>> test_parallel_numpy_arrays()

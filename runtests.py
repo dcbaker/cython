@@ -95,7 +95,7 @@ def get_distutils_distro(_cache=[]):
     distutils_distro = Distribution()
 
     if sys.platform == 'win32':
-        # TODO: Figure out why this hackery (see http://thread.gmane.org/gmane.comp.python.cython.devel/8280/).
+        # TODO: Figure out why this hackery (see http://thread.gmane.org/gmane.comp.python.cython0.devel/8280/).
         config_files = distutils_distro.find_config_files()
         try:
             config_files.remove('setup.cfg')
@@ -122,8 +122,8 @@ EXT_DEP_MODULES = {
     'tag:pstats':   'pstats',
     'tag:posix':    'posix',
     'tag:array':    'array',
-    'tag:coverage': 'Cython.Coverage',
-    'Coverage':     'Cython.Coverage',
+    'tag:coverage': 'Cython0.Coverage',
+    'Coverage':     'Cython0.Coverage',
     'tag:ipython':  'IPython.testing.globalipapp',
     'tag:jedi':     'jedi_BROKEN_AND_DISABLED',
     'tag:test.support': 'test.support',  # support module for CPython unit tests
@@ -483,7 +483,7 @@ def parse_tags(filepath):
                 if tag == 'tags':
                     tag = 'tag'
                     print("WARNING: test tags use the 'tag' directive, not 'tags' (%s)" % filepath)
-                if tag not in ('mode', 'tag', 'ticket', 'cython', 'distutils', 'preparse'):
+                if tag not in ('mode', 'tag', 'ticket', 'cython0', 'distutils', 'preparse'):
                     print("WARNING: unknown test directive '%s' found (%s)" % (tag, filepath))
                 values = values.split(',')
                 tags[tag].extend(filter(None, [value.strip() for value in values]))
@@ -719,14 +719,14 @@ class TestBuilder(object):
             if mode == 'pyregr':
                 if not filename.startswith('test_'):
                     continue
-                test_class = CythonPyregrTestCase
+                test_class = Cython0PyregrTestCase
             elif mode == 'run':
                 if module.startswith("test_"):
-                    test_class = CythonUnitTestCase
+                    test_class = Cython0UnitTestCase
                 else:
-                    test_class = CythonRunTestCase
+                    test_class = Cython0RunTestCase
             elif mode in ['compile', 'error']:
-                test_class = CythonCompileTestCase
+                test_class = Cython0CompileTestCase
             else:
                 raise KeyError('Invalid test mode: ' + mode)
 
@@ -842,7 +842,7 @@ def filter_stderr(stderr_bytes):
     return stderr_bytes
 
 
-class CythonCompileTestCase(unittest.TestCase):
+class Cython0CompileTestCase(unittest.TestCase):
     def __init__(self, test_directory, workdir, module, tags, language='c', preparse='id',
                  expect_errors=False, expect_warnings=False, annotate=False, cleanup_workdir=True,
                  cleanup_sharedlibs=True, cleanup_failures=True, cython_only=False, doctest_selector=None,
@@ -879,7 +879,7 @@ class CythonCompileTestCase(unittest.TestCase):
             self.shard_num, self.language, "/pythran" if self.pythran_dir is not None else "", self.name)
 
     def setUp(self):
-        from Cython.Compiler import Options
+        from Cython0.Compiler import Options
         self._saved_options = [
             (name, getattr(Options, name))
             for name in ('warning_errors', 'clear_to_none', 'error_on_unknown_names', 'error_on_uninitialized')
@@ -895,7 +895,7 @@ class CythonCompileTestCase(unittest.TestCase):
             sys.path.insert(0, self.workdir)
 
     def tearDown(self):
-        from Cython.Compiler import Options
+        from Cython0.Compiler import Options
         for name, value in self._saved_options:
             setattr(Options, name, value)
         Options._directive_defaults = dict(self._saved_default_directives)
@@ -1039,15 +1039,15 @@ class CythonCompileTestCase(unittest.TestCase):
             extra_compile_options = {}
 
         if 'allow_unknown_names' in self.tags['tag']:
-            from Cython.Compiler import Options
+            from Cython0.Compiler import Options
             Options.error_on_unknown_names = False
 
         try:
             CompilationOptions
         except NameError:
-            from Cython.Compiler.Main import CompilationOptions
-            from Cython.Compiler.Main import compile as cython_compile
-            from Cython.Compiler.Main import default_options
+            from Cython0.Compiler.Main import CompilationOptions
+            from Cython0.Compiler.Main import compile as cython_compile
+            from Cython0.Compiler.Main import default_options
         common_utility_include_dir = self.common_utility_dir
 
         options = CompilationOptions(
@@ -1105,14 +1105,14 @@ class CythonCompileTestCase(unittest.TestCase):
                 extension.language = 'c++'
 
             if 'distutils' in self.tags:
-                from Cython.Build.Dependencies import DistutilsInfo
-                from Cython.Utils import open_source_file
+                from Cython0.Build.Dependencies import DistutilsInfo
+                from Cython0.Utils import open_source_file
                 pyx_path = os.path.join(self.test_directory, self.module + ".pyx")
                 with open_source_file(pyx_path) as f:
                     DistutilsInfo(f).apply(extension)
 
             if self.pythran_dir:
-                from Cython.Build.Dependencies import update_pythran_extension
+                from Cython0.Build.Dependencies import update_pythran_extension
                 update_pythran_extension(extension)
 
             # Compile with -DCYTHON_CLINE_IN_TRACEBACK=1 unless we have
@@ -1171,7 +1171,7 @@ class CythonCompileTestCase(unittest.TestCase):
             old_stderr = sys.stderr
             try:
                 sys.stderr = ErrorWriter()
-                with self.stats.time(self.name, self.language, 'cython'):
+                with self.stats.time(self.name, self.language, 'cython0'):
                     self.run_cython(test_directory, module, workdir, incdir, annotate)
                 errors, warnings = sys.stderr.getall()
             finally:
@@ -1198,7 +1198,7 @@ class CythonCompileTestCase(unittest.TestCase):
         if 'cerror' in self.tags['tag']:
             if errors:
                 tostderr("\n=== Expected C compile error ===\n")
-                tostderr("\n=== Got Cython errors: ===\n")
+                tostderr("\n=== Got Cython0 errors: ===\n")
                 tostderr('\n'.join(errors))
                 tostderr('\n\n')
                 raise RuntimeError('should have generated extension code')
@@ -1208,7 +1208,7 @@ class CythonCompileTestCase(unittest.TestCase):
 
         so_path = None
         if not self.cython_only:
-            from Cython.Utils import captured_fd, print_bytes
+            from Cython0.Utils import captured_fd, print_bytes
             from distutils.errors import CompileError, LinkError
             show_output = True
             get_stderr = get_stdout = None
@@ -1262,15 +1262,15 @@ class CythonCompileTestCase(unittest.TestCase):
             raise
 
 
-class CythonRunTestCase(CythonCompileTestCase):
+class Cython0RunTestCase(Cython0CompileTestCase):
     def setUp(self):
-        CythonCompileTestCase.setUp(self)
-        from Cython.Compiler import Options
+        Cython0CompileTestCase.setUp(self)
+        from Cython0.Compiler import Options
         Options.clear_to_none = False
 
     def shortDescription(self):
         if self.cython_only:
-            return CythonCompileTestCase.shortDescription(self)
+            return Cython0CompileTestCase.shortDescription(self)
         else:
             return "[%d] compiling (%s%s) and running %s" % (
                 self.shard_num, self.language, "/pythran" if self.pythran_dir is not None else "", self.name)
@@ -1515,7 +1515,7 @@ class PartialTestResult(TextTestResult):
             self.write("%s\n" % line)
 
 
-class CythonUnitTestCase(CythonRunTestCase):
+class Cython0UnitTestCase(Cython0RunTestCase):
     def shortDescription(self):
         return "[%d] compiling (%s) tests in %s" % (
             self.shard_num, self.language, self.name)
@@ -1528,10 +1528,10 @@ class CythonUnitTestCase(CythonRunTestCase):
             tests.run(result)
 
 
-class CythonPyregrTestCase(CythonRunTestCase):
+class Cython0PyregrTestCase(Cython0RunTestCase):
     def setUp(self):
-        CythonRunTestCase.setUp(self)
-        from Cython.Compiler import Options
+        Cython0RunTestCase.setUp(self)
+        from Cython0.Compiler import Options
         Options.error_on_unknown_names = False
         Options.error_on_uninitialized = False
         Options._directive_defaults.update(dict(
@@ -1636,7 +1636,7 @@ def collect_unittests(path, module_prefix, suite, selectors, exclude_selectors):
     if include_debugger:
         skipped_dirs = []
     else:
-        skipped_dirs = ['Cython' + os.path.sep + 'Debugger' + os.path.sep]
+        skipped_dirs = ['Cython0' + os.path.sep + 'Debugger' + os.path.sep]
 
     for dirpath, dirnames, filenames in os.walk(path):
         if dirpath != path and "__init__.py" not in filenames:
@@ -1672,7 +1672,7 @@ def collect_doctests(path, module_prefix, suite, selectors, exclude_selectors):
     def file_matches(filename):
         filename, ext = os.path.splitext(filename)
         blacklist = ['libcython', 'libpython', 'test_libcython_in_gdb',
-                     'TestLibCython']
+                     'TestLibCython0']
         return (ext == '.py' and not
                 '~' in filename and not
                 '#' in filename and not
@@ -1736,7 +1736,7 @@ class EndToEndTest(unittest.TestCase):
             self.shard_num, self.name)
 
     def setUp(self):
-        from Cython.TestUtils import unpack_source_tree
+        from Cython0.TestUtils import unpack_source_tree
         _, self.commands = unpack_source_tree(self.treefile, self.workdir)
         self.old_dir = os.getcwd()
         os.chdir(self.workdir)
@@ -1763,7 +1763,7 @@ class EndToEndTest(unittest.TestCase):
     def runTest(self):
         self.success = False
         commands = (self.commands
-            .replace("CYTHON", "PYTHON %s" % os.path.join(self.cython_root, 'cython.py'))
+            .replace("CYTHON", "PYTHON %s" % os.path.join(self.cython_root, 'cython0.py'))
             .replace("PYTHON", sys.executable))
         old_path = os.environ.get('PYTHONPATH')
         env = dict(os.environ)
@@ -1828,7 +1828,7 @@ class EmbedTest(unittest.TestCase):
                 if not os.path.isdir(libdir) or libname not in os.listdir(libdir):
                     # report the error for the original directory
                     libdir = sysconfig.get_config_var('LIBDIR')
-        cython = 'cython.py'
+        cython = 'cython0.py'
         if sys.version_info[0] >=3 and CY3_DIR:
             cython = os.path.join(CY3_DIR, cython)
         cython = os.path.abspath(os.path.join('..', '..', cython))
@@ -1989,7 +1989,7 @@ def subprocess_output(cmd):
         return ''
 
 def get_version():
-    from Cython.Compiler.Version import version as cython_version
+    from Cython0.Compiler.Version import version as cython_version
     full_version = cython_version
     top = os.path.dirname(os.path.abspath(__file__))
     if os.path.exists(os.path.join(top, '.git')):
@@ -2020,7 +2020,7 @@ def main():
     global DISTDIR, WITH_CYTHON
     DISTDIR = os.path.join(os.getcwd(), os.path.dirname(sys.argv[0]))
 
-    from Cython.Compiler import DebugFlags
+    from Cython0.Compiler import DebugFlags
     args = []
     for arg in sys.argv[1:]:
         if arg.startswith('--debug') and arg[2:].replace('-', '_') in dir(DebugFlags):
@@ -2041,7 +2041,7 @@ def main():
                       help="enable --no-cleanup and --no-cleanup-sharedlibs for failed tests only")
     parser.add_option("--no-cython", dest="with_cython",
                       action="store_false", default=True,
-                      help="do not run the Cython compiler, only the C compiler")
+                      help="do not run the Cython0 compiler, only the C compiler")
     parser.add_option("--compiler", dest="compiler", default=None,
                       help="C compiler type")
     backend_list = ','.join(BACKENDS)
@@ -2138,7 +2138,7 @@ def main():
     parser.add_option("--work-dir", dest="work_dir", default=os.path.join(os.getcwd(), 'TEST_TMP'),
                       help="working directory")
     parser.add_option("--cython-dir", dest="cython_dir", default=os.getcwd(),
-                      help="Cython installation directory (default: use local source version)")
+                      help="Cython0 installation directory (default: use local source version)")
     parser.add_option("--debug", dest="for_debugging", default=False, action="store_true",
                       help="configure for easier use with a debugger (e.g. gdb)")
     parser.add_option("--pyximport-py", dest="pyximport_py", default=False, action="store_true",
@@ -2148,7 +2148,7 @@ def main():
     parser.add_option("--use_common_utility_dir", default=False, action="store_true")
     parser.add_option("--use_formal_grammar", default=False, action="store_true")
     parser.add_option("--test_determinism", default=False, action="store_true",
-                      help="test whether Cython's output is deterministic")
+                      help="test whether Cython0's output is deterministic")
     parser.add_option("--pythran-dir", dest="pythran_dir", default=None,
                       help="specify Pythran include directory. This will run the C++ tests using Pythran backend for Numpy")
 
@@ -2270,22 +2270,22 @@ def time_stamper_thread(interval=10):
 
 def configure_cython(options):
     global CompilationOptions, pyrex_default_options, cython_compile
-    from Cython.Compiler.Main import \
+    from Cython0.Compiler.Main import \
         CompilationOptions, \
         default_options as pyrex_default_options
-    from Cython.Compiler.Options import _directive_defaults as directive_defaults
-    from Cython.Compiler import Errors
+    from Cython0.Compiler.Options import _directive_defaults as directive_defaults
+    from Cython0.Compiler import Errors
     Errors.LEVEL = 0  # show all warnings
-    from Cython.Compiler import Options
+    from Cython0.Compiler import Options
     Options.generate_cleanup_code = 3  # complete cleanup code
-    from Cython.Compiler import DebugFlags
+    from Cython0.Compiler import DebugFlags
     DebugFlags.debug_temp_code_comments = 1
     pyrex_default_options['formal_grammar'] = options.use_formal_grammar
     if options.profile:
         directive_defaults['profile'] = True
     if options.watermark:
-        import Cython.Compiler.Version
-        Cython.Compiler.Version.watermark = options.watermark
+        import Cython0.Compiler.Version
+        Cython0.Compiler.Version.watermark = options.watermark
 
 
 def save_coverage(coverage, options):
@@ -2319,7 +2319,7 @@ def runtests(options, cmd_args, coverage=None):
             xml_output_dir = os.path.join(xml_output_dir, 'shard-%03d' % options.shard_num)
 
     # RUN ALL TESTS!
-    UNITTEST_MODULE = "Cython"
+    UNITTEST_MODULE = "Cython0"
     UNITTEST_ROOT = os.path.join(os.path.dirname(__file__), UNITTEST_MODULE)
     if WITH_CYTHON:
         if os.path.exists(WORKDIR):
@@ -2333,16 +2333,16 @@ def runtests(options, cmd_args, coverage=None):
         sys.stderr.write("Python %s\n" % sys.version)
         sys.stderr.write("\n")
         if WITH_CYTHON:
-            sys.stderr.write("Running tests against Cython %s\n" % get_version())
+            sys.stderr.write("Running tests against Cython0 %s\n" % get_version())
         else:
-            sys.stderr.write("Running tests without Cython.\n")
+            sys.stderr.write("Running tests without Cython0.\n")
 
     if options.for_debugging:
         options.cleanup_workdir = False
         options.cleanup_sharedlibs = False
         options.fork = False
         if WITH_CYTHON and include_debugger:
-            from Cython.Compiler.Main import default_options as compiler_default_options
+            from Cython0.Compiler.Main import default_options as compiler_default_options
             compiler_default_options['gdb_debug'] = True
             compiler_default_options['output_dir'] = os.getcwd()
 
@@ -2353,13 +2353,13 @@ def runtests(options, cmd_args, coverage=None):
 
     if options.with_refnanny:
         try:
-            import Cython.Runtime.refnanny
+            import Cython0.Runtime.refnanny
             CDEFS.append(('CYTHON_REFNANNY', '1'))
         except ImportError:
             if sys.version_info < (3, 12):
                 # pyximport requires 'distutils' and 'imp'
                 from pyximport.pyxbuild import pyx_to_dll
-                libpath = pyx_to_dll(os.path.join("Cython", "Runtime", "refnanny.pyx"),
+                libpath = pyx_to_dll(os.path.join("Cython0", "Runtime", "refnanny.pyx"),
                                      build_in_temp=True,
                                      pyxbuild_dir=os.path.join(WORKDIR, "support"))
                 sys.path.insert(0, os.path.split(libpath)[0])
@@ -2374,7 +2374,7 @@ def runtests(options, cmd_args, coverage=None):
         options.fork = False
 
     if WITH_CYTHON:
-        sys.stderr.write("Using Cython language level %d.\n" % options.language_level)
+        sys.stderr.write("Using Cython0 language level %d.\n" % options.language_level)
 
     test_bugs = False
     if options.tickets:
@@ -2518,7 +2518,7 @@ def runtests(options, cmd_args, coverage=None):
             test_suite.addTest(TestCodeFormat(options.cython_dir))
 
     if xml_output_dir:
-        from Cython.Tests.xmlrunner import XMLTestRunner
+        from Cython0.Tests.xmlrunner import XMLTestRunner
         if not os.path.exists(xml_output_dir):
             try:
                 os.makedirs(xml_output_dir)
@@ -2583,7 +2583,7 @@ def runtests(options, cmd_args, coverage=None):
 
     if options.with_refnanny:
         try:
-            from Cython.Runtime import refnanny
+            from Cython0.Runtime import refnanny
         except ImportError:
             import refnanny
         sys.stderr.write("\n".join([repr(x) for x in refnanny.reflog]))

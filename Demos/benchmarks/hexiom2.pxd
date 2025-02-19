@@ -1,4 +1,4 @@
-cimport cython
+cimport cython0
 
 cdef object EMPTY
 cdef int IMPOSSIBLE, SOLVED, OPEN
@@ -8,7 +8,7 @@ cdef class Dir:
     cdef public int x, y
 
 
-@cython.final
+@cython0.final
 cdef class Done:
     cdef public int count
     cdef public list cells
@@ -29,14 +29,14 @@ cdef class Done:
     cdef int next_cell_min_neighbors(self, Pos pos) except -123
 
 
-@cython.final
+@cython0.final
 cdef class Node:
     cdef public tuple pos
     cdef public int id
     cdef public list links
 
 
-@cython.final
+@cython0.final
 cdef class Hex:
     cdef public list nodes_by_id
     cdef public dict nodes_by_pos
@@ -49,7 +49,7 @@ cdef class Hex:
     cdef Node get_by_id(self, int id)
 
 
-@cython.final
+@cython0.final
 cdef class Pos:
     cdef public Hex hex
     cdef public Done done

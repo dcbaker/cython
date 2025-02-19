@@ -1,5 +1,5 @@
 
-import cython
+import cython0
 
 class Unhashable(object):
     def __hash__(self):
@@ -22,9 +22,9 @@ class CountedHashable(object):
         self.eq_count += 1
         return id(self) == id(other)
 
-@cython.test_fail_if_path_exists('//AttributeNode')
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.locals(d=dict)
+@cython0.test_fail_if_path_exists('//AttributeNode')
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.locals(d=dict)
 def setdefault1(d, key):
     """
     >>> d = {}
@@ -67,9 +67,9 @@ def setdefault1(d, key):
     """
     return d.setdefault(key)
 
-@cython.test_fail_if_path_exists('//AttributeNode')
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.locals(d=dict)
+@cython0.test_fail_if_path_exists('//AttributeNode')
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.locals(d=dict)
 def setdefault2(d, key, value):
     """
     >>> d = {}

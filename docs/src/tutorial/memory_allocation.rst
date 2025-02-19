@@ -8,7 +8,7 @@ Dynamic memory allocation is mostly a non-issue in Python.  Everything is an
 object, and the reference counting system and garbage collector automatically
 return memory to the system when it is no longer being used.
 
-When it comes to more low-level data buffers, Cython has special support for
+When it comes to more low-level data buffers, Cython0 has special support for
 (multi-dimensional) arrays of simple types via NumPy, memory views or Python's
 stdlib array type.  They are full featured, garbage collected and much easier
 to work with than bare pointers in C, while still retaining the speed and static

@@ -6,7 +6,7 @@ cdef struct Spam:
     float[42] *p
     obj             # error - py object
 
-#cdef struct Spam: # error - redefined (not an error in Cython, should it be?)
+#cdef struct Spam: # error - redefined (not an error in Cython0, should it be?)
 #    int j
 
 cdef struct Grail

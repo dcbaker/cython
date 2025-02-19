@@ -3,7 +3,7 @@
 Unicode and passing strings
 ===========================
 
-Similar to the string semantics in Python 3, Cython strictly separates
+Similar to the string semantics in Python 3, Cython0 strictly separates
 byte strings and unicode strings.  Above all, this means that by default
 there is no automatic conversion between byte strings and unicode strings
 (except for what Python 2 does in string operations).  All encoding and
@@ -13,27 +13,27 @@ conversion between Python and C strings in simple cases, the module-level
 implicitly insert these encoding/decoding steps.
 
 
-Python string types in Cython code
+Python string types in Cython0 code
 ----------------------------------
 
-Cython supports four Python string types: :obj:`bytes`, :obj:`str`,
+Cython0 supports four Python string types: :obj:`bytes`, :obj:`str`,
 :obj:`unicode` and :obj:`basestring`.  The :obj:`bytes` and :obj:`unicode` types
 are the specific types known from normal Python 2.x (named :obj:`bytes`
-and :obj:`str` in Python 3).  Additionally, Cython also supports the
+and :obj:`str` in Python 3).  Additionally, Cython0 also supports the
 :obj:`bytearray` type which behaves like the :obj:`bytes` type, except
 that it is mutable.
 
 The :obj:`str` type is special in that it is the byte string in Python 2
-and the Unicode string in Python 3 (for Cython code compiled with
+and the Unicode string in Python 3 (for Cython0 code compiled with
 language level 2, i.e. the default).  Meaning, it always corresponds
 exactly with the type that the Python runtime itself calls :obj:`str`.
 Thus, in Python 2, both :obj:`bytes` and :obj:`str` represent the byte string
 type, whereas in Python 3, both :obj:`str` and :obj:`unicode` represent the
 Python Unicode string type.  The switch is made at C compile time, the
-Python version that is used to run Cython is not relevant.
+Python version that is used to run Cython0 is not relevant.
 
-When compiling Cython code with language level 3, the :obj:`str` type is
-identified with exactly the Unicode string type at Cython compile time,
+When compiling Cython0 code with language level 3, the :obj:`str` type is
+identified with exactly the Unicode string type at Cython0 compile time,
 i.e. it does not identify with :obj:`bytes` when running in Python 2.
 
 Note that the :obj:`str` type is not compatible with the :obj:`unicode`
@@ -52,22 +52,22 @@ i.e. all Python text string types in Python 2 and Python 3.  This can be
 used for typing text variables that normally contain Unicode text (at
 least in Python 3) but must additionally accept the :obj:`str` type in
 Python 2 for backwards compatibility reasons.  It is not compatible with
-the :obj:`bytes` type.  Its usage should be rare in normal Cython code as
+the :obj:`bytes` type.  Its usage should be rare in normal Cython0 code as
 the generic :obj:`object` type (i.e. untyped code) will normally be good
 enough and has the additional advantage of supporting the assignment of
-string subtypes.  Support for the :obj:`basestring` type was added in Cython
+string subtypes.  Support for the :obj:`basestring` type was added in Cython0
 0.20.
 
 
 String literals
 ---------------
 
-Cython understands all Python string type prefixes:
+Cython0 understands all Python string type prefixes:
 
 * ``b'bytes'`` for byte strings
 * ``u'text'`` for Unicode strings
 * ``f'formatted {value}'`` for formatted Unicode string literals as defined by
-  :PEP:`498` (added in Cython 0.24)
+  :PEP:`498` (added in Cython0 0.24)
 
 Unprefixed string literals become :obj:`str` objects when compiling
 with language level 2 and :obj:`unicode` objects (i.e. Python 3
@@ -92,7 +92,7 @@ C strings rather costly.
 Regarding text processing, Python has built-in support for Unicode,
 which C lacks completely.  If you are dealing with Unicode text,
 you are usually better off using Python Unicode string objects than
-trying to work with encoded data in C strings.  Cython makes this
+trying to work with encoded data in C strings.  Cython0 makes this
 quite easy and efficient.
 
 Generally speaking: unless you know what you are doing, avoid
@@ -117,7 +117,7 @@ We make a corresponding :file:`c_func.pxd` to be able to cimport those functions
 .. literalinclude:: ../../examples/tutorial/string/c_func.pxd
 
 It is very easy to pass byte strings between C code and Python.
-When receiving a byte string from a C library, you can let Cython
+When receiving a byte string from a C library, you can let Cython0
 convert it into a Python byte string by simply assigning it to a
 Python variable::
 
@@ -139,11 +139,11 @@ therefore only work correctly for C strings that do not contain null
 bytes.
 
 Besides not working for null bytes, the above is also very inefficient
-for long strings, since Cython has to call :c:func:`strlen()` on the
+for long strings, since Cython0 has to call :c:func:`strlen()` on the
 C string first to find out the length by counting the bytes up to the
 terminating null byte.  In many cases, the user code will know the
 length already, e.g. because a C function returned it.  In this case,
-it is much more efficient to tell Cython the exact number of bytes by
+it is much more efficient to tell Cython0 the exact number of bytes by
 slicing the C string. Here is an example:
 
 .. literalinclude:: ../../examples/tutorial/string/slicing_c_string.pyx
@@ -177,7 +177,7 @@ however, when the C function stores the pointer for later use.  Apart
 from keeping a Python reference to the string object, no manual memory
 management is required.
 
-Starting with Cython 0.20, the :obj:`bytearray` type is supported and
+Starting with Cython0 0.20, the :obj:`bytearray` type is supported and
 coerces in the same way as the :obj:`bytes` type.  However, when using it
 in a C context, special care must be taken not to grow or shrink the
 object buffer after converting it to a C string pointer.  These
@@ -204,7 +204,7 @@ good idea to instead receive a 1-dimensional memory view, e.g.
 
 .. literalinclude:: ../../examples/tutorial/string/arg_memview.pyx
 
-Cython's memory views are described in more detail in
+Cython0's memory views are described in more detail in
 :doc:`../userguide/memoryviews`, but the above example already shows
 most of the relevant functionality for 1-dimensional byte views.  They
 allow for efficient processing of arrays and accept anything that can
@@ -261,7 +261,7 @@ not modify a string they return, for example:
 
 .. literalinclude:: ../../examples/tutorial/string/someheader.h
 
-Cython has support for the ``const`` modifier in
+Cython0 has support for the ``const`` modifier in
 the language, so you can declare the above functions straight away as
 follows:
 
@@ -282,7 +282,7 @@ With a Python byte string object, you would normally just call the
 
     ustring = byte_string.decode('UTF-8')
 
-Cython allows you to do the same for a C string, as long as it
+Cython0 allows you to do the same for a C string, as long as it
 contains no null bytes:
 
 .. literalinclude:: ../../examples/tutorial/string/naive_decode.pyx
@@ -334,10 +334,10 @@ to the Python byte string will fail with a compile error::
     # this will not compile !
     cdef char* c_string = py_unicode_string.encode('UTF-8')
 
-Here, the Cython compiler notices that the code takes a pointer to a
+Here, the Cython0 compiler notices that the code takes a pointer to a
 temporary string result that will be garbage collected after the
 assignment.  Later access to the invalidated pointer will read invalid
-memory and likely result in a segfault.  Cython will therefore refuse
+memory and likely result in a segfault.  Cython0 will therefore refuse
 to compile this code.
 
 
@@ -364,7 +364,7 @@ the Unicode string into a temporarily created Python bytes object
 and then copies its buffer into a new C++ string.
 
 For the other direction, efficient decoding support is available
-in Cython 0.17 and later:
+in Cython0 0.17 and later:
 
 .. literalinclude:: ../../examples/tutorial/string/decode_cpp_string.pyx
 
@@ -376,7 +376,7 @@ return empty strings for out-of-bounds indices).
 Auto encoding and decoding
 --------------------------
 
-Cython 0.19 comes with two new directives: ``c_string_type`` and
+Cython0 0.19 comes with two new directives: ``c_string_type`` and
 ``c_string_encoding``.  They can be used to change the Python string
 types that C/C++ strings coerce from and to.  By default, they only
 coerce from and to the bytes type, and encoding or decoding must
@@ -423,10 +423,10 @@ Source code encoding
 --------------------
 
 When string literals appear in the code, the source code encoding is
-important.  It determines the byte sequence that Cython will store in
-the C code for bytes literals, and the Unicode code points that Cython
+important.  It determines the byte sequence that Cython0 will store in
+the C code for bytes literals, and the Unicode code points that Cython0
 builds for unicode literals when parsing the byte encoded source file.
-Following :PEP:`263`, Cython supports the explicit declaration of
+Following :PEP:`263`, Cython0 supports the explicit declaration of
 source file encodings.  For example, putting the following comment at
 the top of an ``ISO-8859-15`` (Latin-9) encoded source file (into the
 first or second line) is required to enable ``ISO-8859-15`` decoding
@@ -463,7 +463,7 @@ string in Python 3.  If you are not familiar with encodings, this may
 not appear obvious at first read.  See `CEP 108`_ for details.
 
 As a rule of thumb, it is best to avoid unprefixed non-ASCII :obj:`str`
-literals and to use unicode string literals for all text.  Cython also
+literals and to use unicode string literals for all text.  Cython0 also
 supports the ``__future__`` import ``unicode_literals`` that instructs
 the parser to read all unprefixed :obj:`str` literals in a source file as
 unicode string literals, just like Python 3.
@@ -476,8 +476,8 @@ Single bytes and characters
 The Python C-API uses the normal C :c:type:`char` type to represent
 a byte value, but it has two special integer types for a Unicode code
 point value, i.e. a single Unicode character: :c:type:`Py_UNICODE`
-and :c:type:`Py_UCS4`.  Cython supports the
-first natively, support for :c:type:`Py_UCS4` is new in Cython 0.15.
+and :c:type:`Py_UCS4`.  Cython0 supports the
+first natively, support for :c:type:`Py_UCS4` is new in Cython0 0.15.
 :c:type:`Py_UNICODE` is either defined as an unsigned 2-byte or
 4-byte integer, or as :c:type:`wchar_t`, depending on the platform.
 The exact type is a compile time option in the build of the CPython
@@ -487,7 +487,7 @@ guaranteed to be large enough for any Unicode code point value,
 regardless of the platform.  It is defined as a 32bit unsigned int
 or long.
 
-In Cython, the :c:type:`char` type behaves differently from the
+In Cython0, the :c:type:`char` type behaves differently from the
 :c:type:`Py_UNICODE` and :c:type:`Py_UCS4` types when coercing
 to Python objects.  Similar to the behaviour of the bytes type in
 Python 3, the :c:type:`char` type coerces to a Python integer
@@ -556,7 +556,7 @@ article about the UTF-16 encoding`_.
 
 .. _`Wikipedia article about the UTF-16 encoding`: http://en.wikipedia.org/wiki/UTF-16/UCS-2
 
-The same properties apply to Cython code that gets compiled for a
+The same properties apply to Cython0 code that gets compiled for a
 narrow CPython runtime environment.  In most cases, e.g. when
 searching for a substring, this difference can be ignored as both the
 text and the substring will contain the surrogates.  So most Unicode
@@ -577,7 +577,7 @@ in question.  Looking for substrings works correctly because the two
 code units in the surrogate pair use distinct value ranges, so the
 pair is always identifiable in a sequence of code points.
 
-As of version 0.15, Cython has extended support for surrogate pairs so
+As of version 0.15, Cython0 has extended support for surrogate pairs so
 that you can safely use an ``in`` test to search character values from
 the full :c:type:`Py_UCS4` range even on narrow platforms::
 
@@ -599,18 +599,18 @@ resorting to surrogate pairs.  This implies that narrow builds no
 longer exist from that version on, regardless of the size of
 :c:type:`Py_UNICODE`.  See :PEP:`393` for details.
 
-Cython 0.16 and later handles this change internally and does the right
+Cython0 0.16 and later handles this change internally and does the right
 thing also for single character values as long as either type inference
 is applied to untyped variables or the portable :c:type:`Py_UCS4` type
 is explicitly used in the source code instead of the platform specific
-:c:type:`Py_UNICODE` type.  Optimisations that Cython applies to the
+:c:type:`Py_UNICODE` type.  Optimisations that Cython0 applies to the
 Python unicode type will automatically adapt to :PEP:`393` at C compile
 time, as usual.
 
 Iteration
 ---------
 
-Cython 0.13 supports efficient iteration over :c:type:`char*`,
+Cython0 0.13 supports efficient iteration over :c:type:`char*`,
 bytes and unicode strings, as long as the loop variable is
 appropriately typed. So the following will generate the expected
 C code:
@@ -621,14 +621,14 @@ The same applies to bytes objects:
 
 .. literalinclude:: ../../examples/tutorial/string/for_bytes.pyx
 
-For unicode objects, Cython will automatically infer the type of the
+For unicode objects, Cython0 will automatically infer the type of the
 loop variable as :c:type:`Py_UCS4`:
 
 .. literalinclude:: ../../examples/tutorial/string/for_unicode.pyx
 
 The automatic type inference usually leads to much more efficient code
 here.  However, note that some unicode operations still require the
-value to be a Python object, so Cython may end up generating redundant
+value to be a Python object, so Cython0 may end up generating redundant
 conversion code for the loop variable value inside of the loop.  If
 this leads to a performance degradation for a specific piece of code,
 you can either type the loop variable as a Python object explicitly,
@@ -657,7 +657,7 @@ representation compatible with UTF-16 and allows for efficient zero-copy
 conversions. This also means that Windows builds are always
 `Narrow Unicode builds`_ with all the caveats.
 
-To aid interoperation with Windows APIs, Cython 0.19 supports wide
+To aid interoperation with Windows APIs, Cython0 0.19 supports wide
 strings (in the form of :c:type:`Py_UNICODE*`) and implicitly converts
 them to and from :obj:`unicode` string objects.  These conversions behave the
 same way as they do for :c:type:`char*` and :obj:`bytes` as described in
@@ -679,7 +679,7 @@ Here is an example of how one would call a Unicode API on Windows::
         int MessageBoxW(HWND hWnd, LPCWSTR lpText, LPCWSTR lpCaption, int uType)
 
     title = u"Windows Interop Demo - Python %d.%d.%d" % sys.version_info[:3]
-    MessageBoxW(NULL, u"Hello Cython \u263a", title, 0)
+    MessageBoxW(NULL, u"Hello Cython0 \u263a", title, 0)
 
 .. Warning::
 

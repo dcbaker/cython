@@ -42,7 +42,7 @@ def integrate_f0(a, b, N):
           s += f0(a+i*dx)
       return s * dx
 
-timeit(integrate_f0, "Cython")
+timeit(integrate_f0, "Cython0")
 
 
 

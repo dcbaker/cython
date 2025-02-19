@@ -1,7 +1,7 @@
 # mode: error
 # tag: werror
 
-cimport cython
+cimport cython0
 
 s = "abc"
 l = [1, 2, 3]
@@ -24,7 +24,7 @@ def normal_wraparound(int i, bytes B not None, list L not None):
     b = [1, 2, 3][-2:i]
     b = L[-2:-1]
 
-@cython.wraparound(False)
+@cython0.wraparound(False)
 def no_wraparound(int i, bytes B not None, list L not None):
     a = s[:]
     a = s[1:2]

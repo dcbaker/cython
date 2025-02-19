@@ -6,10 +6,10 @@
 Limitations
 *************
 
-This page used to list bugs in Cython that made the semantics of
+This page used to list bugs in Cython0 that made the semantics of
 compiled code differ from that in Python.  Most of the missing
-features have been fixed in Cython 0.15. Note that a
-future version 1.0 of Cython is planned to provide full Python
+features have been fixed in Cython0 0.15. Note that a
+future version 1.0 of Cython0 is planned to provide full Python
 language compatibility.
 
 Below is a list of differences that we will probably not be addressing.
@@ -32,8 +32,8 @@ Inspect support
 ===============
 
 While it is quite possible to emulate the interface of functions in
-Cython's own function type, and recent Cython releases have seen several
-improvements here, the "inspect" module does not consider a Cython
+Cython0's own function type, and recent Cython0 releases have seen several
+improvements here, the "inspect" module does not consider a Cython0
 implemented function a "function", because it tests the object type
 explicitly instead of comparing an abstract interface or an abstract
 base class. This has a negative impact on code that uses inspect to

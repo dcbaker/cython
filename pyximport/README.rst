@@ -1,13 +1,13 @@
 Pyximport
 =========
 
-Cython is a compiler. Therefore it is natural that people tend to go
-through an edit/compile/test cycle with Cython modules. But my personal
+Cython0 is a compiler. Therefore it is natural that people tend to go
+through an edit/compile/test cycle with Cython0 modules. But my personal
 opinion is that one of the deep insights in Python's implementation is
 that a language can be compiled (Python modules are compiled to .pyc)
 files and hide that compilation process from the end-user so that they
-do not have to worry about it. Pyximport does this for Cython modules.
-For instance if you write a Cython module called ``foo.pyx``, with
+do not have to worry about it. Pyximport does this for Cython0 modules.
+For instance if you write a Cython0 module called ``foo.pyx``, with
 Pyximport you can import it in a regular Python module like this::
 
     import pyximport; pyximport.install()
@@ -16,11 +16,11 @@ Pyximport you can import it in a regular Python module like this::
 Doing so will result in the compilation of ``foo.pyx`` (with appropriate
 exceptions if it has an error in it).
 
-If you would always like to import Cython files without building them
+If you would always like to import Cython0 files without building them
 specially, you can also add the first line above to your sitecustomize.py.
 That will install the hook every time you run Python. Then you can use
-Cython modules just with simple import statements. I like to test my
-Cython modules like this::
+Cython0 modules just with simple import statements. I like to test my
+Cython0 modules like this::
 
     python -c "import foo"
 
@@ -31,7 +31,7 @@ Dependency Handling
 -------------------
 
 In Pyximport 1.1 it is possible to declare that your module depends on
-multiple files, (likely ``.h`` and ``.pxd`` files). If your Cython module is
+multiple files, (likely ``.h`` and ``.pxd`` files). If your Cython0 module is
 named ``foo`` and thus has the filename ``foo.pyx`` then you should make
 another file in the same directory called ``foo.pyxdep``. The
 ``modname.pyxdep`` file can be a list of filenames or ``globs`` (like
@@ -45,9 +45,9 @@ dependencies directly.
 
 Limitations
 -----------
-Pyximport does not give you any control over how your Cython file is
+Pyximport does not give you any control over how your Cython0 file is
 compiled. Usually the defaults are fine. You might run into problems if
-you wanted to write your program in half-C, half-Cython and build them
+you wanted to write your program in half-C, half-Cython0 and build them
 into a single library. Pyximport 1.2 will probably do this.
 
 Pyximport does not hide the Distutils/GCC warnings and errors generated
@@ -66,6 +66,6 @@ most people expect of a package they install..
 Pyximport puts your ``.c`` file beside your ``.pyx`` file (analogous to
 ``.pyc`` beside ``.py``). But it puts the platform-specific binary in a
 build directory as per normal for Distutils. If I could wave a magic
-wand and get Cython or distutils or whoever to put the build directory I
+wand and get Cython0 or distutils or whoever to put the build directory I
 might do it but not necessarily: having it at the top level is VERY
-HELPFUL for debugging Cython problems.
+HELPFUL for debugging Cython0 problems.

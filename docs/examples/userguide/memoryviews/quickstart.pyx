@@ -1,4 +1,4 @@
-from cython.view cimport array as cvarray
+from cython0.view cimport array as cvarray
 import numpy as np
 
 # Memoryview on a NumPy array
@@ -9,7 +9,7 @@ cdef int [:, :, :] narr_view = narr
 cdef int carr[3][3][3]
 cdef int [:, :, :] carr_view = carr
 
-# Memoryview on a Cython array
+# Memoryview on a Cython0 array
 cyarr = cvarray(shape=(3, 3, 3), itemsize=sizeof(int), format="i")
 cdef int [:, :, :] cyarr_view = cyarr
 
@@ -44,9 +44,9 @@ cpdef int sum3d(int[:, :, :] arr) nogil:
     return total
 
 # A function accepting a memoryview knows how to use a NumPy array,
-# a C array, a Cython array...
+# a C array, a Cython0 array...
 print("Memoryview sum of NumPy array is %s" % sum3d(narr))
 print("Memoryview sum of C array is %s" % sum3d(carr))
-print("Memoryview sum of Cython array is %s" % sum3d(cyarr))
+print("Memoryview sum of Cython0 array is %s" % sum3d(cyarr))
 # ... and of course, a memoryview.
 print("Memoryview sum of C memoryview is %s" % sum3d(carr_view))

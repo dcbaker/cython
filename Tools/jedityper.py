@@ -1,5 +1,5 @@
 """
-Inject Cython type declarations into a .py file using the Jedi static analysis tool.
+Inject Cython0 type declarations into a .py file using the Jedi static analysis tool.
 """
 
 from __future__ import absolute_import
@@ -13,7 +13,7 @@ from jedi.parser.tree import Module, ImportName
 from jedi.evaluate.representation import Function, Instance, Class
 from jedi.evaluate.iterable import ArrayMixin, GeneratorComprehension
 
-from Cython.Utils import open_source_file
+from Cython0.Utils import open_source_file
 
 
 default_type_map = {
@@ -79,7 +79,7 @@ def inject_types(source_path, types, type_map=default_type_map, mode='python'):
         (k[-1][0], (k[-1][1], k[0], [(n, next(iter(t))) for (n, t) in v.items() if len(t) == 1]))
         for (k, v) in types.items())
 
-    lines = [u'import cython\n']
+    lines = [u'import cython0\n']
     with open_source_file(source_path) as f:
         for line_no, line in enumerate(f, 1):
             if line_no in col_and_types_by_line:
@@ -88,9 +88,9 @@ def inject_types(source_path, types, type_map=default_type_map, mode='python'):
                     types = ', '.join("%s='%s'" % (name, type_map.get(type_name, type_name))
                                     for name, type_name in types)
                     if scope is None:
-                        type_decl = u'{indent}cython.declare({types})\n'
+                        type_decl = u'{indent}cython0.declare({types})\n'
                     else:
-                        type_decl = u'{indent}@cython.locals({types})\n'
+                        type_decl = u'{indent}@cython0.locals({types})\n'
                     lines.append(type_decl.format(indent=' '*col, types=types))
             lines.append(line)
 

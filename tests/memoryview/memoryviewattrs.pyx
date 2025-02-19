@@ -8,8 +8,8 @@ def testcase(func):
     return func
 
 
-cimport cython
-from cython.view cimport array
+cimport cython0
+from cython0.view cimport array
 
 import numpy as np
 cimport numpy as np
@@ -120,7 +120,7 @@ def test_partly_overlapping():
         assert slice2[i] == i + 4
 
 @testcase
-@cython.nonecheck(True)
+@cython0.nonecheck(True)
 def test_nonecheck1():
     u'''
     >>> test_nonecheck1()
@@ -132,7 +132,7 @@ def test_nonecheck1():
     print uninitialized.is_c_contig()
 
 @testcase
-@cython.nonecheck(True)
+@cython0.nonecheck(True)
 def test_nonecheck2():
     u'''
     >>> test_nonecheck2()
@@ -144,7 +144,7 @@ def test_nonecheck2():
     print uninitialized.is_f_contig()
 
 @testcase
-@cython.nonecheck(True)
+@cython0.nonecheck(True)
 def test_nonecheck3():
     u'''
     >>> test_nonecheck3()
@@ -156,7 +156,7 @@ def test_nonecheck3():
     uninitialized.copy()
 
 @testcase
-@cython.nonecheck(True)
+@cython0.nonecheck(True)
 def test_nonecheck4():
     u'''
     >>> test_nonecheck4()
@@ -168,7 +168,7 @@ def test_nonecheck4():
     uninitialized.copy_fortran()
 
 @testcase
-@cython.nonecheck(True)
+@cython0.nonecheck(True)
 def test_nonecheck5():
     u'''
     >>> test_nonecheck5()

@@ -14,8 +14,8 @@ cdef extern from "shapes.h" namespace "shapes":
 
 from cython cimport typeof
 
-from cython.operator cimport dereference as d
-from cython.operator cimport preincrement as incr
+from cython0.operator cimport dereference as d
+from cython0.operator cimport preincrement as incr
 from libcpp.vector cimport vector
 
 def test_reversed_vector_iteration(L):

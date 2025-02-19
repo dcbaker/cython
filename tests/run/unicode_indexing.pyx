@@ -1,13 +1,13 @@
 
-cimport cython
+cimport cython0
 
 cdef unicode _ustring = u'azerty123456'
 ustring = _ustring
 
 
-@cython.test_assert_path_exists("//CoerceToPyTypeNode",
+@cython0.test_assert_path_exists("//CoerceToPyTypeNode",
                                 "//IndexNode")
-@cython.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
+@cython0.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
 def index(unicode ustring, Py_ssize_t i):
     """
     >>> index(ustring, 0) == 'a'
@@ -26,8 +26,8 @@ def index(unicode ustring, Py_ssize_t i):
     return ustring[i]
 
 
-@cython.test_assert_path_exists("//IndexNode")
-@cython.test_fail_if_path_exists("//CoerceToPyTypeNode")
+@cython0.test_assert_path_exists("//IndexNode")
+@cython0.test_fail_if_path_exists("//CoerceToPyTypeNode")
 def index_pyindex(unicode ustring, i):
     """
     >>> index(ustring, 0) == 'a'
@@ -47,9 +47,9 @@ def index_pyindex(unicode ustring, i):
 
 
 
-@cython.test_assert_path_exists("//CoerceToPyTypeNode",
+@cython0.test_assert_path_exists("//CoerceToPyTypeNode",
                                 "//IndexNode")
-@cython.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
+@cython0.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
 def index_literal(Py_ssize_t i):
     """
     >>> index_literal(0) == 'a'
@@ -68,8 +68,8 @@ def index_literal(Py_ssize_t i):
     return u'azerty123456'[i]
 
 
-@cython.test_assert_path_exists("//IndexNode")
-@cython.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
+@cython0.test_assert_path_exists("//IndexNode")
+@cython0.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
 def index_literal_pyunicode_cast(int i):
     """
     >>> index_literal_pyunicode_cast(0) == '1'
@@ -87,9 +87,9 @@ def index_literal_pyunicode_cast(int i):
     return <Py_UNICODE>(u"12345"[i])
 
 
-@cython.test_assert_path_exists("//IndexNode",
+@cython0.test_assert_path_exists("//IndexNode",
                                 "//SingleAssignmentNode")
-@cython.test_fail_if_path_exists("//SingleAssignmentNode//CoerceToPyTypeNode")
+@cython0.test_fail_if_path_exists("//SingleAssignmentNode//CoerceToPyTypeNode")
 def index_literal_pyunicode_coerce(int i):
     """
     >>> index_literal_pyunicode_coerce(0) == '1'
@@ -108,9 +108,9 @@ def index_literal_pyunicode_coerce(int i):
     return result
 
 
-@cython.test_assert_path_exists("//SingleAssignmentNode")
-@cython.test_fail_if_path_exists("//SingleAssignmentNode//CoerceFromPyTypeNode")
-@cython.boundscheck(False)
+@cython0.test_assert_path_exists("//SingleAssignmentNode")
+@cython0.test_fail_if_path_exists("//SingleAssignmentNode//CoerceFromPyTypeNode")
+@cython0.boundscheck(False)
 def index_literal_pyunicode_coerce_no_check(int i):
     """
     >>> index_literal_pyunicode_coerce_no_check(0) == '1'
@@ -126,10 +126,10 @@ def index_literal_pyunicode_coerce_no_check(int i):
     return result
 
 
-@cython.test_assert_path_exists("//CoerceToPyTypeNode",
+@cython0.test_assert_path_exists("//CoerceToPyTypeNode",
                                 "//IndexNode")
-@cython.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
-@cython.boundscheck(False)
+@cython0.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
+@cython0.boundscheck(False)
 def index_no_boundscheck(unicode ustring, Py_ssize_t i):
     """
     >>> index_no_boundscheck(ustring, 0) == 'a'
@@ -146,10 +146,10 @@ def index_no_boundscheck(unicode ustring, Py_ssize_t i):
     return ustring[i]
 
 
-@cython.test_assert_path_exists("//CoerceToPyTypeNode",
+@cython0.test_assert_path_exists("//CoerceToPyTypeNode",
                                 "//IndexNode")
-@cython.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
-@cython.boundscheck(False)
+@cython0.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
+@cython0.boundscheck(False)
 def unsigned_index_no_boundscheck(unicode ustring, unsigned int i):
     """
     >>> unsigned_index_no_boundscheck(ustring, 0) == 'a'
@@ -161,10 +161,10 @@ def unsigned_index_no_boundscheck(unicode ustring, unsigned int i):
     """
     return ustring[i]
 
-@cython.test_assert_path_exists("//CoerceToPyTypeNode",
+@cython0.test_assert_path_exists("//CoerceToPyTypeNode",
                                 "//IndexNode",
                                 "//PrimaryCmpNode")
-@cython.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
+@cython0.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
 def index_compare(unicode ustring, Py_ssize_t i):
     """
     >>> index_compare(ustring, 0)
@@ -183,10 +183,10 @@ def index_compare(unicode ustring, Py_ssize_t i):
     return ustring[i] == u'a'
 
 
-@cython.test_assert_path_exists("//CoerceToPyTypeNode",
+@cython0.test_assert_path_exists("//CoerceToPyTypeNode",
                                 "//IndexNode",
                                 "//PrimaryCmpNode")
-@cython.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
+@cython0.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
 def index_compare_string(unicode ustring, Py_ssize_t i, unicode other):
     """
     >>> index_compare_string(ustring, 0, ustring[0])
@@ -211,11 +211,11 @@ def index_compare_string(unicode ustring, Py_ssize_t i, unicode other):
     return ustring[i] == other
 
 
-@cython.test_assert_path_exists("//CoerceToPyTypeNode",
+@cython0.test_assert_path_exists("//CoerceToPyTypeNode",
                                 "//IndexNode",
                                 "//MulNode",
                                 "//MulNode/CoerceToPyTypeNode")
-@cython.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
+@cython0.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
 def index_multiply(unicode ustring, Py_ssize_t i, int mul):
     """
     >>> ustring[0] * 5 == 'aaaaa'
@@ -226,11 +226,11 @@ def index_multiply(unicode ustring, Py_ssize_t i, int mul):
     return ustring[i] * mul
 
 
-@cython.test_assert_path_exists("//CoerceToPyTypeNode",
+@cython0.test_assert_path_exists("//CoerceToPyTypeNode",
                                 "//IndexNode",
                                 "//AddNode",
                                 "//AddNode/CoerceToPyTypeNode")
-@cython.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
+@cython0.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
 def index_add(unicode ustring, Py_ssize_t i, Py_ssize_t j):
     """
     >>> ustring[0] + ustring[-1] == 'a6'
@@ -241,10 +241,10 @@ def index_add(unicode ustring, Py_ssize_t i, Py_ssize_t j):
     return ustring[i] + ustring[j]
 
 
-@cython.test_assert_path_exists("//CoerceToPyTypeNode",
+@cython0.test_assert_path_exists("//CoerceToPyTypeNode",
                                 "//IndexNode",
                                 "//CoerceToPyTypeNode//IndexNode")
-@cython.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
+@cython0.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
 def index_concat_loop(unicode ustring):
     """
     >>> index_concat_loop(ustring) == ustring
@@ -257,10 +257,10 @@ def index_concat_loop(unicode ustring):
     return s
 
 
-@cython.test_assert_path_exists("//CoerceToPyTypeNode",
+@cython0.test_assert_path_exists("//CoerceToPyTypeNode",
                                 "//IndexNode",
                                 "//CoerceToPyTypeNode//IndexNode")
-@cython.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
+@cython0.test_fail_if_path_exists("//IndexNode//CoerceToPyTypeNode")
 def index_join_loop(unicode ustring):
     """
     >>> index_join_loop(ustring) == ustring

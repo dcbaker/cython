@@ -4,7 +4,7 @@
 
 print(end='')  # test that language_level 3 applies immediately at the module start, for the first token.
 
-cimport cython
+cimport cython0
 
 __doc__ = """
 >>> items = sorted(locals_function(1).items())
@@ -52,7 +52,7 @@ def truediv_int(int x):
     return x / 2
 
 
-@cython.cdivision(True)
+@cython0.cdivision(True)
 def cdiv_int(int x):
     """
     >>> cdiv_int(4)
@@ -162,7 +162,7 @@ def except_as_raise_deletes_target_even_after_del(x, a):
     except a as b:
         i = 2
         assert isinstance(b, a)
-        del b  # let's see if Cython can still 'del' it after this line!
+        del b  # let's see if Cython0 can still 'del' it after this line!
     try:
         print(b)  # raises UnboundLocalError if except clause was executed
     except UnboundLocalError:
@@ -400,7 +400,7 @@ def loop_over_unicode_literal():
     # Py_UCS4 can represent any Unicode character
     for uchar in 'abcdefg':
         assert uchar in 'abcdefg'
-    return cython.typeof(uchar)
+    return cython0.typeof(uchar)
 
 
 def list_comp():
@@ -531,10 +531,10 @@ def dict_comp():
 
 
 # in Python 3, d.keys/values/items() are the iteration methods
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//WhileStatNode",
     "//WhileStatNode//DictIterationNextNode")
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//ForInStatNode")
 def dict_iter(dict d):
     """
@@ -556,10 +556,10 @@ def dict_iter(dict d):
     return keys, values, items
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//WhileStatNode",
     "//WhileStatNode//DictIterationNextNode")
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     "//ForInStatNode")
 def dict_iter_new_dict():
     """
@@ -588,10 +588,10 @@ def int_literals():
     unsigned long
     unsigned long
     """
-    print(cython.typeof(1L))
-    print(cython.typeof(10000000000000L))
-    print(cython.typeof(1UL))
-    print(cython.typeof(10000000000000UL))
+    print(cython0.typeof(1L))
+    print(cython0.typeof(10000000000000L))
+    print(cython0.typeof(1UL))
+    print(cython0.typeof(10000000000000UL))
 
 
 def annotation_syntax(a: "test new test", b : "other" = 2, *args: "ARGS", **kwargs: "KWARGS") -> "ret":

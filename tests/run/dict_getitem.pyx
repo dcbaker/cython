@@ -1,7 +1,7 @@
 # mode: run
 # tag: dict, getitem
 
-cimport cython
+cimport cython0
 
 def test(dict d, index):
     """
@@ -130,7 +130,7 @@ def getitem_in_condition(dict d, key, expected_result):
     return d[key] is expected_result or d[key] == expected_result
 
 
-@cython.test_fail_if_path_exists('//NoneCheckNode')
+@cython0.test_fail_if_path_exists('//NoneCheckNode')
 def getitem_not_none(dict d not None, key):
     """
     >>> d = { 1: 10 }

@@ -12,9 +12,9 @@ import sys
 IS_PY2 = sys.version_info[0] < 3
 IS_PY26 = sys.version_info[:2] < (2, 7)
 
-from Cython.Build.Inline import cython_inline
-from Cython.TestUtils import CythonTest
-from Cython.Compiler.Errors import CompileError, hold_errors, release_errors, error_stack, held_errors
+from Cython0.Build.Inline import cython0_inline
+from Cython0.TestUtils import Cython0Test
+from Cython0.Compiler.Errors import CompileError, hold_errors, release_errors, error_stack, held_errors
 
 def cy_eval(s, **kwargs):
     return cython_inline('return ' + s, force=True, **kwargs)
@@ -28,7 +28,7 @@ a_global = 'global variable'
 #  worthwhile tradeoff. When I switched to this method, I found many
 #  examples where I wasn't testing what I thought I was.
 
-class TestCase(CythonTest):
+class TestCase(Cython0Test):
     def assertAllRaise(self, exception_type, regex, error_strings):
         for str in error_strings:
             hold_errors()
@@ -38,7 +38,7 @@ class TestCase(CythonTest):
                 except CompileError:
                     assert True
                 else:
-                    assert held_errors(), "Invalid Cython code failed to raise SyntaxError: %r" % str
+                    assert held_errors(), "Invalid Cython0 code failed to raise SyntaxError: %r" % str
                 finally:
                     release_errors(ignore=True)
             else:
@@ -47,7 +47,7 @@ class TestCase(CythonTest):
                 except exception_type:
                     assert True
                 else:
-                    assert False, "Invalid Cython code failed to raise %s: %r" % (exception_type, str)
+                    assert False, "Invalid Cython0 code failed to raise %s: %r" % (exception_type, str)
                 finally:
                     if error_stack:
                         release_errors(ignore=True)

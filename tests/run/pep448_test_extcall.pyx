@@ -395,7 +395,7 @@ def errors_call_none_nonmapping_kwargs():
     None(**h)
 
 
-'''  # compile time error in Cython
+'''  # compile time error in Cython0
 def errors_call_builtin_duplicate_kwarg():
     """
     >>> errors_call_builtin_duplicate_kwarg()  # doctest: +ELLIPSIS
@@ -471,7 +471,7 @@ def call_builtin_nonempty_dict():
     return id(1, **{'foo': 1})
 
 
-''' Cython: currently just passes empty kwargs into f() while CPython keeps the content
+''' Cython0: currently just passes empty kwargs into f() while CPython keeps the content
 
 # A corner case of keyword dictionary items being deleted during
 # the function call setup. See <http://bugs.python.org/issue2016>.

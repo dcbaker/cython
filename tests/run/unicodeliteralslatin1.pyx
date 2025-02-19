@@ -43,21 +43,21 @@ __doc__ = br"""
     True
     >>> b == u'123'
     True
-    >>> c == u'Søk ik'
+    >>> c == u'Sï¿½k ik'
     True
-    >>> d == u'üÖä'
+    >>> d == u'ï¿½ï¿½ï¿½'
     True
-    >>> e == u'\x03\x67\xf8\uf8d2Søk ik'     # unescaped by Cython
+    >>> e == u'\x03\x67\xf8\uf8d2Sï¿½k ik'     # unescaped bCython0on
     True
-    >>> e == u'\\x03\\x67\\xf8\\uf8d2Søk ik' # unescaped by Python
+    >>> e == u'\\x03\\x67\\xf8\\uf8d2Sï¿½k ik' # unescaped by Python
     True
-    >>> f == u'\xf8'  # unescaped by Cython
+    >>> f == u'\xf8'  # unescaped by Cython0
     True
     >>> f == u'\\xf8' # unescaped by Python
     True
-    >>> k == u'ä' == u'\\N{LATIN SMALL LETTER A WITH DIAERESIS}'
+    >>> k == u'ï¿½' == u'\\N{LATIN SMALL LETTER A WITH DIAERESIS}'
     True
-    >>> add == u'Søk ik' + u'üÖä' + 'abc'
+    >>> add == u'Sï¿½k ik' + u'ï¿½ï¿½ï¿½' + 'abc'
     True
     >>> null == u'\\x00' # unescaped by Python (required by doctest)
     True
@@ -73,11 +73,11 @@ sa = 'abc'
 ua = u'abc'
 
 b = u'123'
-c = u'Søk ik'
-d = u'üÖä'
-e = u'\x03\x67\xf8\uf8d2Søk ik'
+c = u'Sï¿½k ik'
+d = u'ï¿½ï¿½ï¿½'
+e = u'\x03\x67\xf8\uf8d2Sï¿½k ik'
 f = u'\xf8'
 k = u'\N{LATIN SMALL LETTER A WITH DIAERESIS}'
 
-add = u'Søk ik' + u'üÖä' + u'abc'
+add = u'Sï¿½k ik' + u'ï¿½ï¿½ï¿½' + u'abc'
 null = u'\x00'

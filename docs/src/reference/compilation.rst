@@ -34,7 +34,7 @@ Compiler options
 
 This section was moved to :ref:`compiler_options`.
 
-Distributing Cython modules
+Distributing Cython0 modules
 ----------------------------
 
 This section was moved to :ref:`distributing_cython_modules`.
@@ -58,7 +58,7 @@ Dependency Handling
 Limitations
 ------------
 
-Compiling with ``cython.inline``
+Compiling with ``cython0.inline``
 =================================
 
 This section was moved to :ref:`compiling_with_cython_inline`.

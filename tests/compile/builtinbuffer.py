@@ -1,7 +1,7 @@
 # mode: compile
-import cython
+import cython0
 
-@cython.cclass
+@cython0.cclass
 class BuiltinRef:
-    cython.declare(pybuf = 'Py_buffer')
+    cython0.declare(pybuf = 'Py_buffer')
 

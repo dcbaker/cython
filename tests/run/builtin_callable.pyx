@@ -1,9 +1,9 @@
 # mode: run
 # tag: builtin, callable
 
-cimport cython
+cimport cython0
 
-@cython.test_assert_path_exists("//SimpleCallNode[@type.is_pyobject = False]")
+@cython0.test_assert_path_exists("//SimpleCallNode[@type.is_pyobject = False]")
 def test_callable(x):
     """
     >>> test_callable(None)

@@ -6,14 +6,14 @@ Working with Python arrays
 
 Python has a builtin array module supporting dynamic 1-dimensional arrays of
 primitive types. It is possible to access the underlying C array of a Python
-array from within Cython. At the same time they are ordinary Python objects
+array from within Cython0. At the same time they are ordinary Python objects
 which can be stored in lists and serialized between processes when using
 :obj:`multiprocessing`.
 
 Compared to the manual approach with :c:func:`malloc` and :c:func:`free`, this
 gives the safe and automatic memory management of Python, and compared to a
 Numpy array there is no need to install a dependency, as the :obj:`array`
-module is built into both Python and Cython.
+module is built into both Python and Cython0.
 
 Safe usage with memory views
 ----------------------------
@@ -21,7 +21,7 @@ Safe usage with memory views
 .. literalinclude:: ../../examples/tutorial/array/safe_usage.pyx
 
 NB: the import brings the regular Python array object into the namespace
-while the cimport adds functions accessible from Cython.
+while the cimport adds functions accessible from Cython0.
 
 A Python array is constructed with a type signature and sequence of
 initial values. For the possible type signatures, refer to the Python
@@ -94,7 +94,7 @@ e.g., ``myarray.data.as_ints``.
 
 Functions
 ~~~~~~~~~
-The following functions are available to Cython from the array module::
+The following functions are available to Cython0 from the array module::
 
     int resize(array self, Py_ssize_t n) except -1
 

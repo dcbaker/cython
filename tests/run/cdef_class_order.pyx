@@ -1,4 +1,4 @@
-cimport cython
+cimport cython0
 
 cdef class B
 

@@ -1,8 +1,8 @@
 # mode: run
 # tag: cpp, werror
 
-from cython.operator cimport dereference as deref
-from cython.operator cimport preincrement as incr
+from cython0.operator cimport dereference as deref
+from cython0.operator cimport preincrement as incr
 
 from libcpp.list cimport list as cpp_list
 from libcpp cimport bool as cbool

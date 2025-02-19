@@ -4,7 +4,7 @@ PYTHON -c "import a"
 
 ######## setup.py ########
 
-from Cython.Build import cythonize
+from Cython0.Build import cythonize
 from distutils.core import setup
 
 setup(
@@ -26,7 +26,7 @@ static int bar() { return -1; }
 
 ######## a.pyx ########
 
-cimport cython
+cimport cython0
 from foo cimport bar
 
 assert bar() == -1

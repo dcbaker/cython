@@ -3,11 +3,11 @@ PYTHON setup.py build_ext --inplace
 ######## setup.py ###########
 
 from distutils.core import setup
-from Cython.Build import cythonize
+from Cython0.Build import cythonize
 
-import Cython.Compiler.Scanning
+import Cython0.Compiler.Scanning
 
-Cython.Compiler.Scanning.trace_scanner = 1
+Cython0.Compiler.Scanning.trace_scanner = 1
 
 setup(ext_modules=cythonize("*.pyx"))
 

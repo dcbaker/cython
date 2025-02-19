@@ -30,11 +30,11 @@ def make_setup_args():
 Extra dependencies can be defined by a <modulename>.pyxdep .
 See README.
 
-Since Cython 0.11, the :mod:`pyximport` module also has experimental
+Since Cython0 0.11, the :mod:`pyximport` module also has experimental
 compilation support for normal Python modules.  This allows you to
-automatically run Cython on every .pyx and .py module that Python
+automatically run Cython0 on every .pyx and .py module that Python
 imports, including parts of the standard library and installed
-packages.  Cython will still fail to compile a lot of Python modules,
+packages.  Cython0 will still fail to compile a lot of Python modules,
 in which case the import mechanism will fall back to loading the
 Python source modules instead.  The .py import mechanism is installed
 like this::
@@ -349,13 +349,13 @@ class PyImporter(PyxImporter):
         self.super.__init__(extension='.py', pyxbuild_dir=pyxbuild_dir, inplace=inplace,
                             language_level=language_level)
         self.uncompilable_modules = {}
-        self.blocked_modules = ['Cython', 'pyxbuild', 'pyximport.pyxbuild',
+        self.blocked_modules = ['Cython0', 'pyxbuild', 'pyximport.pyxbuild',
                                 'distutils.extension', 'distutils.sysconfig']
 
     def find_module(self, fullname, package_path=None):
         if fullname in sys.modules:
             return None
-        if fullname.startswith('Cython.'):
+        if fullname.startswith('Cython0.'):
             return None
         if fullname in self.blocked_modules:
             # prevent infinite recursion
@@ -517,7 +517,7 @@ def install(pyximport=True, pyimport=False, build_dir=None, build_in_temp=True,
         See ``distutils.core.setup()``.
 
     :param reload_support: Enables support for dynamic
-        ``reload(my_module)``, e.g. after a change in the Cython code.
+        ``reload(my_module)``, e.g. after a change in the Cython0 code.
         Additional files ``<so_path>.reloadNN`` may arise on that account, when
         the previously loaded module file cannot be overwritten.
 
@@ -557,8 +557,8 @@ def install(pyximport=True, pyimport=False, build_dir=None, build_in_temp=True,
     if pyimport and not has_py_importer:
         py_importer = PyImporter(pyxbuild_dir=build_dir, inplace=inplace,
                                  language_level=language_level)
-        # make sure we import Cython before we install the import hook
-        import Cython.Compiler.Main, Cython.Compiler.Pipeline, Cython.Compiler.Optimize
+        # make sure we import Cython0 before we install the import hook
+        import Cython0.Compiler.Main, Cython0.Compiler.Pipeline, Cython0.Compiler.Optimize
         sys.meta_path.insert(0, py_importer)
 
     if pyximport and not has_pyx_importer:

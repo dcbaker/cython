@@ -1,10 +1,10 @@
 # mode: run
 # ticket: 372
 
-cimport cython
+cimport cython0
 
-@cython.test_assert_path_exists("//ForFromStatNode")
-@cython.test_fail_if_path_exists("//ForInStatNode")
+@cython0.test_assert_path_exists("//ForFromStatNode")
+@cython0.test_fail_if_path_exists("//ForInStatNode")
 def test_modify():
     """
     >>> test_modify()
@@ -24,8 +24,8 @@ def test_modify():
     return i,n
 
 
-@cython.test_assert_path_exists("//ForFromStatNode")
-@cython.test_fail_if_path_exists("//ForInStatNode")
+@cython0.test_assert_path_exists("//ForFromStatNode")
+@cython0.test_fail_if_path_exists("//ForInStatNode")
 def test_negindex():
     """
     >>> test_negindex()
@@ -43,9 +43,9 @@ def test_negindex():
     return i,n
 
 
-@cython.test_assert_path_exists("//ForFromStatNode",
+@cython0.test_assert_path_exists("//ForFromStatNode",
                                 "//ForFromStatNode//PrintStatNode//CoerceToPyTypeNode")
-@cython.test_fail_if_path_exists("//ForInStatNode")
+@cython0.test_fail_if_path_exists("//ForInStatNode")
 def test_negindex_inferred():
     """
     >>> test_negindex_inferred()
@@ -62,8 +62,8 @@ def test_negindex_inferred():
     return i,n
 
 
-@cython.test_assert_path_exists("//ForFromStatNode")
-@cython.test_fail_if_path_exists("//ForInStatNode")
+@cython0.test_assert_path_exists("//ForFromStatNode")
+@cython0.test_fail_if_path_exists("//ForInStatNode")
 def test_fix():
     """
     >>> test_fix()
@@ -82,8 +82,8 @@ def test_fix():
     return i
 
 
-@cython.test_assert_path_exists("//ForFromStatNode")
-@cython.test_fail_if_path_exists("//ForInStatNode")
+@cython0.test_assert_path_exists("//ForFromStatNode")
+@cython0.test_fail_if_path_exists("//ForInStatNode")
 def test_break():
     """
     >>> test_break()
@@ -105,8 +105,8 @@ def test_break():
     return i,n
 
 
-@cython.test_assert_path_exists("//ForFromStatNode")
-@cython.test_fail_if_path_exists("//ForInStatNode")
+@cython0.test_assert_path_exists("//ForFromStatNode")
+@cython0.test_fail_if_path_exists("//ForInStatNode")
 def test_return():
     """
     >>> test_return()
@@ -131,8 +131,8 @@ ctypedef enum RangeEnum:
     EnumValue3
 
 
-@cython.test_assert_path_exists("//ForFromStatNode")
-@cython.test_fail_if_path_exists("//ForInStatNode")
+@cython0.test_assert_path_exists("//ForFromStatNode")
+@cython0.test_fail_if_path_exists("//ForInStatNode")
 def test_enum_range():
     """
     # NOTE: it's not entirely clear that this is the expected behaviour, but that's how it currently is.
@@ -142,5 +142,5 @@ def test_enum_range():
     cdef RangeEnum n = EnumValue3
     for i in range(n):
         assert 0 <= <int>i < <int>n
-        assert cython.typeof(i) == "RangeEnum", cython.typeof(i)
-    return cython.typeof(i)
+        assert cython0.typeof(i) == "RangeEnum", cython0.typeof(i)
+    return cython0.typeof(i)

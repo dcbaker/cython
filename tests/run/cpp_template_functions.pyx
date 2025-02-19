@@ -1,7 +1,7 @@
 # mode: run
 # tag: cpp, warnings
 
-cimport cython
+cimport cython0
 from libcpp.pair cimport pair
 from libcpp.vector cimport vector
 
@@ -103,7 +103,7 @@ def test_inference(int k):
     27
     """
     res = one_param(&k)
-    assert cython.typeof(res) == 'int *', cython.typeof(res)
+    assert cython0.typeof(res) == 'int *', cython0.typeof(res)
     return res[0]
 
 def test_overload_GH1583():

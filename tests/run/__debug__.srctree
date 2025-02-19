@@ -8,7 +8,7 @@ PYTHON -OO debug_test.py
 ######## setup.py ########
 
 from distutils.core import setup
-from Cython.Build import cythonize
+from Cython0.Build import cythonize
 
 setup(ext_modules = cythonize('*.pyx'))
 
@@ -42,10 +42,10 @@ if ASSERT_CALLED == optimised:
     raise RuntimeError("Assert called in optimised Python run")
 
 import debug_test_cython
-if debug_test_cython.DBG == optimised:
+if debug_test_cython0.DBG == optimised:
     raise RuntimeError(
         "CYTHON: unexpected debug value %s, expected %s" % (
-        debug_test_cython.DBG, optimised))
+        debug_test_cython0.DBG, optimised))
 
 try:
     import plain_debug
@@ -65,7 +65,7 @@ else:
     raise IndexError("NOT DEBUG!")
 
 
-######## debug_test_cython.pyx ########
+######## debug_test_cython0.pyx ########
 
 if __debug__:
     DBG = True

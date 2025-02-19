@@ -1,15 +1,15 @@
 # mode: run
 
-import cython
-compiled = cython.compiled
+import cython0
+compiled = cython0.compiled
 
 import sys
 IS_PY2 = sys.version_info[0] == 2
 
 
-@cython.cclass
+@cython0.cclass
 class X(object):
-    x = cython.declare(cython.int)
+    x = cython0.declare(cython0.int)
 
     def __init__(self, x):
         self.x = x
@@ -18,13 +18,13 @@ class X(object):
         return "<%d>" % self.x
 
 
-@cython.cfunc
-@cython.locals(x=X)
+@cython0.cfunc
+@cython0.locals(x=X)
 def x_of(x):
     return x.x
 
 
-@cython.cclass
+@cython0.cclass
 class ClassEq(X):
     """
     >>> a = ClassEq(1)
@@ -93,7 +93,7 @@ class ClassEq(X):
         return NotImplemented
 
 
-@cython.cclass
+@cython0.cclass
 class ClassEqNe(ClassEq):
     """
     >>> a = ClassEqNe(1)
@@ -162,7 +162,7 @@ class ClassEqNe(ClassEq):
         return NotImplemented
 
 
-@cython.cclass
+@cython0.cclass
 class ClassEqNeGe(ClassEqNe):
     """
     >>> a = ClassEqNeGe(1)
@@ -269,7 +269,7 @@ class ClassEqNeGe(ClassEqNe):
         return NotImplemented
 
 
-@cython.cclass
+@cython0.cclass
 class ClassRichcmpOverride(ClassEqNeGe):
     """
     >>> a = ClassRichcmpOverride(1)
@@ -294,7 +294,7 @@ class ClassRichcmpOverride(ClassEqNeGe):
         return NotImplemented
 
 
-@cython.cclass
+@cython0.cclass
 class ClassLe(X):
     """
     >>> a = ClassLe(1)
@@ -358,7 +358,7 @@ class ClassLe(X):
         return NotImplemented
 
 
-@cython.cclass
+@cython0.cclass
 class ClassLt(X):
     """
     >>> a = ClassLt(1)
@@ -430,7 +430,7 @@ class ClassLt(X):
         return NotImplemented
 
 
-@cython.cclass
+@cython0.cclass
 class ClassLtGtInherited(X):
     """
     >>> a = ClassLtGtInherited(1)
@@ -479,7 +479,7 @@ class ClassLtGtInherited(X):
         return NotImplemented
 
 
-@cython.cclass
+@cython0.cclass
 class ClassLtGt(X):
     """
     >>> a = ClassLtGt(1)
@@ -563,7 +563,7 @@ class ClassLtGt(X):
         return NotImplemented
 
 
-@cython.cclass
+@cython0.cclass
 class List(list):
     """
     >>> l = [1, 2, 3, 4]

@@ -2,7 +2,7 @@
 # mode: run
 # tag: pure3.6, pep526, pep484, warnings
 
-import cython
+import cython0
 
 from typing import Dict, List, TypeVar, Optional, Generic, Tuple
 try:
@@ -14,7 +14,7 @@ except ImportError:
 var = 1  # type: annotation
 var: int = 2
 fvar: float = 1.2
-some_number: cython.int    # variable without initial value
+some_number: cython0.int    # variable without initial value
 some_list: List[int] = []  # variable with initial value
 t: Tuple[int, ...] = (1, 2, 3)
 body: Optional[List[str]]
@@ -33,7 +33,7 @@ def f():
     var = 1  # type: annotation
     var: int = 2
     fvar: float = 1.5
-    some_number: cython.int    # variable without initial value
+    some_number: cython0.int    # variable without initial value
     some_list: List[int] = []  # variable with initial value
     t: Tuple[int, ...] = (1, 2, 3)
     body: Optional[List[str]]
@@ -53,7 +53,7 @@ class BasicStarship(object):
     {}
     """
     captain: str = 'Picard'               # instance variable with default
-    damage: cython.int                    # instance variable without default
+    damage: cython0.int                    # instance variable without default
     stats: ClassVar[Dict[str, int]] = {}  # class variable
     descr_only: "descriptions are allowed but ignored"
 
@@ -61,7 +61,7 @@ class BasicStarship(object):
         self.damage = damage
 
 
-@cython.cclass
+@cython0.cclass
 class BasicStarshipExt(object):
     """
     >>> bs = BasicStarshipExt(5)
@@ -69,7 +69,7 @@ class BasicStarshipExt(object):
     (5, 'Picard', {})
     """
     captain: str = 'Picard'               # instance variable with default
-    damage: cython.int                    # instance variable without default
+    damage: cython0.int                    # instance variable without default
     stats: ClassVar[Dict[str, int]] = {}  # class variable
     descr_only: "descriptions are allowed but ignored"
 
@@ -107,7 +107,7 @@ d['b']: int      # Annotates d['b'] with int.
 (y): int = 0  # Same situation here.
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//WhileStatNode",
     "//WhileStatNode//DictIterationNextNode",
 )
@@ -130,7 +130,7 @@ def iter_declared_dict(d):
     return s
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//WhileStatNode",
     "//WhileStatNode//DictIterationNextNode",
 )

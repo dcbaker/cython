@@ -1,7 +1,7 @@
 # mode: run
 # tag: cpp, werror
 
-from cython.operator cimport dereference as deref
+from cython0.operator cimport dereference as deref
 
 cdef extern from "cpp_templates_helper.h":
     cdef cppclass Wrap[T]:

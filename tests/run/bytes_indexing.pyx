@@ -1,5 +1,5 @@
 
-cimport cython
+cimport cython0
 
 cdef bytes b12345 = b'12345'
 
@@ -20,8 +20,8 @@ def index_literal(int i):
     return b"12345"[i]
 
 
-@cython.test_assert_path_exists("//PythonCapiCallNode")
-@cython.test_fail_if_path_exists("//IndexNode",
+@cython0.test_assert_path_exists("//PythonCapiCallNode")
+@cython0.test_fail_if_path_exists("//IndexNode",
                                  "//CoerceFromPyTypeNode")
 def index_literal_char_cast(int i):
     """
@@ -40,8 +40,8 @@ def index_literal_char_cast(int i):
     return <char>(b"12345"[i])
 
 
-@cython.test_assert_path_exists("//PythonCapiCallNode")
-@cython.test_fail_if_path_exists("//IndexNode",
+@cython0.test_assert_path_exists("//PythonCapiCallNode")
+@cython0.test_fail_if_path_exists("//IndexNode",
                                  "//CoerceFromPyTypeNode")
 def index_nonliteral_char_cast(int i):
     """
@@ -60,8 +60,8 @@ def index_nonliteral_char_cast(int i):
     return <char>(b12345[i])
 
 
-@cython.test_assert_path_exists("//PythonCapiCallNode")
-@cython.test_fail_if_path_exists("//IndexNode",
+@cython0.test_assert_path_exists("//PythonCapiCallNode")
+@cython0.test_fail_if_path_exists("//IndexNode",
                                  "//CoerceFromPyTypeNode")
 def index_literal_uchar_cast(int i):
     """
@@ -80,8 +80,8 @@ def index_literal_uchar_cast(int i):
     return <unsigned char>(b"12345"[i])
 
 
-@cython.test_assert_path_exists("//PythonCapiCallNode")
-@cython.test_fail_if_path_exists("//IndexNode",
+@cython0.test_assert_path_exists("//PythonCapiCallNode")
+@cython0.test_fail_if_path_exists("//IndexNode",
                                  "//CoerceFromPyTypeNode")
 def index_nonliteral_uchar_cast(int i):
     """
@@ -100,8 +100,8 @@ def index_nonliteral_uchar_cast(int i):
     return <unsigned char>(b12345[i])
 
 
-@cython.test_assert_path_exists("//PythonCapiCallNode")
-@cython.test_fail_if_path_exists("//IndexNode",
+@cython0.test_assert_path_exists("//PythonCapiCallNode")
+@cython0.test_fail_if_path_exists("//IndexNode",
                                  "//CoerceFromPyTypeNode")
 def index_literal_char_coerce(int i):
     """
@@ -121,8 +121,8 @@ def index_literal_char_coerce(int i):
     return result
 
 
-@cython.test_assert_path_exists("//PythonCapiCallNode")
-@cython.test_fail_if_path_exists("//IndexNode",
+@cython0.test_assert_path_exists("//PythonCapiCallNode")
+@cython0.test_fail_if_path_exists("//IndexNode",
                                  "//CoerceFromPyTypeNode")
 def index_nonliteral_char_coerce(int i):
     """
@@ -142,10 +142,10 @@ def index_nonliteral_char_coerce(int i):
     return result
 
 
-@cython.test_assert_path_exists("//PythonCapiCallNode")
-@cython.test_fail_if_path_exists("//IndexNode",
+@cython0.test_assert_path_exists("//PythonCapiCallNode")
+@cython0.test_fail_if_path_exists("//IndexNode",
                                  "//CoerceFromPyTypeNode")
-@cython.boundscheck(False)
+@cython0.boundscheck(False)
 def index_literal_char_coerce_no_check(int i):
     """
     >>> index_literal_char_coerce_no_check(0) == ord('1')
@@ -161,10 +161,10 @@ def index_literal_char_coerce_no_check(int i):
     return result
 
 
-@cython.test_assert_path_exists("//PythonCapiCallNode")
-@cython.test_fail_if_path_exists("//IndexNode",
+@cython0.test_assert_path_exists("//PythonCapiCallNode")
+@cython0.test_fail_if_path_exists("//IndexNode",
                                  "//CoerceFromPyTypeNode")
-@cython.boundscheck(False)
+@cython0.boundscheck(False)
 def index_nonliteral_char_coerce_no_check(int i):
     """
     >>> index_nonliteral_char_coerce_no_check(0) == ord('1')

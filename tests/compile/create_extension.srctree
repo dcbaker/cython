@@ -2,15 +2,15 @@ PYTHON setup.py build_ext --inplace
 
 ######## setup.py ########
 
-from Cython.Build import cythonize
-from Cython.Distutils.extension import Extension
+from Cython0.Build import cythonize
+from Cython0.Distutils.extension import Extension
 
 ext_modules = [
     Extension("foo", ["foo.pyx"]),
 ]
 
 # Example documented in docs/src/reference/compilation.rst
-from Cython.Build.Dependencies import default_create_extension
+from Cython0.Build.Dependencies import default_create_extension
 
 def my_create_extension(template, kwds):
     libs = kwds.get('libraries', []) + ["mylib"]

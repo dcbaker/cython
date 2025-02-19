@@ -124,8 +124,8 @@ except ImportError:
 
 # compiled exec()
 def exec(code_string, l, g):
-    from Cython.Compiler.Errors import CompileError
-    from Cython.Shadow import inline
+    from Cython0.Compiler.Errors import CompileError
+    from Cython0.Shadow import inline
     try:
         from StringIO import StringIO
     except ImportError:

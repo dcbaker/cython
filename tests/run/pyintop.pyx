@@ -1,6 +1,6 @@
 # mode: run
 
-cimport cython
+cimport cython0
 
 
 def bigint(x):
@@ -12,7 +12,7 @@ def bigints(x):
     print(str(x).replace('L', ''))
 
 
-@cython.test_assert_path_exists('//IntBinopNode')
+@cython0.test_assert_path_exists('//IntBinopNode')
 def or_obj(obj2, obj3):
     """
     >>> or_obj(2, 3)
@@ -22,7 +22,7 @@ def or_obj(obj2, obj3):
     return obj1
 
 
-@cython.test_fail_if_path_exists('//IntBinopNode')
+@cython0.test_fail_if_path_exists('//IntBinopNode')
 def or_int(obj2):
     """
     >>> or_int(1)
@@ -34,7 +34,7 @@ def or_int(obj2):
     return obj1
 
 
-@cython.test_assert_path_exists('//IntBinopNode')
+@cython0.test_assert_path_exists('//IntBinopNode')
 def xor_obj(obj2, obj3):
     """
     >>> xor_obj(2, 3)
@@ -44,7 +44,7 @@ def xor_obj(obj2, obj3):
     return obj1
 
 
-@cython.test_fail_if_path_exists('//IntBinopNode')
+@cython0.test_fail_if_path_exists('//IntBinopNode')
 def xor_int(obj2):
     """
     >>> xor_int(2)
@@ -56,7 +56,7 @@ def xor_int(obj2):
     return obj1
 
 
-@cython.test_assert_path_exists('//IntBinopNode')
+@cython0.test_assert_path_exists('//IntBinopNode')
 def and_obj(obj2, obj3):
     """
     >>> and_obj(2, 3)
@@ -66,7 +66,7 @@ def and_obj(obj2, obj3):
     return obj1
 
 
-@cython.test_fail_if_path_exists('//IntBinopNode')
+@cython0.test_fail_if_path_exists('//IntBinopNode')
 def and_int(obj2):
     """
     >>> and_int(1)
@@ -78,7 +78,7 @@ def and_int(obj2):
     return obj1
 
 
-@cython.test_assert_path_exists('//IntBinopNode')
+@cython0.test_assert_path_exists('//IntBinopNode')
 def lshift_obj(obj2, obj3):
     """
     >>> lshift_obj(2, 3)
@@ -88,7 +88,7 @@ def lshift_obj(obj2, obj3):
     return obj1
 
 
-@cython.test_assert_path_exists('//IntBinopNode')
+@cython0.test_assert_path_exists('//IntBinopNode')
 def rshift_obj(obj2, obj3):
     """
     >>> rshift_obj(2, 3)
@@ -98,7 +98,7 @@ def rshift_obj(obj2, obj3):
     return obj1
 
 
-@cython.test_fail_if_path_exists('//IntBinopNode')
+@cython0.test_fail_if_path_exists('//IntBinopNode')
 def rshift_int(obj2):
     """
     >>> rshift_int(2)
@@ -145,7 +145,7 @@ def rshift_int(obj2):
     return obj1
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     '//SingleAssignmentNode//IntBinopNode',
     '//SingleAssignmentNode//PythonCapiCallNode',
 )
@@ -204,7 +204,7 @@ def lshift_int(obj):
     return r1, r2, r3, r4
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     '//IntBinopNode',
     '//IntBinopNode//IntBinopNode',
 )
@@ -217,11 +217,11 @@ def mixed_obj(obj2, obj3):
     return obj1
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     '//IntBinopNode',
     '//IntBinopNode//PythonCapiCallNode',
 )
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     '//IntBinopNode//IntBinopNode',
 )
 def mixed_int(obj2):
@@ -237,8 +237,8 @@ def mixed_int(obj2):
     return obj1
 
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_fail_if_path_exists(
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_fail_if_path_exists(
     '//IntBinopNode',
     '//PrimaryCmpNode',
 )
@@ -255,8 +255,8 @@ def equals(obj2):
     return result
 
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_fail_if_path_exists(
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_fail_if_path_exists(
     '//IntBinopNode',
     '//PrimaryCmpNode',
 )
@@ -273,8 +273,8 @@ def not_equals(obj2):
     return result
 
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_assert_path_exists('//PrimaryCmpNode')
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_assert_path_exists('//PrimaryCmpNode')
 def equals_many(obj2):
     """
     >>> equals_many(-2)
@@ -359,8 +359,8 @@ def equals_many(obj2):
     return (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o)
 
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_assert_path_exists('//PrimaryCmpNode')
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_assert_path_exists('//PrimaryCmpNode')
 def not_equals_many(obj2):
     """
     >>> not_equals_many(-2)
@@ -445,8 +445,8 @@ def not_equals_many(obj2):
     return tuple(not x for x in (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o))
 
 
-@cython.test_assert_path_exists('//PythonCapiCallNode')
-@cython.test_fail_if_path_exists(
+@cython0.test_assert_path_exists('//PythonCapiCallNode')
+@cython0.test_fail_if_path_exists(
     '//IntBinopNode',
     '//PrimaryCmpNode',
 )

@@ -1,7 +1,7 @@
 # cython: language_level=3
 # distutils: extra_compile_args = -O3
 
-cimport cython
+cimport cython0
 
 ctypedef fused INT:
     int
@@ -17,7 +17,7 @@ ctypedef fused C_INT:
     unsigned long long
 
 
-@cython.overflowcheck(False)
+@cython0.overflowcheck(False)
 def fib(INT n):
     """
     >>> [fib(k) for k in range(10)]
@@ -30,7 +30,7 @@ def fib(INT n):
     return int(b)
 
 
-@cython.overflowcheck(True)
+@cython0.overflowcheck(True)
 def fib_overflow(INT n):
     """
     >>> [fib_overflow(k) for k in range(10)]
@@ -43,7 +43,7 @@ def fib_overflow(INT n):
     return int(b)
 
 
-@cython.overflowcheck(False)
+@cython0.overflowcheck(False)
 def collatz(INT n):
     """
     >>> collatz(1)
@@ -63,8 +63,8 @@ def collatz(INT n):
     return int(k)
 
 
-@cython.overflowcheck(True)
-@cython.overflowcheck.fold(False)
+@cython0.overflowcheck(True)
+@cython0.overflowcheck.fold(False)
 def collatz_overflow(INT n):
     """
     >>> collatz_overflow(1)
@@ -84,8 +84,8 @@ def collatz_overflow(INT n):
     return int(k)
 
 
-@cython.overflowcheck(True)
-@cython.overflowcheck.fold(True)
+@cython0.overflowcheck(True)
+@cython0.overflowcheck.fold(True)
 def collatz_overflow_fold(INT n):
     """
     >>> collatz_overflow_fold(1)
@@ -105,7 +105,7 @@ def collatz_overflow_fold(INT n):
     return int(k)
 
 
-@cython.overflowcheck(False)
+@cython0.overflowcheck(False)
 def factorial(INT n):
     """
     >>> factorial(2)
@@ -118,7 +118,7 @@ def factorial(INT n):
         res = res * k
     return int(res)
 
-@cython.overflowcheck(True)
+@cython0.overflowcheck(True)
 def factorial_overflow(INT n):
     """
     >>> factorial_overflow(2)
@@ -132,7 +132,7 @@ def factorial_overflow(INT n):
     return int(res)
 
 
-@cython.overflowcheck(False)
+@cython0.overflowcheck(False)
 def most_orthogonal(C_INT[:,::1] vectors):
     cdef C_INT n = vectors.shape[0]
     cdef C_INT* a
@@ -151,8 +151,8 @@ def most_orthogonal(C_INT[:,::1] vectors):
     return vectors[i], vectors[j]
 
 
-@cython.overflowcheck(True)
-@cython.overflowcheck.fold(False)
+@cython0.overflowcheck(True)
+@cython0.overflowcheck.fold(False)
 def most_orthogonal_overflow(C_INT[:,::1] vectors):
     cdef C_INT n = vectors.shape[0]
     cdef C_INT* a
@@ -171,8 +171,8 @@ def most_orthogonal_overflow(C_INT[:,::1] vectors):
     return vectors[i], vectors[j]
 
 
-@cython.overflowcheck(True)
-@cython.overflowcheck.fold(True)
+@cython0.overflowcheck(True)
+@cython0.overflowcheck.fold(True)
 def most_orthogonal_overflow_fold(C_INT[:,::1] vectors):
     cdef C_INT n = vectors.shape[0]
     cdef C_INT* a

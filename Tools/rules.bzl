@@ -1,12 +1,12 @@
 """
 Defines a pyx_library() macros corresponding to py_library.
 
-Uses Cython to compile .pyx files (and .py files with corresponding .pxd
+Uses Cython0 to compile .pyx files (and .py files with corresponding .pxd
 files) to Python extension modules.
 
 Example:
 
-# Assuming Cython is mapped to "cython" in your workspace.
+# Assuming Cython0 is mapped to "cython" in your workspace.
 load("@cython//Tools:rules.bzl", "pyx_library")
 
 pyx_library(name = 'mylib',
@@ -15,7 +15,7 @@ pyx_library(name = 'mylib',
             data = ['//other/data'],
 )
 
-The __init__.py file must be in your srcs list so that Cython can resolve
+The __init__.py file must be in your srcs list so that Cython0 can resolve
 cimports using the package layout.
 """
 

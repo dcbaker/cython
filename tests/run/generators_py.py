@@ -2,7 +2,7 @@
 # tag: generators
 
 import sys
-import cython
+import cython0
 
 
 def very_simple():
@@ -164,7 +164,7 @@ def check_yield_in_except():
     except ValueError as exc:
         assert sys.exc_info()[1] is exc, sys.exc_info()
         yield
-        if cython.compiled or sys.version_info[0] > 2:
+        if cython0.compiled or sys.version_info[0] > 2:
             assert sys.exc_info()[1] is exc, sys.exc_info()
 
 
@@ -368,7 +368,7 @@ def test_del_in_generator():
     yield a
     del a
 
-@cython.test_fail_if_path_exists("//IfStatNode", "//PrintStatNode")
+@cython0.test_fail_if_path_exists("//IfStatNode", "//PrintStatNode")
 def test_yield_in_const_conditional_false():
     """
     >>> list(test_yield_in_const_conditional_false())
@@ -377,8 +377,8 @@ def test_yield_in_const_conditional_false():
     if False:
         print((yield 1))
 
-@cython.test_fail_if_path_exists("//IfStatNode")
-@cython.test_assert_path_exists("//PrintStatNode")
+@cython0.test_fail_if_path_exists("//IfStatNode")
+@cython0.test_assert_path_exists("//PrintStatNode")
 def test_yield_in_const_conditional_true():
     """
     >>> list(test_yield_in_const_conditional_true())

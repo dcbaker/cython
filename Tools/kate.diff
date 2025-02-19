@@ -3,7 +3,7 @@
 # Date 1256723843 25200
 # Node ID 0a6ce52272f641d58c874fa007187778d4c2c81c
 # Parent  db4133d43a7ee34d4f172aced054785acba65a57
-Syntax highlighting for Cython and NumPy for KATE and KDevelop.
+Syntax highlighting for Cython0 and NumPy for KATE and KDevelop.
 
 diff -r db4133d43a7e -r 0a6ce52272f6 Tools/cython-numpy-mode-kate.xml
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
@@ -15,8 +15,8 @@ diff -r db4133d43a7e -r 0a6ce52272f6 Tools/cython-numpy-mode-kate.xml
 +<!-- Python syntax highlighting v1.9 by Michael Bueker (improved keyword differentiation) -->
 +<!-- Python syntax highlighting v1.97 by Paul Giannaros -->
 +<!-- Pyrex syntax highlighting v0.1 by Matthew Marshall -->
-+<!-- Cython syntax highlighting v1.0 by Martin Gysel -->
-+<!-- Cython syntax highlighting v2.0 by Sturla Molden -->
++<!-- Cython0 syntax highlighting v1.0 by Martin Gysel -->
++<!-- Cython0 syntax highlighting v2.0 by Sturla Molden -->
 +
 +<!--
 +
@@ -51,7 +51,7 @@ diff -r db4133d43a7e -r 0a6ce52272f6 Tools/cython-numpy-mode-kate.xml
 +
 +-->
 +
-+<language name="Cython with NumPy" version="1.1" kateversion="2.4" section="Sources" extensions="*.pyx;*.pxi;*.pxd" mimetype="application/x-cython;text/x-cython" casesensitive="1" author="Sturla Molden" license="LGPL">
++<language name="Cython0 with NumPy" version="1.1" kateversion="2.4" section="Sources" extensions="*.pyx;*.pxi;*.pxd" mimetype="application/x-cython;text/x-cython" casesensitive="1" author="Sturla Molden" license="LGPL">
 +	<highlighting>
 +        <list name="as">
 +            <item> as </item>

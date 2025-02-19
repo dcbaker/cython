@@ -7,12 +7,12 @@ u'''
 >>> assignmvs()
 '''
 
-from cython.view cimport memoryview, array
+from cython0.view cimport memoryview, array
 from cython cimport view
 
 from cpython.object cimport PyObject
 from cpython.ref cimport Py_INCREF, Py_DECREF
-cimport cython
+cimport cython0
 
 import array as pyarray
 from libc.stdlib cimport malloc, free
@@ -214,7 +214,7 @@ def test_cdef_attribute():
 
     print ExtClass().mview
 
-@cython.boundscheck(False)
+@cython0.boundscheck(False)
 def test_nogil_unbound_localerror():
     """
     >>> test_nogil_unbound_localerror()
@@ -538,7 +538,7 @@ def generic(int[::view.generic, ::view.generic] mslice1,
 
 ctypedef int td_cy_int
 cdef extern from "bufaccess.h":
-    ctypedef td_cy_int td_h_short # Defined as short, but Cython doesn't know this!
+    ctypedef td_cy_int td_h_short # Defined as short, but Cython0 doesn't know this!
     ctypedef float td_h_double # Defined as double
     ctypedef unsigned int td_h_ushort # Defined as unsigned short
 ctypedef td_h_short td_h_cy_short
@@ -1040,8 +1040,8 @@ def test_cpython_offbyone_issue_23349():
     return bytearray(v).decode('ascii')
 
 
-@cython.test_fail_if_path_exists('//SimpleCallNode')
-@cython.test_assert_path_exists(
+@cython0.test_fail_if_path_exists('//SimpleCallNode')
+@cython0.test_assert_path_exists(
     '//ReturnStatNode//TupleNode',
     '//ReturnStatNode//TupleNode//CondExprNode',
 )
@@ -1057,13 +1057,13 @@ def min_max_tree_restructuring():
     return max(<char>1, aview[0]), min(<char>5, aview[2])
 
 
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     '//MemoryViewSliceNode',
 )
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     '//MemoryViewIndexNode',
 )
-#@cython.boundscheck(False)  # reduce C code clutter
+#@cython0.boundscheck(False)  # reduce C code clutter
 def optimised_index_of_slice(int[:,:,:] arr, int x, int y, int z):
     """
     >>> arr = IntMockBuffer("A", list(range(10*10*10)), shape=(10,10,10))

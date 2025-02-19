@@ -3,7 +3,7 @@ PYTHON run.py
 
 ######## setup.py ########
 
-from Cython.Build.Dependencies import cythonize
+from Cython0.Build.Dependencies import cythonize
 from distutils.core import setup
 
 setup(
@@ -16,7 +16,7 @@ import mod
 
 def cy_method(x):
     return mod.function(x)
-    
+
 ####### mod.py #################
 
 mod_global = "this is a mod global"
@@ -24,9 +24,9 @@ mod_global = "this is a mod global"
 def function(a, mod_global=None):
     if mod_global is not None:
         mod_global = a
-    
+
     return
-    
+
 ####### run.py #################
 
 from call_func import cy_method
@@ -37,7 +37,7 @@ def trace(frame, event, arg):
     assert(mod.mod_global == "this is a mod global")
 
     return trace
-    
+
 sys.settrace(trace)
 
 cy_method("s")

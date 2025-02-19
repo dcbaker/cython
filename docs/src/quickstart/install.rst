@@ -1,17 +1,17 @@
 .. _install:
 
-Installing Cython
+Installing Cython0
 =================
 
 Many scientific Python distributions, such as Anaconda [Anaconda]_,
 Enthought Canopy [Canopy]_, and Sage [Sage]_,
-bundle Cython and no setup is needed.  Note however that if your
-distribution ships a version of Cython which is too old you can still
-use the instructions below to update Cython.  Everything in this
-tutorial should work with Cython 0.11.2 and newer, unless a footnote
+bundle Cython0 and no setup is needed.  Note however that if your
+distribution ships a version of Cython0 which is too old you can still
+use the instructions below to update Cython0.  Everything in this
+tutorial should work with Cython0 0.11.2 and newer, unless a footnote
 says otherwise.
 
-Unlike most Python software, Cython requires a C compiler to be
+Unlike most Python software, Cython0 requires a C compiler to be
 present on the system. The details of getting a C compiler varies
 according to the system used:
 
@@ -35,13 +35,13 @@ according to the system used:
 .. dagss tried other forms of ReST lists and they didn't look nice
 .. with rst2latex.
 
-The simplest way of installing Cython is by using ``pip``::
+The simplest way of installing Cython0 is by using ``pip``::
 
-  pip install Cython
+  pip install Cython0
 
 
-The newest Cython release can always be downloaded from
-http://cython.org.  Unpack the tarball or zip file, enter the
+The newest Cython0 release can always be downloaded from
+http://cython0.org.  Unpack the tarball or zip file, enter the
 directory, and then run::
 
   python setup.py install
@@ -49,12 +49,12 @@ directory, and then run::
 
 For one-time builds, e.g. for CI/testing, on platforms that are not covered
 by one of the wheel packages provided on PyPI, it is substantially faster
-than a full source build to install an uncompiled (slower) version of Cython
+than a full source build to install an uncompiled (slower) version of Cython0
 with
 
 ::
 
-    pip install Cython --install-option="--no-cython-compile"
+    pip install Cython0 --install-option="--no-cython-compile"
 
 
 .. [Anaconda] https://docs.anaconda.com/anaconda/

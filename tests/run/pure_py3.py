@@ -1,26 +1,26 @@
 # mode: run
 # tag: annotation_typing, pure3.0, mypy
 
-import cython
+import cython0
 
-is_compiled = cython.compiled
+is_compiled = cython0.compiled
 
-MyUnion = cython.union(n=cython.int, x=cython.double)
-MyStruct = cython.struct(is_integral=cython.bint, data=MyUnion)
-MyStruct2 = cython.typedef(MyStruct[2])  # type: cython.StructType
+MyUnion = cython0.union(n=cython0.int, x=cython0.double)
+MyStruct = cython0.struct(is_integral=cython0.bint, data=MyUnion)
+MyStruct2 = cython0.typedef(MyStruct[2])  # type: cython0.StructType
 
 
-@cython.ccall  # cpdef => C return type
-def test_return_type(n: cython.int) -> cython.double:
+@cython0.ccall  # cpdef => C return type
+def test_return_type(n: cython0.int) -> cython0.double:
     """
     >>> test_return_type(389)
     389.0
     """
-    assert cython.typeof(n) == 'int', cython.typeof(n)
+    assert cython0.typeof(n) == 'int', cython0.typeof(n)
     return n if is_compiled else float(n)
 
 
-def test_struct(n: cython.int, x: cython.double) -> MyStruct2:
+def test_struct(n: cython0.int, x: cython0.double) -> MyStruct2:
     """
     >>> test_struct(389, 1.64493)
     (389, 1.64493)
@@ -28,20 +28,20 @@ def test_struct(n: cython.int, x: cython.double) -> MyStruct2:
     >>> sorted(d)
     ['n', 'return', 'x']
     """
-    assert cython.typeof(n) == 'int', cython.typeof(n)
+    assert cython0.typeof(n) == 'int', cython0.typeof(n)
     if is_compiled:
-        assert cython.typeof(x) == 'double', cython.typeof(x)  # C double
+        assert cython0.typeof(x) == 'double', cython0.typeof(x)  # C double
     else:
-        assert cython.typeof(x) == 'float', cython.typeof(x)   # Python float
+        assert cython0.typeof(x) == 'float', cython0.typeof(x)   # Python float
 
-    a = cython.declare(MyStruct2)
+    a = cython0.declare(MyStruct2)
     a[0] = MyStruct(is_integral=True, data=MyUnion(n=n))
     a[1] = MyStruct(is_integral=False, data={'x': x})
     return a[0].data.n, a[1].data.x
 
 
-@cython.ccall
-def c_call(x) -> cython.double:
+@cython0.ccall
+def c_call(x) -> cython0.double:
     return x
 
 
@@ -62,12 +62,12 @@ def call_ccall(x):
     1
     """
     ret = c_call(x)
-    return ret, cython.typeof(ret)
+    return ret, cython0.typeof(ret)
 
 
-@cython.cfunc
-@cython.inline
-def cdef_inline(x) -> cython.double:
+@cython0.cfunc
+@cython0.inline
+def cdef_inline(x) -> cython0.double:
     return x + 1
 
 
@@ -84,4 +84,4 @@ def call_cdef_inline(x):
     True
     """
     ret = cdef_inline(x)
-    return ret, cython.typeof(ret)
+    return ret, cython0.typeof(ret)

@@ -3,7 +3,7 @@
 # tag: pep492, await, gh3337
 
 """
-Cython specific tests in addition to "test_coroutines_pep492.pyx"
+Cython0 specific tests in addition to "test_coroutines_pep492.pyx"
 (which is copied from CPython).
 """
 

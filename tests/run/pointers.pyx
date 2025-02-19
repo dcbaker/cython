@@ -1,4 +1,4 @@
-cimport cython
+cimport cython0
 
 cdef char* c_string = b'abcdefg'
 cdef void* void_ptr = c_string
@@ -69,7 +69,7 @@ def binop_voidptr(int x, long y, char* z):
     'void *'
     """
     result = &x and &y and z
-    return cython.typeof(result)
+    return cython0.typeof(result)
 
 
 def cond_expr_voidptr(int x, long y, char* z):
@@ -86,4 +86,4 @@ def cond_expr_voidptr(int x, long y, char* z):
     result = &x if len(z) else &y
     assert sizeof(long) >= sizeof(int)
     assert -1 == <int>(-1L)
-    return cython.typeof(result), (<int*>result)[0]
+    return cython0.typeof(result), (<int*>result)[0]

@@ -3,7 +3,7 @@
 Implementing the buffer protocol
 ================================
 
-Cython objects can expose memory buffers to Python code
+Cython0 objects can expose memory buffers to Python code
 by implementing the "buffer protocol".
 This chapter shows how to implement the protocol
 and make use of the memory managed by an extension type from NumPy.
@@ -12,7 +12,7 @@ and make use of the memory managed by an extension type from NumPy.
 A matrix class
 --------------
 
-The following Cython/C++ code implements a matrix of floats,
+The following Cython0/C++ code implements a matrix of floats,
 where the number of columns is fixed at construction time
 but rows can be added dynamically.
 
@@ -25,7 +25,7 @@ so we can use NumPy to do useful work.
 
 Implementing the buffer protocol requires adding two methods,
 ``__getbuffer__`` and ``__releasebuffer__``,
-which Cython handles specially.
+which Cython0 handles specially.
 
 .. literalinclude:: ../../examples/userguide/buffer/matrix_with_buffer.pyx
 

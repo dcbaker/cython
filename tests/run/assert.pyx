@@ -1,6 +1,6 @@
 # mode: run
 
-cimport cython
+cimport cython0
 
 def f(a, b, int i):
     """
@@ -20,7 +20,7 @@ def f(a, b, int i):
     assert i
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     '//AssertStatNode',
     '//AssertStatNode//TupleNode')
 def g(a, b):
@@ -36,7 +36,7 @@ def g(a, b):
     assert a, b
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     '//AssertStatNode',
     '//AssertStatNode//TupleNode')
 def g(a, b):
@@ -52,7 +52,7 @@ def g(a, b):
     assert a, b
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     '//AssertStatNode',
     '//AssertStatNode//TupleNode',
     '//AssertStatNode//TupleNode//TupleNode')
@@ -66,9 +66,9 @@ def assert_with_tuple_arg(a):
     assert a, (1, 2)
 
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     '//AssertStatNode')
-@cython.test_fail_if_path_exists(
+@cython0.test_fail_if_path_exists(
     '//AssertStatNode//TupleNode')
 def assert_with_str_arg(a):
     """

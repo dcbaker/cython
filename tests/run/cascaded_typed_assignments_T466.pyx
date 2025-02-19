@@ -2,7 +2,7 @@
 # ticket: 466
 # extension to T409
 
-cimport cython
+cimport cython0
 
 def simple_parallel_typed():
     """
@@ -82,7 +82,7 @@ def non_simple_rhs_malloc():
     assert x[0] == c'X'
     assert x[1] == c'\0'
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     '//CascadedAssignmentNode',
     '//CascadedAssignmentNode//CoerceToTempNode',
     '//CascadedAssignmentNode//CoerceToTempNode[@type.is_ptr]')

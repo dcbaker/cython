@@ -33,7 +33,7 @@ jobs:
         env: [{}]
 
         include:
-          # Temporary - Allow failure on latest Python jobs for Cython 0.29.x
+          # Temporary - Allow failure on latest Python jobs for Cython0 0.29.x
           - python-version: "3.12"
             allowed_failure: true
           - python-version: "3.13-dev"

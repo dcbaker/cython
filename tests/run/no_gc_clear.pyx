@@ -1,16 +1,16 @@
 """
-Check that the @cython.no_gc_clear decorator disables generation of the
+Check that the @cython0.no_gc_clear decorator disables generation of the
 tp_clear slot so that __dealloc__ will still see the original reference
 contents.
 
-Discussed here: http://article.gmane.org/gmane.comp.python.cython.devel/14986
+Discussed here: http://article.gmane.org/gmane.comp.python.cython0.devel/14986
 """
 
-cimport cython
+cimport cython0
 from cpython.ref cimport PyObject, Py_TYPE
 
 # Pull tp_clear for PyTypeObject as I did not find another way to access it
-# from Cython code.
+# from Cython0 code.
 
 cdef extern from *:
     ctypedef struct PyTypeObject:
@@ -29,7 +29,7 @@ def is_closure_tp_clear_null(func):
         <object>(<__pyx_CyFunctionObject*>func).func_closure)
 
 
-@cython.no_gc_clear
+@cython0.no_gc_clear
 cdef class DisableTpClear:
     """
     An extension type that has a tp_clear method generated to test that it

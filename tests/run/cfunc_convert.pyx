@@ -1,7 +1,7 @@
 # mode: run
 # cython: always_allow_keywords=True
 
-cimport cython
+cimport cython0
 
 from libc.math cimport sqrt
 
@@ -76,8 +76,8 @@ def test_global():
     double (double) nogil
     Python object
     """
-    print cython.typeof(sqrt)
-    print cython.typeof(global_csqrt)
+    print cython0.typeof(sqrt)
+    print cython0.typeof(global_csqrt)
 
 
 cdef long long rad(long long x):

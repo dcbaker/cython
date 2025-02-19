@@ -2,6 +2,6 @@
 branch = True
 parallel = True
 concurrency = multiprocessing,thread
-include = Cython/*
-source = Cython
+include = Cython0/*
+source = Cython0
 omit = Test*

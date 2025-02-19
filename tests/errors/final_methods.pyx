@@ -1,13 +1,13 @@
 # mode: error
 
-cimport cython
+cimport cython0
 
 cdef class BaseClass:
-    @cython.final
+    @cython0.final
     cdef cdef_method(self):
         pass
 
-    @cython.final
+    @cython0.final
     cpdef cpdef_method(self):
         pass
 

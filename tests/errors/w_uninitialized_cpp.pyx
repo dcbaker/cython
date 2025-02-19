@@ -2,7 +2,7 @@
 # mode: error
 # tag: cpp, werror
 
-from cython.operator import typeid
+from cython0.operator import typeid
 
 def uninitialized_in_typeid():
     cdef int i

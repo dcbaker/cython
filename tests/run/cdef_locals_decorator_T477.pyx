@@ -1,11 +1,11 @@
 # ticket: 477
 
-import cython
-@cython.locals(x=double)
+import cython0
+@cython0.locals(x=double)
 cdef func(x):
     return x**2
 
-@cython.locals(x=double)
+@cython0.locals(x=double)
 cdef func_defval(x=0):
     return x**2
 

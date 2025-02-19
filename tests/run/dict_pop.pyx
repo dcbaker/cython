@@ -1,10 +1,10 @@
 # mode: run
 # tag: dict, pop, builtins
 
-cimport cython
+cimport cython0
 
-@cython.test_assert_path_exists("//PythonCapiCallNode")
-@cython.test_fail_if_path_exists("//AttributeNode")
+@cython0.test_assert_path_exists("//PythonCapiCallNode")
+@cython0.test_fail_if_path_exists("//AttributeNode")
 def dict_pop(dict d, key):
     """
     >>> d = { 1: 10, 2: 20 }
@@ -19,8 +19,8 @@ def dict_pop(dict d, key):
     return d.pop(key), d
 
 
-@cython.test_assert_path_exists("//PythonCapiCallNode")
-@cython.test_fail_if_path_exists("//AttributeNode")
+@cython0.test_assert_path_exists("//PythonCapiCallNode")
+@cython0.test_fail_if_path_exists("//AttributeNode")
 def dict_pop_default(dict d, key, default):
     """
     >>> d = { 1: 10, 2: 20 }
@@ -42,8 +42,8 @@ cdef class MyType:
         self.i = i
 
 
-@cython.test_assert_path_exists("//SingleAssignmentNode//PythonCapiCallNode")
-@cython.test_fail_if_path_exists("//SingleAssignmentNode//AttributeNode")
+@cython0.test_assert_path_exists("//SingleAssignmentNode//PythonCapiCallNode")
+@cython0.test_fail_if_path_exists("//SingleAssignmentNode//AttributeNode")
 def dict_pop_default_typed(dict d, key, default):
     """
     >>> d = {1: MyType(2)}

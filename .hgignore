@@ -6,9 +6,9 @@ __pycache__
 *.egg
 *.egg-info
 
-Cython/Compiler/*.c
-Cython/Plex/*.c
-Cython/Runtime/refnanny.c
+Cython0/Compiler/*.c
+Cython0/Plex/*.c
+Cython0/Runtime/refnanny.c
 
 TEST_TMP/
 build/

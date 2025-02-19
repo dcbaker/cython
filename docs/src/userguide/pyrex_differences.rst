@@ -3,27 +3,27 @@
 .. _pyrex-differences:
 
 **************************************
-Differences between Cython and Pyrex
+Differences between Cython0 and Pyrex
 **************************************
 
 .. warning::
-    Both Cython and Pyrex are moving targets. It has come to the point
+    Both Cython0 and Pyrex are moving targets. It has come to the point
     that an explicit list of all the differences between the two
     projects would be laborious to list and track, but hopefully
     this high-level list gives an idea of the differences that
     are present. It should be noted that both projects make an effort
-    at mutual compatibility, but Cython's goal is to be as close to
+    at mutual compatibility, but Cython0's goal is to be as close to
     and complete as Python as reasonable.
 
 
 Python 3 Support
 ================
 
-Cython creates ``.c`` files that can be built and used with both
+Cython0 creates ``.c`` files that can be built and used with both
 Python 2.x and Python 3.x. In fact, compiling your module with
-Cython may very well be an easy way to port code to Python 3.
+Cython0 may very well be an easy way to port code to Python 3.
 
-Cython also supports various syntax additions that came with
+Cython0 also supports various syntax additions that came with
 Python 3.0 and later major Python releases.  If they do not conflict
 with existing Python 2.x syntax or semantics, they are usually just
 accepted by the compiler.  Everything else depends on the
@@ -33,7 +33,7 @@ compiler directive ``language_level=3``
 List/Set/Dict Comprehensions
 ----------------------------
 
-Cython supports the different comprehensions defined by Python 3 for
+Cython0 supports the different comprehensions defined by Python 3 for
 lists, sets and dicts::
 
        [expr(x) for x in A]             # list
@@ -47,7 +47,7 @@ generally preferred to use the usual :keyword:`for` ... :keyword:`in`
 
 .. note:: see :ref:`automatic-range-conversion`
 
-Note that Cython also supports set literals starting from Python 2.4.
+Note that Cython0 also supports set literals starting from Python 2.4.
 
 Keyword-only arguments
 ----------------------
@@ -152,7 +152,7 @@ Python as booleans. The return type of comparisons and several builtins is a
         return x == y
 
 which would return ``1`` or ``0`` in Pyrex, but returns ``True`` or ``False`` in
-Cython. One can declare variables and return values for functions to be of the
+Cython0. One can declare variables and return values for functions to be of the
 :c:type:`bint` type.  For example::
 
     cdef int i = x
@@ -177,7 +177,7 @@ Including a working :func:`classmethod`::
 cpdef functions
 =================
 
-Cython adds a third function type on top of the usual :keyword:`def` and
+Cython0 adds a third function type on top of the usual :keyword:`def` and
 :keyword:`cdef`. If a function is declared :keyword:`cpdef` it can be called
 from and overridden by both extension and normal python subclasses. You can
 essentially think of a :keyword:`cpdef` method as a :keyword:`cdef` method +
@@ -227,7 +227,7 @@ of step) can be determined.
     assignment to ``i`` to overflow. Specifically, if this option is set, an error
     will be raised before the loop is entered, whereas without this option the loop
     will execute until a overflowing value is encountered. If this affects you,
-    change ``Cython/Compiler/Options.py`` (eventually there will be a better
+    change ``Cython0/Compiler/Options.py`` (eventually there will be a better
     way to set this).
 
 More friendly type casting
@@ -238,20 +238,20 @@ the memory address of ``x``. Likewise, if one types ``<object>i`` where ``i``
 is a C int, one will get an "object" at location ``i`` in memory. This leads
 to confusing results and segfaults.
 
-In Cython ``<type>x`` will try and do a coercion (as would happen on assignment of
+In Cython0 ``<type>x`` will try and do a coercion (as would happen on assignment of
 ``x`` to a variable of type type) if exactly one of the types is a python object.
 It does not stop one from casting where there is no conversion (though it will
 emit a warning). If one really wants the address, cast to a ``void *`` first.
 
 As in Pyrex ``<MyExtensionType>x`` will cast ``x`` to type :c:type:`MyExtensionType`
-without any type checking. Cython supports the syntax ``<MyExtensionType?>`` to do
+without any type checking. Cython0 supports the syntax ``<MyExtensionType?>`` to do
 the cast with type checking (i.e. it will throw an error if ``x`` is not a
 (subclass of) :c:type:`MyExtensionType`.
 
 Optional arguments in cdef/cpdef functions
 ============================================
 
-Cython now supports optional arguments for :keyword:`cdef` and
+Cython0 now supports optional arguments for :keyword:`cdef` and
 :keyword:`cpdef` functions.
 
 The syntax in the ``.pyx`` file remains as in Python, but one declares such
@@ -300,7 +300,7 @@ Synonyms
 Source code encoding
 ======================
 
-Cython supports :PEP:`3120` and :PEP:`263`, i.e. you can start your Cython source
+Cython0 supports :PEP:`3120` and :PEP:`263`, i.e. you can start your Cython0 source
 file with an encoding comment and generally write your source code in UTF-8.
 This impacts the encoding of byte strings and the conversion of unicode string
 literals like ``u'abcd'`` to unicode objects.
@@ -311,13 +311,13 @@ Automatic ``typecheck``
 Rather than introducing a new keyword ``typecheck`` as explained in the
 `Pyrex docs
 <http://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/version/Doc/Manual/special_methods.html>`_,
-Cython emits a (non-spoofable and faster) typecheck whenever
+Cython0 emits a (non-spoofable and faster) typecheck whenever
 :func:`isinstance` is used with an extension type as the second parameter.
 
 From __future__ directives
 ==========================
 
-Cython supports several ``from __future__ import ...`` directives, namely
+Cython0 supports several ``from __future__ import ...`` directives, namely
 ``absolute_import``, ``unicode_literals``, ``print_function`` and ``division``.
 
 With statements are always enabled.
@@ -325,7 +325,7 @@ With statements are always enabled.
 Pure Python mode
 ================
 
-Cython has support for compiling ``.py`` files, and
+Cython0 has support for compiling ``.py`` files, and
 accepting type annotations using decorators and other
 valid Python syntax. This allows the same source to
 be interpreted as straight Python, or compiled for

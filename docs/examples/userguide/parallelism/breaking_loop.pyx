@@ -1,4 +1,4 @@
-from cython.parallel import prange
+from cython0.parallel import prange
 
 cdef int func(Py_ssize_t n):
     cdef Py_ssize_t i

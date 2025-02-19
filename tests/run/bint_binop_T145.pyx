@@ -1,8 +1,8 @@
 # ticket: 145
 
-cimport cython
+cimport cython0
 
-@cython.test_fail_if_path_exists('//BoolBinopNode')
+@cython0.test_fail_if_path_exists('//BoolBinopNode')
 def or_literal_bint():
     """
     >>> True or 5
@@ -12,7 +12,7 @@ def or_literal_bint():
     """
     return True or 5
 
-@cython.test_fail_if_path_exists('//BoolBinopNode')
+@cython0.test_fail_if_path_exists('//BoolBinopNode')
 def and_literal_bint():
     """
     >>> 5 and True
@@ -22,7 +22,7 @@ def and_literal_bint():
     """
     return 5 and True
 
-@cython.test_fail_if_path_exists('//BoolBinopNode')
+@cython0.test_fail_if_path_exists('//BoolBinopNode')
 def False_and_True_or_0():
     """
     >>> False and True or 0
@@ -32,7 +32,7 @@ def False_and_True_or_0():
     """
     return False and True or 0
 
-@cython.test_fail_if_path_exists('//BoolBinopNode')
+@cython0.test_fail_if_path_exists('//BoolBinopNode')
 def True_and_True_or_0():
     """
     >>> True and True or 0

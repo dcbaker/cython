@@ -1,8 +1,8 @@
 # mode: error
 
-cimport cython
+cimport cython0
 
-@cython.final
+@cython0.final
 cdef class FinalClass:
     pass
 

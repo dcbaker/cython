@@ -2,7 +2,7 @@ PYTHON setup.py build_ext --inplace
 
 ######## setup.py ########
 
-from Cython.Build import cythonize
+from Cython0.Build import cythonize
 ext_modules = cythonize("foo.pyx")
 assert set(ext_modules[0].depends) == set(["a.h", "b.h", "c.h", "d.h"])
 

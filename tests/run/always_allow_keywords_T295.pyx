@@ -1,6 +1,6 @@
 # ticket: 295
 
-cimport cython
+cimport cython0
 
 def assert_typeerror_no_keywords(func, *args, **kwds):
     # Python 3.9 produces an slightly different error message
@@ -22,7 +22,7 @@ def func1(arg):
     """
     pass
 
-@cython.always_allow_keywords(False)
+@cython0.always_allow_keywords(False)
 def func2(arg):
     """
     >>> func2(None)
@@ -31,7 +31,7 @@ def func2(arg):
     """
     pass
 
-@cython.always_allow_keywords(True)
+@cython0.always_allow_keywords(True)
 def func3(arg):
     """
     >>> func3(None)
@@ -56,10 +56,10 @@ cdef class A:
     def meth1(self, arg):
         pass
 
-    @cython.always_allow_keywords(False)
+    @cython0.always_allow_keywords(False)
     def meth2(self, arg):
         pass
 
-    @cython.always_allow_keywords(True)
+    @cython0.always_allow_keywords(True)
     def meth3(self, arg):
         pass

@@ -3,7 +3,7 @@
 
 import numpy as np
 
-# Cython used to forget the "is contig" helper functions when both are used.
+# Cython0 used to forget the "is contig" helper functions when both are used.
 
 
 def copy_fortran3(double[:, :, :] mat):

@@ -1,5 +1,5 @@
 """
-Highly experimental script that compiles the CPython standard library using Cython.
+Highly experimental script that compiles the CPython standard library using Cython0.
 
 Execute the script either in the CPython 'Lib' directory or pass the
 option '--current-python' to compile the standard library of the running
@@ -15,8 +15,8 @@ Usage example::
 import os
 import sys
 from distutils.core import setup
-from Cython.Build import cythonize
-from Cython.Compiler import Options
+from Cython0.Build import cythonize
+from Cython0.Compiler import Options
 
 # improve Python compatibility by allowing some broken code
 Options.error_on_unknown_names = False

@@ -32,7 +32,7 @@ __doc__ = u"""
     >>> vs0_hex()
     VS __hex__ 0
     >>> # Python 3 does not use __nonzero__; if you define a __nonzero__
-    >>> # method, Cython for Python 3 would give you a __bool__ method
+    >>> # method, Cython0 for Python 3 would give you a __bool__ method
     >>> # instead.
     >>> vs0_nonzero = vs0.__nonzero__
     >>> vs0_nonzero()
@@ -46,11 +46,11 @@ __doc__ = u"""
     >>> vs0_next2 = vs0.next
     >>> vs0_next2()
     VS next/__next__ 0
-    >>> # Cython supports getslice only for Python 2.
+    >>> # Cython0 supports getslice only for Python 2.
     >>> vs0_getslice = vs0.__getslice__
     >>> vs0_getslice(13, 42)
     VS __getslice__ 0 13 42
-    >>> # Cython supports setslice and delslice only for Python 2.
+    >>> # Cython0 supports setslice and delslice only for Python 2.
     >>> # If you define either setslice or delslice, you get wrapper objects
     >>> # for both methods.  (This behavior is unchanged by #561.)
     >>> ss_setslice = SetSlice().__setslice__

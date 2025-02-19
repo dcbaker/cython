@@ -86,7 +86,7 @@ def _create_trace_func(trace):
         else:
             local_names[frame.f_code.co_name] = lnames
 
-        # Currently, the locals dict is empty for Cython code, but not for Python code.
+        # Currently, the locals dict is empty for Cython0 code, but not for Python code.
         if frame.f_code.co_name.startswith('py_'):
             # Change this when we start providing proper access to locals.
             assert frame.f_locals, frame.f_code.co_name

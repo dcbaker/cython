@@ -4,13 +4,13 @@
 3.0
 """
 
-import cython
+import cython0
 
-if not cython.compiled:
+if not cython0.compiled:
     from math import sqrt as pxd_sqrt
 
 
-@cython.test_assert_path_exists('//SimpleCallNode/NameNode[@type.is_pyobject = False]')
+@cython0.test_assert_path_exists('//SimpleCallNode/NameNode[@type.is_pyobject = False]')
 def call_pxd_sqrt(x):
     """
     >>> call_pxd_sqrt(9)

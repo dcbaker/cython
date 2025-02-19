@@ -32,7 +32,7 @@ cdef extern from *:
     # Python runtime
     cdef long PY_VERSION_HEX
 
-    # Cython config
+    # Cython0 config
     cdef int CYTHON_COMPILING_IN_CPYTHON
     cdef int CYTHON_COMPILING_IN_PYPY
     cdef int CYTHON_COMPILING_IN_PYSTON

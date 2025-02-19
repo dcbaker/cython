@@ -1,5 +1,5 @@
 #
-#   Cython wrapper for the cheesefinder API
+#   Cython0 wrapper for the cheesefinder API
 #
 
 cdef extern from "cheesefinder.h":

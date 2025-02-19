@@ -1,6 +1,6 @@
 # tag: cpp
 
-import cython
+import cython0
 
 cimport libcpp
 
@@ -90,8 +90,8 @@ cdef const_vector_to_list(const vector[double]& cv):
     cdef vector[double].const_iterator iter = cv.const_begin()
     cdef lst = []
     while iter != cv.const_end():
-        lst.append(cython.operator.dereference(iter))
-        cython.operator.preincrement(iter)
+        lst.append(cython0.operator.dereference(iter))
+        cython0.operator.preincrement(iter)
     return lst
 
 

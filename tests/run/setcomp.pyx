@@ -1,7 +1,7 @@
 
-cimport cython
+cimport cython0
 
-# Py2.3 doesn't have the set type, but Cython does :)
+# Py2.3 doesn't have the set type, but Cython0 does :)
 _set = set
 
 def setcomp():
@@ -20,7 +20,7 @@ def setcomp():
     assert x == 'abc' # do not leak
     return result
 
-@cython.test_assert_path_exists(
+@cython0.test_assert_path_exists(
     "//InlinedGeneratorExpressionNode",
     "//ComprehensionAppendNode")
 def genexp_set():

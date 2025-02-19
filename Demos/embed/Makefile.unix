@@ -1,4 +1,4 @@
-# Makefile for creating our standalone Cython program
+# Makefile for creating our standalone Cython0 program
 PYVERSION=2.3
 PYPREFIX=/usr
 INCLUDES=-I$(PYPREFIX)/include/python$(PYVERSION)
@@ -10,7 +10,7 @@ embedded.o: embedded.c
 	gcc -c $^ $(INCLUDES)
 
 embedded.c: embedded.pyx
-	@python ../../cython.py --embed embedded.pyx
+	@python ../../cython0.py --embed embedded.pyx
 
 all: embedded
 

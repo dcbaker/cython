@@ -1,6 +1,6 @@
 from __future__ import division
 
-cimport cython
+cimport cython0
 
 
 def bigints(values):
@@ -148,7 +148,7 @@ def infer_division_type():
     8333333.25
     """
     v = (10000**2 - 1) / 12
-    print(cython.typeof(v))
+    print(cython0.typeof(v))
     return v
 
 def int_int(int a, int b):

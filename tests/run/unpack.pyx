@@ -1,7 +1,7 @@
 # mode: run
 # tag: sequence_unpacking
 
-import cython
+import cython0
 
 
 def _it(N):
@@ -369,7 +369,7 @@ def unpack_many_int(it):
     return a,b,c,d,e,f,g,h,i,j,k,l
 
 
-@cython.test_fail_if_path_exists('//PyTypeTestNode')
+@cython0.test_fail_if_path_exists('//PyTypeTestNode')
 def unpack_literal_none_to_builtin_type():
     """
     >>> unpack_literal_none_to_builtin_type()
@@ -384,7 +384,7 @@ cdef class ExtType:
     pass
 
 
-@cython.test_fail_if_path_exists('//PyTypeTestNode')
+@cython0.test_fail_if_path_exists('//PyTypeTestNode')
 def unpack_literal_none_to_exttype():
     """
     >>> unpack_literal_none_to_exttype()

@@ -1,6 +1,6 @@
 # mode: run
 
-cimport cython
+cimport cython0
 
 cdef class Spam:
     cdef dict __dict__

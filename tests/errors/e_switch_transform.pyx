@@ -2,7 +2,7 @@
 # mode: error
 # tag: cerror
 
-import cython
+import cython0
 
 cdef extern from *:
     enum:

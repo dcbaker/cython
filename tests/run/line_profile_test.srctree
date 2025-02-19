@@ -5,7 +5,7 @@ PYTHON test_profile.py
 
 from distutils.extension import Extension
 from distutils.core import setup
-from Cython.Build import cythonize
+from Cython0.Build import cythonize
 
 extensions = [
     Extension("collatz", ["collatz.pyx"], define_macros=[('CYTHON_TRACE', '1')])
@@ -84,9 +84,9 @@ assert_stats(profile, func.__name__)
 ######## collatz.pyx ###########
 # cython: linetrace=True
 
-cimport cython
+cimport cython0
 
-@cython.binding(True)
+@cython0.binding(True)
 def collatz(n):
     while n > 1:
         if n % 2 == 0:
@@ -95,7 +95,7 @@ def collatz(n):
             n = 3*n+1
 
 
-@cython.binding(True)
+@cython0.binding(True)
 cpdef cp_collatz(n):
     while n > 1:
         if n % 2 == 0:
@@ -104,7 +104,7 @@ cpdef cp_collatz(n):
             n = 3*n+1
 
 
-@cython.binding(True)
+@cython0.binding(True)
 def cy_generator(int n):
    x = 1
    for i in range(n):
@@ -114,12 +114,12 @@ def cy_generator(int n):
            i += 2
 
 
-@cython.binding(True)
+@cython0.binding(True)
 def run_generator(n):
     assert len(list(cy_generator(n))) == n
 
 
-@cython.binding(True)
+@cython0.binding(True)
 async def cy_coro(int n):
     while n > 1:
         if n % 2 == 0:
@@ -129,7 +129,7 @@ async def cy_coro(int n):
     x = <object> n  # make sure the computation does not get discarded
 
 
-@cython.binding(True)
+@cython0.binding(True)
 def run_coro(n):
     coro = cy_coro(n)
     try:
@@ -140,7 +140,7 @@ def run_coro(n):
         assert False, "Coroutine did not raise"
 
 
-@cython.binding(True)
+@cython0.binding(True)
 class PyClass(object):
     def py_pymethod(self):
         x = 1
@@ -149,7 +149,7 @@ class PyClass(object):
         return a * 3
 
 
-@cython.binding(True)
+@cython0.binding(True)
 cdef class CClass:
     def c_pymethod(self, c=2):
         for i in range(10):

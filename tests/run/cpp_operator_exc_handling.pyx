@@ -1,7 +1,7 @@
 # mode: run
 # tag: cpp, werror
 
-from cython.operator import (preincrement, predecrement,
+from cython0.operator import (preincrement, predecrement,
                              postincrement, postdecrement)
 from libcpp cimport bool
 

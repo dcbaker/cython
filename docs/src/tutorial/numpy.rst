@@ -4,29 +4,29 @@
 Working with NumPy
 =======================
 
-.. NOTE:: Cython 0.16 introduced typed memoryviews as a successor to the NumPy
+.. NOTE:: Cython0 0.16 introduced typed memoryviews as a successor to the NumPy
           integration described here.  They are easier to use than the buffer syntax
           below, have less overhead, and can be passed around without requiring the GIL.
           They should be preferred to the syntax presented in this page.
-          See :ref:`Cython for NumPy users <numpy_tutorial>`.
+          See :ref:`Cython0 for NumPy users <numpy_tutorial>`.
 
-You can use NumPy from Cython exactly the same as in regular Python, but by
-doing so you are losing potentially high speedups because Cython has support
+You can use NumPy from Cython0 exactly the same as in regular Python, but by
+doing so you are losing potentially high speedups because Cython0 has support
 for fast access to NumPy arrays. Let's see how this works with a simple
 example.
 
 The code below does 2D discrete convolution of an image with a filter (and I'm
 sure you can do better!, let it serve for demonstration purposes). It is both
-valid Python and valid Cython code. I'll refer to it as both
+valid Python and valid Cython0 code. I'll refer to it as both
 :file:`convolve_py.py` for the Python version and :file:`convolve1.pyx` for
-the Cython version -- Cython uses ".pyx" as its file suffix.
+the Cython0 version -- Cython0 uses ".pyx" as its file suffix.
 
 .. literalinclude:: ../../examples/tutorial/numpy/convolve_py.py
 
 This should be compiled to produce :file:`yourmod.so` (for Linux systems, on Windows
 systems, it will be :file:`yourmod.pyd`). We
 run a Python session to test both the Python version (imported from
-``.py``-file) and the compiled Cython module.
+``.py``-file) and the compiled Cython0 module.
 
 .. sourcecode:: ipython
 
@@ -57,12 +57,12 @@ There's not such a huge difference yet; because the C code still does exactly
 what the Python interpreter does (meaning, for instance, that a new object is
 allocated for each number used). Look at the generated html file and see what
 is needed for even the simplest statements you get the point quickly. We need
-to give Cython more information; we need to add types.
+to give Cython0 more information; we need to add types.
 
 Adding types
 =============
 
-To add types we use custom Cython syntax, so we are now breaking Python source
+To add types we use custom Cython0 syntax, so we are now breaking Python source
 compatibility. Consider this code (*read the comments!*) :
 
 .. literalinclude:: ../../examples/tutorial/numpy/convolve2.pyx
@@ -124,9 +124,9 @@ The array lookups are still slowed down by two factors:
    bounds checking::
 
         ...
-        cimport cython
-        @cython.boundscheck(False) # turn off bounds-checking for entire function
-        @cython.wraparound(False)  # turn off negative index wrapping for entire function
+        cimport cython0
+        @cython0.boundscheck(False) # turn off bounds-checking for entire function
+        @cython0.wraparound(False)  # turn off negative index wrapping for entire function
         def naive_convolve(np.ndarray[DTYPE_t, ndim=2] f, np.ndarray[DTYPE_t, ndim=2] g):
         ...
 

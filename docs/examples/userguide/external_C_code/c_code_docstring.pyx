@@ -1,7 +1,7 @@
 cdef extern from *:
     """
     /* This is C code which will be put
-     * in the .c file output by Cython */
+     * in the .c file output by Cython0 */
     static long square(long x) {return x * x;}
     #define assign(x, y) ((x) = (y))
     """

@@ -1,6 +1,6 @@
 from libc.stdlib cimport malloc, free
-cimport cython
-from cython.view cimport array
+cimport cython0
+from cython0.view cimport array
 
 cdef void callback(void *data):
     print "callback called"

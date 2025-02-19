@@ -10,7 +10,7 @@ PYTHON -m coverage report
 
 ######## setup.py ########
 from distutils.core import setup, Extension
-from Cython.Build import cythonize
+from Cython0.Build import cythonize
 
 setup(ext_modules = cythonize([
     'pkg/*.pyx',
@@ -27,7 +27,7 @@ setup(
 
 ######## .coveragerc ########
 [run]
-plugins = Cython.Coverage
+plugins = Cython0.Coverage
 
 
 ######## pkg/__init__.py ########

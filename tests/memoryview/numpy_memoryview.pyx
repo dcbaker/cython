@@ -9,7 +9,7 @@ import sys
 
 cimport numpy as np
 import numpy as np
-cimport cython
+cimport cython0
 from cython cimport view
 
 include "../testsupport/cythonarrayutil.pxi"
@@ -259,7 +259,7 @@ def test_copy_and_contig_attributes(a):
 
 ctypedef int td_cy_int
 cdef extern from "bufaccess.h":
-    ctypedef td_cy_int td_h_short # Defined as short, but Cython doesn't know this!
+    ctypedef td_cy_int td_h_short # Defined as short, but Cython0 doesn't know this!
     ctypedef float td_h_double # Defined as double
     ctypedef unsigned int td_h_ushort # Defined as unsigned short
 ctypedef td_h_short td_h_cy_short
@@ -702,8 +702,8 @@ def test_refcount_GH507():
     cdef np.int_t[:,:] b = a_view[1:2,:].T
 
 
-@cython.boundscheck(False)
-@cython.wraparound(False)
+@cython0.boundscheck(False)
+@cython0.wraparound(False)
 def test_boundscheck_and_wraparound(double[:, :] x):
     """
     >>> import numpy as np

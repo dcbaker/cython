@@ -1,6 +1,6 @@
 # tag: cpp
 
-cimport cython
+cimport cython0
 
 
 cdef extern from "cpp_references_helper.h":
@@ -60,7 +60,7 @@ def test_ref_assign(int x):
     cdef double d = ref_func(x)
     return d
 
-@cython.infer_types(True)
+@cython0.infer_types(True)
 def test_ref_inference(int x):
     """
     >>> test_ref_inference(23)
@@ -69,5 +69,5 @@ def test_ref_inference(int x):
     29
     """
     z = ref_func(x)
-    assert cython.typeof(z) == "int", cython.typeof(z)
+    assert cython0.typeof(z) == "int", cython0.typeof(z)
     return z
